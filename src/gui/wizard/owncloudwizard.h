@@ -77,12 +77,14 @@ public:
 
 public slots:
     void setAuthType(DetermineAuthTypeJob::AuthType type);
+    void archivalServerOk();
     void setRemoteFolder(const QString &);
     void appendToConfigurationLog(const QString &msg, LogType type = LogParagraph);
     void slotCurrentPageChanged(int);
     void successfulStep();
 
 signals:
+    void checkArchivalServer(const QString&, const QString&);
     void clearPendingRequests();
     void determineAuthType(const QString &);
     void connectToOCUrl(const QString &);

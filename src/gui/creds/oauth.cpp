@@ -78,7 +78,7 @@ void OAuth::start()
 
                 QString code = rx.cap(1); // The 'code' is the first capture of the regexp
 
-                QUrl requestToken = Utility::concatUrlPath(_account->url().toString(), QLatin1String("/index.php/apps/oauth2/api/v1/token"));
+                QUrl requestToken = Utility::concatUrlPath(_account->storageUrl().toString(), QLatin1String("/index.php/apps/oauth2/api/v1/token"));
                 QNetworkRequest req;
                 req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
@@ -156,7 +156,7 @@ void OAuth::start()
 QUrl OAuth::authorisationLink() const
 {
     Q_ASSERT(_server.isListening());
-    QUrl url = Utility::concatUrlPath(_account->url(), QLatin1String("/index.php/apps/oauth2/authorize"),
+    QUrl url = Utility::concatUrlPath(_account->storageUrl(), QLatin1String("/index.php/apps/oauth2/authorize"),
         { { QLatin1String("response_type"), QLatin1String("code") },
             { QLatin1String("client_id"), Theme::instance()->oauthClientId() },
             { QLatin1String("redirect_uri"), QLatin1String("http://localhost:") + QString::number(_server.serverPort()) } });

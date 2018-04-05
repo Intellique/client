@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>506</width>
-    <height>515</height>
+    <height>511</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,8 +19,8 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
     <widget class="QLabel" name="topLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -42,7 +42,24 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
+   <item>
+    <widget class="QRadioButton" name="rdBttnCloudIntellique">
+     <property name="text">
+      <string>Cloud Intelli&amp;que</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="rdBttnCustom">
+     <property name="text">
+      <string>Cus&amp;tom</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <spacer name="horizontalSpacer">
@@ -79,19 +96,55 @@
         </spacer>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="label_2">
+        <layout class="QGridLayout" name="grdLytForm">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Ser&amp;ver Address</string>
+            <string>Storage Server Address</string>
            </property>
-           <property name="buddy">
-            <cstring>leUrl</cstring>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="OCC::PostfixLineEdit" name="leUrl">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Archival Server Address</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="lnEdtAPI">
+           <property name="inputMask">
+            <string notr="true">HHHHHHHH-HHHH-HHHH-HHHH-HHHHHHHHHHHH</string>
+           </property>
+           <property name="text">
+            <string notr="true">----</string>
+           </property>
+           <property name="cursorPosition">
+            <number>0</number>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>API key</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="OCC::PostfixLineEdit" name="leUrlArchival">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -103,8 +156,28 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="urlLabel">
+         <item row="0" column="1">
+          <widget class="OCC::PostfixLineEdit" name="leUrlStorage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="placeholderText">
+            <string>https://...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="urlLblStorage">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="urlLblArchival">
            <property name="text">
             <string/>
            </property>
@@ -148,7 +221,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0">
+   <item>
     <widget class="QLabel" name="errorLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
@@ -167,7 +240,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -183,14 +256,14 @@
      </property>
     </spacer>
    </item>
-   <item row="4" column="0">
+   <item>
     <layout class="QHBoxLayout" name="resultLayout">
      <property name="spacing">
       <number>0</number>
      </property>
     </layout>
    </item>
-   <item row="5" column="0">
+   <item>
     <widget class="QLabel" name="bottomLabel">
      <property name="text">
       <string>TextLabel</string>
@@ -209,6 +282,13 @@
    <header>wizard/postfixlineedit.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>rdBttnCloudIntellique</tabstop>
+  <tabstop>rdBttnCustom</tabstop>
+  <tabstop>leUrlStorage</tabstop>
+  <tabstop>leUrlArchival</tabstop>
+  <tabstop>lnEdtAPI</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

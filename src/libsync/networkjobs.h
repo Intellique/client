@@ -403,6 +403,27 @@ private slots:
     bool finished() Q_DECL_OVERRIDE;
 };
 
+
+/**
+ * @brief Job which check archival url and api key.
+ */
+class OWNCLOUDSYNC_EXPORT CheckArchivalServer : public AbstractNetworkJob {
+    Q_OBJECT
+
+public:
+    explicit CheckArchivalServer(const AccountPtr& account, const QString& path, QObject * parent = nullptr);
+
+public slots:
+    void start() Q_DECL_OVERRIDE;
+
+protected:
+    bool finished() Q_DECL_OVERRIDE;
+
+signals:
+    void archivalServerFailed();
+    void archivalServerOk();
+};
+
 } // namespace OCC
 
 #endif // NETWORKJOBS_H

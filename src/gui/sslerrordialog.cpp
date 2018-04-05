@@ -128,7 +128,7 @@ bool SslErrorDialog::checkFailingCertsKnown(const QList<QSslError> &errors)
     msg += QL("<link rel='stylesheet' type='text/css' href='format.css'>");
     msg += QL("</head><body>");
 
-    auto host = _account->url().host();
+    auto host = _account->storageUrl().host();
     msg += QL("<h3>") + tr("Cannot connect securely to <i>%1</i>:").arg(host) + QL("</h3>");
     // loop over the unknown certs and line up their errors.
     msg += QL("<div id=\"ca_errors\">");

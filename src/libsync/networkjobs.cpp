@@ -29,6 +29,7 @@
 #include <QCoreApplication>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonValue>
 
 #include "networkjobs.h"
 #include "account.h"
@@ -405,7 +406,7 @@ CheckServerJob::CheckServerJob(AccountPtr account, QObject *parent)
 
 void CheckServerJob::start()
 {
-    _serverUrl = account()->url();
+    _serverUrl = account()->storageUrl();
     sendRequest("GET", Utility::concatUrlPath(_serverUrl, path()));
     connect(reply(), &QNetworkReply::metaDataChanged, this, &CheckServerJob::metaDataChangedSlot);
     connect(reply(), &QNetworkReply::encrypted, this, &CheckServerJob::encryptedSlot);
@@ -630,9 +631,9 @@ AvatarJob::AvatarJob(AccountPtr account, QObject *parent)
     : AbstractNetworkJob(account, QString(), parent)
 {
     if (account->serverVersionInt() >= Account::makeServerVersion(10, 0, 0)) {
-        _avatarUrl = Utility::concatUrlPath(account->url(), QString("remote.php/dav/avatars/%1/128.png").arg(account->davUser()));
+        _avatarUrl = Utility::concatUrlPath(account->storageUrl(), QString("remote.php/dav/avatars/%1/128.png").arg(account->davUser()));
     } else {
-        _avatarUrl = Utility::concatUrlPath(account->url(), QString("index.php/avatar/%1/128").arg(account->davUser()));
+        _avatarUrl = Utility::concatUrlPath(account->storageUrl(), QString("index.php/avatar/%1/128").arg(account->davUser()));
     }
 }
 
@@ -772,7 +773,7 @@ void JsonApiJob::start()
 {
     QNetworkRequest req;
     req.setRawHeader("OCS-APIREQUEST", "true");
-    QUrl url = Utility::concatUrlPath(account()->url(), path());
+    QUrl url = Utility::concatUrlPath(account()->storageUrl(), path());
     QList<QPair<QString, QString>> params = _additionalParams;
     params << qMakePair(QString::fromLatin1("format"), QString::fromLatin1("json"));
     url.setQueryItems(params);
@@ -907,5 +908,42 @@ bool SimpleNetworkJob::finished()
     emit finishedSignal(reply());
     return true;
 }
+
+
+CheckArchivalServer::CheckArchivalServer(const AccountPtr& account, const QString& path, QObject * parent) : AbstractNetworkJob(account, path, parent) {}
+
+
+bool CheckArchivalServer::finished() {
+    QNetworkReply * serverReply = reply();
+    QVariant code = serverReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+    if (code.toInt() == 200)
+        emit archivalServerOk();
+    else
+        emit archivalServerFailed();
+    return true;
+}
+
+void CheckArchivalServer::start() {
+    QUrl url = account()->archivalUrl();
+
+    QJsonObject body_obj = {
+        { "action",  "check" },
+        { "api key", account()->archivalApiKey().toString() }
+    };
+    QJsonDocument body;
+    body.setObject(body_obj);
+
+    // TODO: add content-type
+    QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QBuffer * body_buffer = new QBuffer;
+    body_buffer->setData(body.toJson());
+
+    sendRequest("POST", Utility::concatUrlPath(url, path()), request, body_buffer);
+
+    AbstractNetworkJob::start();
+}
+
 
 } // namespace OCC

@@ -83,7 +83,7 @@ void ConnectionValidator::checkServerAndAuth()
     // Lookup system proxy in a thread https://github.com/owncloud/client/issues/2993
     if (ClientProxy::isUsingSystemDefault()) {
         qCDebug(lcConnectionValidator) << "Trying to look up system proxy";
-        ClientProxy::lookupSystemProxyAsync(_account->url(),
+        ClientProxy::lookupSystemProxyAsync(_account->storageUrl(),
             this, SLOT(systemProxyLookupDone(QNetworkProxy)));
     } else {
         // We want to reset the QNAM proxy so that the global proxy settings are used (via ClientProxy settings)
@@ -136,9 +136,9 @@ void ConnectionValidator::slotStatusFound(const QUrl &url, const QJsonObject &in
                                   << "(" << serverVersion << ")";
 
     // Update server url in case of redirection
-    if (_account->url() != url) {
+    if (_account->storageUrl() != url) {
         qCInfo(lcConnectionValidator()) << "status.php was redirected to" << url.toString();
-        _account->setUrl(url);
+        _account->setStorageUrl(url);
         _account->wantsAccountSaved(_account.data());
     }
 
@@ -301,7 +301,7 @@ void ConnectionValidator::fetchUser()
 
 bool ConnectionValidator::setAndCheckServerVersion(const QString &version)
 {
-    qCInfo(lcConnectionValidator) << _account->url() << "has server version" << version;
+    qCInfo(lcConnectionValidator) << _account->storageUrl() << "has server version" << version;
     _account->setServerVersion(version);
 
     // We cannot deal with servers < 5.0.0

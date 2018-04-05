@@ -44,7 +44,7 @@ QUrl PropagateUploadFileNG::chunkUrl(int chunk)
         // We need to do add leading 0 because the server orders the chunk alphabetically
         path += QLatin1Char('/') + QString::number(chunk).rightJustified(8, '0');
     }
-    return Utility::concatUrlPath(propagator()->account()->url(), path);
+    return Utility::concatUrlPath(propagator()->account()->storageUrl(), path);
 }
 
 /*
@@ -274,7 +274,7 @@ void PropagateUploadFileNG::startNextChunk()
         Q_ASSERT(_jobs.isEmpty()); // There should be no running job anymore
         _finished = true;
         // Finish with a MOVE
-        QString destination = QDir::cleanPath(propagator()->account()->url().path() + QLatin1Char('/')
+        QString destination = QDir::cleanPath(propagator()->account()->storageUrl().path() + QLatin1Char('/')
             + propagator()->account()->davPath() + propagator()->_remoteFolder + _item->_file);
         auto headers = PropagateUploadFileCommon::headers();
 

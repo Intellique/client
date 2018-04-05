@@ -150,7 +150,7 @@ void AccountManager::save(bool saveCredentials)
 
 void AccountManager::saveAccount(Account *a)
 {
-    qCInfo(lcAccountManager) << "Saving account" << a->url().toString();
+    qCInfo(lcAccountManager) << "Saving account" << a->storageUrl().toString();
     auto settings = ConfigFile::settingsWithGroup(QLatin1String(accountsC));
     settings->beginGroup(a->id());
     saveAccountHelper(a, *settings, false); // don't save credentials they might not have been loaded yet
@@ -162,7 +162,7 @@ void AccountManager::saveAccount(Account *a)
 
 void AccountManager::saveAccountState(AccountState *a)
 {
-    qCInfo(lcAccountManager) << "Saving account state" << a->account()->url().toString();
+    qCInfo(lcAccountManager) << "Saving account state" << a->account()->storageUrl().toString();
     auto settings = ConfigFile::settingsWithGroup(QLatin1String(accountsC));
     settings->beginGroup(a->account()->id());
     a->writeToSettings(*settings);
@@ -174,7 +174,7 @@ void AccountManager::saveAccountState(AccountState *a)
 
 void AccountManager::saveAccountHelper(Account *acc, QSettings &settings, bool saveCredentials)
 {
-    settings.setValue(QLatin1String(urlC), acc->_url.toString());
+    settings.setValue(QLatin1String(urlC), acc->_storageUrl.toString());
     settings.setValue(QLatin1String(serverVersionC), acc->_serverVersion);
     if (acc->_credentials) {
         if (saveCredentials) {
@@ -244,13 +244,13 @@ AccountPtr AccountManager::loadAccountHelper(QSettings &settings)
     if (!forceAuth.isEmpty() && !overrideUrl.isEmpty()) {
         // If forceAuth is set, this might also mean the overrideURL has changed.
         // See enterprise issues #1126
-        acc->setUrl(overrideUrl);
+        acc->setStorageUrl(overrideUrl);
         authType = forceAuth;
     } else {
-        acc->setUrl(urlConfig.toUrl());
+        acc->setStorageUrl(urlConfig.toUrl());
     }
 
-    qCInfo(lcAccountManager) << "Account for" << acc->url() << "using auth type" << authType;
+    qCInfo(lcAccountManager) << "Account for" << acc->storageUrl() << "using auth type" << authType;
 
     acc->_serverVersion = settings.value(QLatin1String(serverVersionC)).toString();
 

@@ -26,6 +26,7 @@
 #include <QSslCipher>
 #include <QSslError>
 #include <QSharedPointer>
+#include <QUuid>
 
 #ifndef TOKEN_AUTH_ONLY
 #include <QPixmap>
@@ -101,8 +102,14 @@ public:
     QString id() const;
 
     /** Server url of the account */
-    void setUrl(const QUrl &url);
-    QUrl url() const { return _url; }
+    void setStorageUrl(const QUrl &storageUrl);
+    QUrl storageUrl() const { return _storageUrl; }
+
+    // url of archival server
+    void setArchivalApiKey(const QUuid& uuid);
+    QUuid archivalApiKey() const { return _archivalApiKey; };
+    void setArchivalUrl(const QUrl& archivalUrl);
+    QUrl archivalUrl() const { return _archivalUrl; }
 
     /// Adjusts _userVisibleUrl once the host to use is discovered.
     void setUserVisibleHost(const QString &host);
@@ -137,7 +144,7 @@ public:
      * sendRequest().
      */
     QNetworkReply *sendRawRequest(const QByteArray &verb,
-        const QUrl &url,
+        const QUrl &storageUrl,
         QNetworkRequest req = QNetworkRequest(),
         QIODevice *data = 0);
 
@@ -146,7 +153,7 @@ public:
      * More complicated requests typically create their own job types.
      */
     SimpleNetworkJob *sendRequest(const QByteArray &verb,
-        const QUrl &url,
+        const QUrl &storageUrl,
         QNetworkRequest req = QNetworkRequest(),
         QIODevice *data = 0);
 
@@ -275,7 +282,9 @@ private:
     QImage _avatarImg;
 #endif
     QMap<QString, QVariant> _settingsMap;
-    QUrl _url;
+    QUrl _archivalUrl;
+    QUuid _archivalApiKey;
+    QUrl _storageUrl;
 
     /** If url to use for any user-visible urls.
      *

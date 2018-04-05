@@ -133,7 +133,7 @@ void ShibbolethCredentials::fetchFromKeychain()
     if (_ready) {
         Q_EMIT fetched();
     } else {
-        _url = _account->url();
+        _url = _account->storageUrl();
         _keychainMigration = false;
         fetchFromKeychainHelper();
     }
@@ -312,7 +312,7 @@ void ShibbolethCredentials::slotReadJobDone(QKeychain::Job *job)
 
         DeletePasswordJob *job = new DeletePasswordJob(Theme::instance()->appName());
         job->setSettings(ConfigFile::settingsWithGroup(Theme::instance()->appName(), job).release());
-        job->setKey(keychainKey(_account->url().toString(), user(), QString()));
+        job->setKey(keychainKey(_account->storageUrl().toString(), user(), QString()));
         job->start();
 
         qCWarning(lcShibboleth) << "Migrated old keychain entries";
@@ -370,7 +370,7 @@ void ShibbolethCredentials::storeShibCookie(const QNetworkCookie &cookie)
     job->setSettings(ConfigFile::settingsWithGroup(Theme::instance()->appName(), job).release());
     // we don't really care if it works...
     //connect(job, SIGNAL(finished(QKeychain::Job*)), SLOT(slotWriteJobDone(QKeychain::Job*)));
-    job->setKey(keychainKey(_account->url().toString(), user(), _account->id()));
+    job->setKey(keychainKey(_account->storageUrl().toString(), user(), _account->id()));
     job->setTextData(QString::fromUtf8(cookie.toRawForm()));
     job->start();
 }
@@ -379,7 +379,7 @@ void ShibbolethCredentials::removeShibCookie()
 {
     DeletePasswordJob *job = new DeletePasswordJob(Theme::instance()->appName());
     job->setSettings(ConfigFile::settingsWithGroup(Theme::instance()->appName(), job).release());
-    job->setKey(keychainKey(_account->url().toString(), user(), _account->id()));
+    job->setKey(keychainKey(_account->storageUrl().toString(), user(), _account->id()));
     job->start();
 }
 
@@ -389,7 +389,7 @@ void ShibbolethCredentials::addToCookieJar(const QNetworkCookie &cookie)
     cookies << cookie;
     QNetworkCookieJar *jar = _account->networkAccessManager()->cookieJar();
     jar->blockSignals(true); // otherwise we'd call ourselves
-    jar->setCookiesFromUrl(cookies, _account->url());
+    jar->setCookiesFromUrl(cookies, _account->storageUrl());
     jar->blockSignals(false);
 }
 

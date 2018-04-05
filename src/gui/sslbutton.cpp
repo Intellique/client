@@ -182,7 +182,7 @@ void SslButton::updateAccountState(AccountState *accountState)
     _accountState = accountState;
 
     AccountPtr account = _accountState->account();
-    if (account->url().scheme() == QLatin1String("https")) {
+    if (account->storageUrl().scheme() == QLatin1String("https")) {
         setIcon(QIcon(QLatin1String(":/client/resources/lock-https.png")));
         QSslCipher cipher = account->_sessionCipher;
         setToolTip(tr("This connection is encrypted using %1 bit %2.\n").arg(cipher.usedBits()).arg(cipher.name()));
@@ -204,7 +204,7 @@ void SslButton::slotUpdateMenu()
 
     AccountPtr account = _accountState->account();
 
-    if (account->url().scheme() == QLatin1String("https")) {
+    if (account->storageUrl().scheme() == QLatin1String("https")) {
         QString sslVersion = account->_sessionCipher.protocolString()
             + ", " + account->_sessionCipher.authenticationMethod()
             + ", " + account->_sessionCipher.keyExchangeMethod()

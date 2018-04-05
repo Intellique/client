@@ -230,7 +230,7 @@ void AccountState::checkConnectivity()
 void AccountState::slotConnectionValidatorResult(ConnectionValidator::Status status, const QStringList &errors)
 {
     if (isSignedOut()) {
-        qCWarning(lcAccountState) << "Signed out, ignoring" << connectionStatusString(status) << _account->url().toString();
+        qCWarning(lcAccountState) << "Signed out, ignoring" << connectionStatusString(status) << _account->storageUrl().toString();
         return;
     }
 
@@ -304,7 +304,7 @@ void AccountState::slotInvalidCredentials()
     if (isSignedOut() || _waitingForNewCredentials)
         return;
 
-    qCInfo(lcAccountState) << "Invalid credentials for" << _account->url().toString()
+    qCInfo(lcAccountState) << "Invalid credentials for" << _account->storageUrl().toString()
                            << "asking user";
 
     _waitingForNewCredentials = true;
@@ -325,7 +325,7 @@ void AccountState::slotCredentialsFetched(AbstractCredentials *)
     // Make a connection attempt, no matter whether the credentials are
     // ready or not - we want to check whether we can get an SSL connection
     // going before bothering the user for a password.
-    qCInfo(lcAccountState) << "Fetched credentials for" << _account->url().toString()
+    qCInfo(lcAccountState) << "Fetched credentials for" << _account->storageUrl().toString()
                            << "attempting to connect";
     _waitingForNewCredentials = false;
     checkConnectivity();
@@ -333,7 +333,7 @@ void AccountState::slotCredentialsFetched(AbstractCredentials *)
 
 void AccountState::slotCredentialsAsked(AbstractCredentials *credentials)
 {
-    qCInfo(lcAccountState) << "Credentials asked for" << _account->url().toString()
+    qCInfo(lcAccountState) << "Credentials asked for" << _account->storageUrl().toString()
                            << "are they ready?" << credentials->ready();
 
     _waitingForNewCredentials = false;

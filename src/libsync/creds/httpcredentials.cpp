@@ -190,7 +190,7 @@ void HttpCredentials::fetchFromKeychainHelper()
 {
     // Read client cert from keychain
     const QString kck = keychainKey(
-        _account->url().toString(),
+        _account->storageUrl().toString(),
         _user + clientCertificatePEMC,
         _keychainMigration ? QString() : _account->id());
 
@@ -208,7 +208,7 @@ void HttpCredentials::deleteOldKeychainEntries()
         DeletePasswordJob *job = new DeletePasswordJob(Theme::instance()->appName());
         addSettingsToJob(_account, job);
         job->setInsecureFallback(true);
-        job->setKey(keychainKey(_account->url().toString(), user, QString()));
+        job->setKey(keychainKey(_account->storageUrl().toString(), user, QString()));
         job->start();
     };
 
@@ -230,7 +230,7 @@ void HttpCredentials::slotReadClientCertPEMJobDone(QKeychain::Job *incoming)
 
     // Load key too
     const QString kck = keychainKey(
-        _account->url().toString(),
+        _account->storageUrl().toString(),
         _user + clientKeyPEMC,
         _keychainMigration ? QString() : _account->id());
 
@@ -265,7 +265,7 @@ void HttpCredentials::slotReadClientKeyPEMJobDone(QKeychain::Job *incoming)
 
     // Now fetch the actual server password
     const QString kck = keychainKey(
-        _account->url().toString(),
+        _account->storageUrl().toString(),
         _user,
         _keychainMigration ? QString() : _account->id());
 
@@ -344,7 +344,7 @@ bool HttpCredentials::refreshAccessToken()
     if (_refreshToken.isEmpty())
         return false;
 
-    QUrl requestToken = Utility::concatUrlPath(_account->url(), QLatin1String("/index.php/apps/oauth2/api/v1/token"));
+    QUrl requestToken = Utility::concatUrlPath(_account->storageUrl(), QLatin1String("/index.php/apps/oauth2/api/v1/token"));
     QNetworkRequest req;
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
 
@@ -393,7 +393,7 @@ void HttpCredentials::invalidateToken()
     // User must be fetched from config file to generate a valid key
     fetchUser();
 
-    const QString kck = keychainKey(_account->url().toString(), _user, _account->id());
+    const QString kck = keychainKey(_account->storageUrl().toString(), _user, _account->id());
     if (kck.isEmpty()) {
         qCWarning(lcHttpCredentials) << "InvalidateToken: User is empty, bailing out!";
         return;
@@ -448,7 +448,7 @@ void HttpCredentials::persist()
         addSettingsToJob(_account, job);
         job->setInsecureFallback(false);
         connect(job, &Job::finished, this, &HttpCredentials::slotWriteClientCertPEMJobDone);
-        job->setKey(keychainKey(_account->url().toString(), _user + clientCertificatePEMC, _account->id()));
+        job->setKey(keychainKey(_account->storageUrl().toString(), _user + clientCertificatePEMC, _account->id()));
         job->setBinaryData(_clientSslCertificate.toPem());
         job->start();
     } else {
@@ -464,7 +464,7 @@ void HttpCredentials::slotWriteClientCertPEMJobDone()
         addSettingsToJob(_account, job);
         job->setInsecureFallback(false);
         connect(job, &Job::finished, this, &HttpCredentials::slotWriteClientKeyPEMJobDone);
-        job->setKey(keychainKey(_account->url().toString(), _user + clientKeyPEMC, _account->id()));
+        job->setKey(keychainKey(_account->storageUrl().toString(), _user + clientKeyPEMC, _account->id()));
         job->setBinaryData(_clientSslKey.toPem());
         job->start();
     } else {
@@ -478,7 +478,7 @@ void HttpCredentials::slotWriteClientKeyPEMJobDone()
     addSettingsToJob(_account, job);
     job->setInsecureFallback(false);
     connect(job, &Job::finished, this, &HttpCredentials::slotWriteJobDone);
-    job->setKey(keychainKey(_account->url().toString(), _user, _account->id()));
+    job->setKey(keychainKey(_account->storageUrl().toString(), _user, _account->id()));
     job->setTextData(isUsingOAuth() ? _refreshToken : _password);
     job->start();
 }

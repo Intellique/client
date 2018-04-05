@@ -140,7 +140,7 @@ void AbstractNetworkJob::adoptRequest(QNetworkReply *reply)
 
 QUrl AbstractNetworkJob::makeAccountUrl(const QString &relativePath) const
 {
-    return Utility::concatUrlPath(_account->url(), relativePath);
+    return Utility::concatUrlPath(_account->storageUrl(), relativePath);
 }
 
 QUrl AbstractNetworkJob::makeDavUrl(const QString &relativePath) const
@@ -282,7 +282,7 @@ void AbstractNetworkJob::start()
 {
     _timer.start();
 
-    const QUrl url = account()->url();
+    const QUrl url = account()->storageUrl();
     const QString displayUrl = QString("%1://%2%3").arg(url.scheme()).arg(url.host()).arg(url.path());
 
     QString parentMetaObjectName = parent() ? parent()->metaObject()->className() : "";

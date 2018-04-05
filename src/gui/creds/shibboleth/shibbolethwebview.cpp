@@ -78,7 +78,7 @@ ShibbolethWebView::ShibbolethWebView(AccountPtr account, QWidget *parent)
     connect(static_cast<CookieJar *>(page->networkAccessManager()->cookieJar()), &CookieJar::newCookiesForUrl,
         this, &ShibbolethWebView::onNewCookiesForUrl);
 
-    page->mainFrame()->load(account->url());
+    page->mainFrame()->load(account->storageUrl());
     this->setPage(page);
     setWindowTitle(tr("%1 - Authenticate").arg(Theme::instance()->appNameGUI()));
 
@@ -116,7 +116,7 @@ ShibbolethWebView::~ShibbolethWebView()
 
 void ShibbolethWebView::onNewCookiesForUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
 {
-    if (url.host() == _account->url().host()) {
+    if (url.host() == _account->storageUrl().host()) {
         QNetworkCookie shibCookie = ShibbolethCredentials::findShibCookie(_account.data(), cookieList);
         if (shibCookie != QNetworkCookie()) {
             Q_EMIT shibbolethCookieReceived(shibCookie);

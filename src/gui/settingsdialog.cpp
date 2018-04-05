@@ -26,6 +26,7 @@
 #include "activitywidget.h"
 #include "accountmanager.h"
 #include "protocolwidget.h"
+#include "archivewidget.h"
 
 #include <QLabel>
 #include <QStandardItemModel>
@@ -104,6 +105,12 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
 
+    QAction * archiveAction = createColorAwareAction(QLatin1String(":/client/resources/network.png"), tr("Archive"));
+    _actionGroup->addAction(archiveAction);
+    _toolBar->addAction(archiveAction);
+    _archiveWidget = new ArchiveWidget(this);
+    _ui->stack->addWidget(_archiveWidget);
+
     // Note: all the actions have a '\n' because the account name is in two lines and
     // all buttons must have the same size in order to keep a good layout
     _activityAction = createColorAwareAction(QLatin1String(":/client/resources/activity.png"), tr("Activity"));
@@ -127,6 +134,7 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     NetworkSettings *networkSettings = new NetworkSettings;
     _ui->stack->addWidget(networkSettings);
 
+    _actionGroupWidgets.insert(archiveAction, _archiveWidget);
     _actionGroupWidgets.insert(_activityAction, _activitySettings);
     _actionGroupWidgets.insert(generalAction, generalSettings);
     _actionGroupWidgets.insert(networkAction, networkSettings);

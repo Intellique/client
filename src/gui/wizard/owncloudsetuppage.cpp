@@ -19,9 +19,11 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QMessageBox>
+#include <QSettings>
 #include <QSsl>
 #include <QSslCertificate>
 #include <QNetworkAccessManager>
+#include <QUuid>
 
 #include "QProgressIndicator.h"
 
@@ -51,23 +53,45 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
     setSubTitle(WizardCommon::subTitleTemplate().arg(tr("Setup %1 server").arg(theme->appNameGUI())));
 
     if (theme->overrideServerUrl().isEmpty()) {
-        _ui.leUrl->setPostfix(theme->wizardUrlPostfix());
-        _ui.leUrl->setPlaceholderText(theme->wizardUrlHint());
+        _ui.leUrlStorage->setPostfix(theme->wizardUrlPostfix());
+        _ui.leUrlStorage->setPlaceholderText(theme->wizardUrlHint());
+
+        _ui.leUrlArchival->setPostfix(theme->wizardUrlPostfix());
+        _ui.leUrlArchival->setPlaceholderText(theme->wizardUrlHint());
     } else {
-        _ui.leUrl->setEnabled(false);
+        _ui.leUrlStorage->setEnabled(false);
+        _ui.leUrlArchival->setEnabled(false);
+        _ui.lnEdtAPI->setEnabled(false);
     }
 
+    QSettings intelliqueSetting(QSettings::IniFormat, QSettings::SystemScope, "Intellique", "IntelliqueClient");
+    if (intelliqueSetting.status() != QSettings::NoError or intelliqueSetting.allKeys().length() == 0) {
+        _ui.rdBttnCloudIntellique->setChecked(false);
+        _ui.rdBttnCloudIntellique->setEnabled(false);
+        _ui.rdBttnCustom->setChecked(true);
+        slotEnableForm();
+    } else {
+        connect(_ui.rdBttnCloudIntellique, &QRadioButton::clicked, this, &OwncloudSetupPage::slotDisableForm);
+        connect(_ui.rdBttnCustom, &QRadioButton::clicked, this, &OwncloudSetupPage::slotEnableForm);
+        slotDisableForm();
 
-    registerField(QLatin1String("OCUrl*"), _ui.leUrl);
+        registerField(QLatin1String("OCUrl*"), _ui.leUrlStorage);
+        registerField(QLatin1String("IntelliqueUrl"), _ui.leUrlArchival);
+        registerField(QLatin1String("IntelliqueAPI"), _ui.lnEdtAPI);
+    }
 
     _ui.resultLayout->addWidget(_progressIndi);
     stopSpinner();
 
     setupCustomization();
 
-    slotUrlChanged(QLatin1String("")); // don't jitter UI
-    connect(_ui.leUrl, &QLineEdit::textChanged, this, &OwncloudSetupPage::slotUrlChanged);
-    connect(_ui.leUrl, &QLineEdit::editingFinished, this, &OwncloudSetupPage::slotUrlEditFinished);
+    slotUrlArchivalChanged(QLatin1String("")); // don't jitter UI
+    slotUrlStorageChanged(QLatin1String("")); // don't jitter UI
+    connect(_ui.leUrlArchival, &QLineEdit::textChanged, this, &OwncloudSetupPage::slotUrlArchivalChanged);
+    connect(_ui.leUrlStorage, &QLineEdit::textChanged, this, &OwncloudSetupPage::slotUrlStorageChanged);
+    connect(_ui.lnEdtAPI, &QLineEdit::textChanged, this, &OwncloudSetupPage::completeChanged);
+    connect(_ui.leUrlArchival, &QLineEdit::editingFinished, this, &OwncloudSetupPage::slotArchivalUrlEditFinished);
+    connect(_ui.leUrlStorage, &QLineEdit::editingFinished, this, &OwncloudSetupPage::slotStorageUrlEditFinished);
 
     addCertDial = new AddCertificateDialog(this);
 }
@@ -76,11 +100,11 @@ void OwncloudSetupPage::setServerUrl(const QString &newUrl)
 {
     _oCUrl = newUrl;
     if (_oCUrl.isEmpty()) {
-        _ui.leUrl->clear();
+        _ui.leUrlStorage->clear();
         return;
     }
 
-    _ui.leUrl->setText(_oCUrl);
+    _ui.leUrlStorage->setText(_oCUrl);
 }
 
 void OwncloudSetupPage::setupCustomization()
@@ -100,7 +124,22 @@ void OwncloudSetupPage::setupCustomization()
 }
 
 // slot hit from textChanged of the url entry field.
-void OwncloudSetupPage::slotUrlChanged(const QString &url)
+void OwncloudSetupPage::slotUrlArchivalChanged(const QString &url)
+{
+    if (!url.startsWith(QLatin1String("https://"))) {
+        _ui.urlLblArchival->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-http.png")));
+        _ui.urlLblArchival->setToolTip(tr("This url is NOT secure as it is not encrypted.\n"
+                                    "It is not advisable to use it."));
+    } else {
+        _ui.urlLblArchival->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-https.png")));
+        _ui.urlLblArchival->setToolTip(tr("This url is secure. You can use it."));
+    }
+
+    emit completeChanged();
+}
+
+// slot hit from textChanged of the url entry field.
+void OwncloudSetupPage::slotUrlStorageChanged(const QString &url)
 {
     _authTypeKnown = false;
 
@@ -121,32 +160,50 @@ void OwncloudSetupPage::slotUrlChanged(const QString &url)
         }
     }
     if (newUrl != url) {
-        _ui.leUrl->setText(newUrl);
+        _ui.leUrlStorage->setText(newUrl);
     }
 
     if (!url.startsWith(QLatin1String("https://"))) {
-        _ui.urlLabel->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-http.png")));
-        _ui.urlLabel->setToolTip(tr("This url is NOT secure as it is not encrypted.\n"
+        _ui.urlLblStorage->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-http.png")));
+        _ui.urlLblStorage->setToolTip(tr("This url is NOT secure as it is not encrypted.\n"
                                     "It is not advisable to use it."));
     } else {
-        _ui.urlLabel->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-https.png")));
-        _ui.urlLabel->setToolTip(tr("This url is secure. You can use it."));
+        _ui.urlLblStorage->setPixmap(QPixmap(Theme::hidpiFileName(":/client/resources/lock-https.png")));
+        _ui.urlLblStorage->setToolTip(tr("This url is secure. You can use it."));
     }
+
+    emit completeChanged();
 }
 
-void OwncloudSetupPage::slotUrlEditFinished()
+void OwncloudSetupPage::slotArchivalUrlEditFinished()
 {
-    QString url = _ui.leUrl->fullText();
+    QString url = _ui.leUrlArchival->fullText();
     if (QUrl(url).isRelative() && !url.isEmpty()) {
         // no scheme defined, set one
         url.prepend("https://");
     }
-    _ui.leUrl->setFullText(url);
+    _ui.leUrlArchival->setFullText(url);
 }
 
-bool OwncloudSetupPage::isComplete() const
+void OwncloudSetupPage::slotStorageUrlEditFinished()
 {
-    return !_ui.leUrl->text().isEmpty() && !_checking;
+    QString url = _ui.leUrlStorage->fullText();
+    if (QUrl(url).isRelative() && !url.isEmpty()) {
+        // no scheme defined, set one
+        url.prepend("https://");
+    }
+    _ui.leUrlStorage->setFullText(url);
+}
+
+bool OwncloudSetupPage::isComplete() const {
+    if (_ui.rdBttnCloudIntellique->isChecked())
+        return true;
+
+    QUuid uuid(_ui.lnEdtAPI->text());
+    if (uuid.isNull())
+        return false;
+
+    return !_ui.leUrlStorage->text().isEmpty() and not _ui.leUrlArchival->text().isEmpty() and !_checking;
 }
 
 void OwncloudSetupPage::initializePage()
@@ -165,7 +222,7 @@ void OwncloudSetupPage::initializePage()
     // we just check the server type and switch to second page
     // immediately.
     if (Theme::instance()->overrideServerUrl().isEmpty()) {
-        _ui.leUrl->setFocus();
+        _ui.leUrlStorage->setFocus();
     } else {
         setCommitPage(true);
         // Hack: setCommitPage() changes caption, but after an error this page could still be visible
@@ -180,7 +237,7 @@ bool OwncloudSetupPage::urlHasChanged()
     bool change = false;
     const QChar slash('/');
 
-    QUrl currentUrl(url());
+    QUrl currentUrl(storageUrl());
     QUrl initialUrl(_oCUrl);
 
     QString currentPath = currentUrl.path();
@@ -212,9 +269,13 @@ int OwncloudSetupPage::nextId() const
     return WizardCommon::Page_HttpCreds;
 }
 
-QString OwncloudSetupPage::url() const
+QString OwncloudSetupPage::archivalUrl() const {
+    return _ui.leUrlArchival->fullText().simplified();
+}
+
+QString OwncloudSetupPage::storageUrl() const
 {
-    QString url = _ui.leUrl->fullText().simplified();
+    QString url = _ui.leUrlStorage->fullText().simplified();
     return url;
 }
 
@@ -226,7 +287,7 @@ bool OwncloudSetupPage::validatePage()
         startSpinner();
         emit completeChanged();
 
-        emit determineAuthType(url());
+        emit determineAuthType(storageUrl());
         return false;
     } else {
         // connecting is running
@@ -241,7 +302,7 @@ void OwncloudSetupPage::setAuthType(DetermineAuthTypeJob::AuthType type)
 {
     _authTypeKnown = true;
     _authType = type;
-    stopSpinner();
+    // stopSpinner();
 }
 
 void OwncloudSetupPage::setErrorString(const QString &err, bool retryHTTPonly)
@@ -250,7 +311,7 @@ void OwncloudSetupPage::setErrorString(const QString &err, bool retryHTTPonly)
         _ui.errorLabel->setVisible(false);
     } else {
         if (retryHTTPonly) {
-            QUrl url(_ui.leUrl->fullText());
+            QUrl url(_ui.leUrlStorage->fullText());
             if (url.scheme() == "https") {
                 // Ask the user how to proceed when connecting to a https:// URL fails.
                 // It is possible that the server is secured with client-side TLS certificates,
@@ -264,7 +325,7 @@ void OwncloudSetupPage::setErrorString(const QString &err, bool retryHTTPonly)
                 switch (retVal) {
                 case OwncloudConnectionMethodDialog::No_TLS: {
                     url.setScheme("http");
-                    _ui.leUrl->setFullText(url.toString());
+                    _ui.leUrlStorage->setFullText(url.toString());
                     // skip ahead to next page, since the user would expect us to retry automatically
                     wizard()->next();
                 } break;
@@ -341,8 +402,24 @@ void OwncloudSetupPage::slotCertificateAccepted()
     }
 }
 
+void OwncloudSetupPage::slotDisableForm() {
+    _ui.leUrlStorage->setEnabled(false);
+    _ui.leUrlArchival->setEnabled(false);
+    _ui.lnEdtAPI->setEnabled(false);
+}
+
+void OwncloudSetupPage::slotEnableForm() {
+    _ui.leUrlStorage->setEnabled(true);
+    _ui.leUrlArchival->setEnabled(true);
+    _ui.lnEdtAPI->setEnabled(true);
+}
+
 OwncloudSetupPage::~OwncloudSetupPage()
 {
+}
+
+void OwncloudSetupPage::startCheckArchivalServer() {
+    emit this->checkArchivalServer(_ui.leUrlArchival->text(), _ui.lnEdtAPI->text());
 }
 
 } // namespace OCC

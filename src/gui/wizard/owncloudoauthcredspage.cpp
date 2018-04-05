@@ -90,7 +90,7 @@ void OwncloudOAuthCredsPage::asyncAuthResult(OAuth::Result r, const QString &use
         _refreshToken = refreshToken;
         OwncloudWizard *ocWizard = qobject_cast<OwncloudWizard *>(wizard());
         Q_ASSERT(ocWizard);
-        emit connectToOCUrl(ocWizard->account()->url().toString());
+        emit connectToOCUrl(ocWizard->account()->storageUrl().toString());
         break;
     }
     }

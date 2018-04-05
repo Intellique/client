@@ -42,14 +42,17 @@ class OwncloudSetupWizard : public QObject
     Q_OBJECT
 public:
     /** Run the wizard */
-    static void runWizard(QObject *obj, const char *amember, QWidget *parent = 0);
+    static void runWizard(QObject *obj, const char *amember, QWidget *parent = nullptr);
     static bool bringWizardToFrontIfVisible();
 signals:
     // overall dialog close signal.
     void ownCloudWizardDone(int);
 
 private slots:
-    void slotCheckServer(const QString &);
+    void slotCheckArchivalServer(const QString&, const QString&);
+    void slotArchivalServerFailed();
+
+    void slotCheckStorageServer(const QString &);
     void slotSystemProxyLookupDone(const QNetworkProxy &proxy);
 
     void slotFindServer();
@@ -70,7 +73,7 @@ private slots:
     void slotSkipFolderConfiguration();
 
 private:
-    explicit OwncloudSetupWizard(QObject *parent = 0);
+    explicit OwncloudSetupWizard(QObject *parent = nullptr);
     ~OwncloudSetupWizard();
     void startWizard();
     void testOwnCloudConnect();

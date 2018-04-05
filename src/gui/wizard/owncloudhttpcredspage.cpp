@@ -93,7 +93,7 @@ void OwncloudHttpCredsPage::initializePage()
             _ui.leUsername->setText(user);
         }
     } else {
-        QUrl url = ocWizard->account()->url();
+        QUrl url = ocWizard->account()->storageUrl();
 
         // If the final url does not have a username, check the
         // user specified url too. Sometimes redirects can lose

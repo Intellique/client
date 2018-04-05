@@ -38,6 +38,7 @@ class Application;
 class FolderMan;
 class ownCloudGui;
 class ActivitySettings;
+class ArchiveWidget;
 
 /**
  * @brief The SettingsDialog class
@@ -90,6 +91,7 @@ private:
 
     QToolBar *_toolBar;
 
+	ArchiveWidget * _archiveWidget;
     ActivitySettings *_activitySettings;
 
     QAction *_activityAction;

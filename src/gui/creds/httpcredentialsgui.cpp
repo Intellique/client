@@ -151,7 +151,7 @@ QString HttpCredentialsGui::requestAppPasswordText(const Account *account)
         return QString();
     }
 
-    auto baseUrl = account->url().toString();
+    auto baseUrl = account->storageUrl().toString();
     if (baseUrl.endsWith('/'))
         baseUrl.chop(1);
     return tr("<a href=\"%1\">Click here</a> to request an app password from the web interface.")

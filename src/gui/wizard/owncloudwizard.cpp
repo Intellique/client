@@ -40,7 +40,7 @@ Q_LOGGING_CATEGORY(lcWizard, "gui.wizard", QtInfoMsg)
 
 OwncloudWizard::OwncloudWizard(QWidget *parent)
     : QWizard(parent)
-    , _account(0)
+    , _account(nullptr)
     , _setupPage(new OwncloudSetupPage(this))
     , _httpCredsPage(new OwncloudHttpCredsPage(this))
     , _browserCredsPage(new OwncloudOAuthCredsPage)
@@ -49,7 +49,7 @@ OwncloudWizard::OwncloudWizard(QWidget *parent)
 #endif
     , _advancedSetupPage(new OwncloudAdvancedSetupPage)
     , _resultPage(new OwncloudWizardResultPage)
-    , _credentialsPage(0)
+    , _credentialsPage(nullptr)
     , _setupLog()
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -69,6 +69,7 @@ OwncloudWizard::OwncloudWizard(QWidget *parent)
     setWizardStyle(QWizard::ModernStyle);
 
     connect(this, &QWizard::currentIdChanged, this, &OwncloudWizard::slotCurrentPageChanged);
+    connect(_setupPage, &OwncloudSetupPage::checkArchivalServer, this, &OwncloudWizard::checkArchivalServer);
     connect(_setupPage, &OwncloudSetupPage::determineAuthType, this, &OwncloudWizard::determineAuthType);
     connect(_httpCredsPage, &OwncloudHttpCredsPage::connectToOCUrl, this, &OwncloudWizard::connectToOCUrl);
     connect(_browserCredsPage, &OwncloudOAuthCredsPage::connectToOCUrl, this, &OwncloudWizard::connectToOCUrl);
@@ -120,8 +121,7 @@ bool OwncloudWizard::isConfirmBigFolderChecked() const
 
 QString OwncloudWizard::ocUrl() const
 {
-    QString url = field("OCUrl").toString().simplified();
-    return url;
+    return _setupPage->storageUrl().simplified();
 }
 
 void OwncloudWizard::enableFinishOnResultWidget(bool enable)
@@ -180,6 +180,12 @@ void OwncloudWizard::setAuthType(DetermineAuthTypeJob::AuthType type)
     } else { // try Basic auth even for "Unknown"
         _credentialsPage = _httpCredsPage;
     }
+    // next();
+    _setupPage->startCheckArchivalServer();
+}
+
+void OwncloudWizard::archivalServerOk() {
+    _setupPage->stopSpinner();
     next();
 }
 

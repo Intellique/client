@@ -94,7 +94,7 @@ void PUTFileJob::start()
 void PollJob::start()
 {
     setTimeout(120 * 1000);
-    QUrl accountUrl = account()->url();
+    QUrl accountUrl = account()->storageUrl();
     QUrl finalUrl = QUrl::fromUserInput(accountUrl.scheme() + QLatin1String("://") + accountUrl.authority()
         + (path().startsWith('/') ? QLatin1String("") : QLatin1String("/")) + path());
     sendRequest("GET", finalUrl);

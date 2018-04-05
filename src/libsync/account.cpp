@@ -107,8 +107,8 @@ void Account::setAvatar(const QImage &img)
 
 QString Account::displayName() const
 {
-    QString dn = QString("%1@%2").arg(davUser(), _url.host());
-    int port = url().port();
+    QString dn = QString("%1@%2").arg(davUser(), _storageUrl.host());
+    int port = storageUrl().port();
     if (port > 0 && port != 80 && port != 443) {
         dn.append(QLatin1Char(':'));
         dn.append(QString::number(port));
@@ -173,7 +173,7 @@ void Account::setCredentials(AbstractCredentials *cred)
 
 QUrl Account::davUrl() const
 {
-    return Utility::concatUrlPath(url(), davPath());
+    return Utility::concatUrlPath(storageUrl(), davPath());
 }
 
 QUrl Account::deprecatedPrivateLinkUrl(const QByteArray &numericFileId) const
@@ -310,9 +310,17 @@ void Account::setSslErrorHandler(AbstractSslErrorHandler *handler)
     _sslErrorHandler.reset(handler);
 }
 
-void Account::setUrl(const QUrl &url)
+void Account::setArchivalApiKey(const QUuid& uuid) {
+    _archivalApiKey = uuid;
+}
+
+void Account::setArchivalUrl(const QUrl& archivalUrl) {
+    _archivalUrl = archivalUrl;
+}
+
+void Account::setStorageUrl(const QUrl &url)
 {
-    _url = url;
+    _storageUrl = url;
     _userVisibleUrl = url;
 }
 
@@ -368,7 +376,7 @@ void Account::slotHandleSslErrors(QNetworkReply *reply, QList<QSslError> errors)
 
     QList<QSslCertificate> approvedCerts;
     if (_sslErrorHandler.isNull()) {
-        qCWarning(lcAccount) << out << "called without valid SSL error handler for account" << url();
+        qCWarning(lcAccount) << out << "called without valid SSL error handler for account" << storageUrl();
         return;
     }
 

@@ -71,7 +71,7 @@ void OcsJob::start()
     req.setRawHeader("Ocs-APIREQUEST", "true");
     req.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    QUrl url = Utility::concatUrlPath(account()->url(), path());
+    QUrl url = Utility::concatUrlPath(account()->storageUrl(), path());
     QBuffer *buffer = new QBuffer;
 
     if (_verb == "GET") {
@@ -110,7 +110,7 @@ bool OcsJob::finished()
     if (error.error != QJsonParseError::NoError) {
         qCWarning(lcOcs) << "Could not parse reply to"
                          << _verb
-                         << Utility::concatUrlPath(account()->url(), path())
+                         << Utility::concatUrlPath(account()->storageUrl(), path())
                          << _params
                          << error.errorString()
                          << ":" << replyData;
@@ -121,7 +121,7 @@ bool OcsJob::finished()
     if (!_passStatusCodes.contains(statusCode)) {
         qCWarning(lcOcs) << "Reply to"
                          << _verb
-                         << Utility::concatUrlPath(account()->url(), path())
+                         << Utility::concatUrlPath(account()->storageUrl(), path())
                          << _params
                          << "has unexpected status code:" << statusCode << replyData;
         emit ocsError(statusCode, message);

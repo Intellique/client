@@ -67,7 +67,7 @@ FolderWizardLocalPath::FolderWizardLocalPath(const AccountPtr &account)
     _ui.localFolderChooseBtn->setToolTip(tr("Click to select a local folder to sync."));
 
     QString defaultPath = QDir::homePath() + QLatin1Char('/') + Theme::instance()->appName();
-    defaultPath = FolderMan::instance()->findGoodPathForNewSyncFolder(defaultPath, account->url());
+    defaultPath = FolderMan::instance()->findGoodPathForNewSyncFolder(defaultPath, account->storageUrl());
     _ui.localFolderLineEdit->setText(QDir::toNativeSeparators(defaultPath));
     _ui.localFolderLineEdit->setToolTip(tr("Enter the path to the local folder."));
 
@@ -91,7 +91,7 @@ void FolderWizardLocalPath::cleanupPage()
 
 bool FolderWizardLocalPath::isComplete() const
 {
-    QUrl serverUrl = _account->url();
+    QUrl serverUrl = _account->storageUrl();
     serverUrl.setUserName(_account->credentials()->user());
 
     QString errorStr = FolderMan::instance()->checkPathValidityForNewFolder(

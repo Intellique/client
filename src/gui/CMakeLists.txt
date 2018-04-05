@@ -15,24 +15,25 @@ endif()
 
 set(client_UI
     accountsettings.ui
+    activitywidget.ui
+    addcertificatedialog.ui
+    archivewidget.ui
     folderwizardsourcepage.ui
     folderwizardtargetpage.ui
     generalsettings.ui
     ignorelisteditor.ui
-    networksettings.ui
-    protocolwidget.ui
     issueswidget.ui
-    activitywidget.ui
-    synclogdialog.ui
+    networksettings.ui
+    notificationwidget.ui
+    protocolwidget.ui
+    proxyauthdialog.ui
     settingsdialog.ui
     sharedialog.ui
     sharelinkwidget.ui
     shareusergroupwidget.ui
     shareuserline.ui
     sslerrordialog.ui
-    addcertificatedialog.ui
-    proxyauthdialog.ui
-    notificationwidget.ui
+    synclogdialog.ui
     wizard/owncloudadvancedsetuppage.ui
     wizard/owncloudconnectionmethoddialog.ui
     wizard/owncloudhttpcredspage.ui
@@ -46,76 +47,81 @@ qt_wrap_ui(client_UI_SRCS ${client_UI})
 set(client_SRCS
     accountmanager.cpp
     accountsettings.cpp
+    accountstate.cpp
+    activitydata.cpp
+    activityitemdelegate.cpp
+    activitylistmodel.cpp
+    activitywidget.cpp
+    addcertificatedialog.cpp
     application.cpp
+	archivefile.cpp
+	archivefilecomputesize.cpp
+	archivefilemodel.cpp
+	archivefileview.cpp
+    archivewidget.cpp
+    authenticationdialog.cpp
+    creds/credentialsfactory.cpp
+    creds/httpcredentialsgui.cpp
+    creds/oauth.cpp
+    elidedlabel.cpp
     folder.cpp
     folderman.cpp
-    folderstatusmodel.cpp
     folderstatusdelegate.cpp
+    folderstatusmodel.cpp
     folderwatcher.cpp
     folderwizard.cpp
     generalsettings.cpp
+    guiutility.cpp
     ignorelisteditor.cpp
+    issueswidget.cpp
     lockwatcher.cpp
     logbrowser.cpp
     networksettings.cpp
+    notificationconfirmjob.cpp
+    notificationwidget.cpp
     ocsjob.cpp
-    ocssharejob.cpp
     ocsshareejob.cpp
+    ocssharejob.cpp
     openfilemanager.cpp
     owncloudgui.cpp
     owncloudsetupwizard.cpp
     protocolwidget.cpp
-    issueswidget.cpp
-    activitydata.cpp
-    activitylistmodel.cpp
-    activitywidget.cpp
-    activityitemdelegate.cpp
+    proxyauthdialog.cpp
+    proxyauthhandler.cpp
+    quotainfo.cpp
     selectivesyncdialog.cpp
+    servernotificationhandler.cpp
     settingsdialog.cpp
     sharedialog.cpp
+    sharee.cpp
     sharelinkwidget.cpp
     sharemanager.cpp
     shareusergroupwidget.cpp
-    sharee.cpp
     socketapi.cpp
     sslbutton.cpp
     sslerrordialog.cpp
+    synclogdialog.cpp
     syncrunfilelog.cpp
     systray.cpp
     thumbnailjob.cpp
-    quotainfo.cpp
-    accountstate.cpp
-    addcertificatedialog.cpp
-    authenticationdialog.cpp
-    proxyauthhandler.cpp
-    proxyauthdialog.cpp
-    synclogdialog.cpp
     tooltipupdater.cpp
-    notificationwidget.cpp
-    notificationconfirmjob.cpp
-    servernotificationhandler.cpp
-    guiutility.cpp
-    elidedlabel.cpp
-    creds/credentialsfactory.cpp
-    creds/httpcredentialsgui.cpp
-    creds/oauth.cpp
-    wizard/postfixlineedit.cpp
     wizard/abstractcredswizardpage.cpp
     wizard/owncloudadvancedsetuppage.cpp
     wizard/owncloudconnectionmethoddialog.cpp
     wizard/owncloudhttpcredspage.cpp
     wizard/owncloudoauthcredspage.cpp
     wizard/owncloudsetuppage.cpp
-    wizard/owncloudwizardcommon.cpp
     wizard/owncloudwizard.cpp
+    wizard/owncloudwizardcommon.cpp
     wizard/owncloudwizardresultpage.cpp
+    wizard/postfixlineedit.cpp
 )
 
 IF(NOT NO_SHIBBOLETH)
     list(APPEND client_SRCS
-        creds/shibbolethcredentials.cpp
-        creds/shibboleth/shibbolethwebview.cpp
         creds/shibboleth/shibbolethuserjob.cpp
+        creds/shibboleth/shibbolethwebview.cpp
+        creds/shibbolethcredentials.cpp
         wizard/owncloudshibbolethcredspage.cpp
     )
 endif()

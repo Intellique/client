@@ -451,7 +451,7 @@ int main(int argc, char **argv)
     if (options.trustSSL) {
         cred->setSSLTrusted(true);
     }
-    account->setUrl(url);
+    account->setStorageUrl(url);
     account->setCredentials(cred);
     account->setSslErrorHandler(sslErrorHandler);
 

@@ -49,11 +49,13 @@ public:
     void setServerUrl(const QString &);
     void setAllowPasswordStorage(bool);
     bool validatePage() Q_DECL_OVERRIDE;
-    QString url() const;
+    QString archivalUrl() const;
+    QString storageUrl() const;
     QString localFolder() const;
     void setRemoteFolder(const QString &remoteFolder);
     void setMultipleFoldersExist(bool exist);
     void setAuthType(DetermineAuthTypeJob::AuthType type);
+    void startCheckArchivalServer();
 
 public slots:
     void setErrorString(const QString &, bool retryHTTPonly);
@@ -62,12 +64,17 @@ public slots:
     void slotCertificateAccepted();
 
 protected slots:
-    void slotUrlChanged(const QString &);
-    void slotUrlEditFinished();
+    void slotEnableForm();
+    void slotDisableForm();
+    void slotUrlArchivalChanged(const QString &);
+    void slotUrlStorageChanged(const QString &);
+    void slotArchivalUrlEditFinished();
+    void slotStorageUrlEditFinished();
 
     void setupCustomization();
 
 signals:
+    void checkArchivalServer(const QString&, const QString&);
     void determineAuthType(const QString &);
 
 private:

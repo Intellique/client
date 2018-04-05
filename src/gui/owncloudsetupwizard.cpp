@@ -14,11 +14,11 @@
  */
 
 #include <QAbstractButton>
-#include <QtCore>
-#include <QProcess>
-#include <QMessageBox>
-#include <QDesktopServices>
 #include <QApplication>
+#include <QDesktopServices>
+#include <QMessageBox>
+#include <QProcess>
+#include <QtCore>
 
 #include "wizard/owncloudwizardcommon.h"
 #include "wizard/owncloudwizard.h"
@@ -45,8 +45,9 @@ OwncloudSetupWizard::OwncloudSetupWizard(QObject *parent)
     , _ocWizard(new OwncloudWizard)
     , _remoteFolder()
 {
+    connect(_ocWizard, &OwncloudWizard::checkArchivalServer, this, &OwncloudSetupWizard::slotCheckArchivalServer);
     connect(_ocWizard, &OwncloudWizard::determineAuthType,
-        this, &OwncloudSetupWizard::slotCheckServer);
+        this, &OwncloudSetupWizard::slotCheckStorageServer);
     connect(_ocWizard, &OwncloudWizard::connectToOCUrl,
         this, &OwncloudSetupWizard::slotConnectToOCUrl);
     connect(_ocWizard, &OwncloudWizard::createLocalAndRemoteFolders,
@@ -105,9 +106,9 @@ void OwncloudSetupWizard::startWizard()
 {
     AccountPtr account = AccountManager::createAccount();
     account->setCredentials(CredentialsFactory::create("dummy"));
-    account->setUrl(Theme::instance()->overrideServerUrl());
+    account->setStorageUrl(Theme::instance()->overrideServerUrl());
     _ocWizard->setAccount(account);
-    _ocWizard->setOCUrl(account->url().toString());
+    _ocWizard->setOCUrl(account->storageUrl().toString());
 
     _remoteFolder = Theme::instance()->defaultServerFolder();
     // remoteFolder may be empty, which means /
@@ -140,7 +141,7 @@ void OwncloudSetupWizard::startWizard()
 }
 
 // also checks if an installation is valid and determines auth type in a second step
-void OwncloudSetupWizard::slotCheckServer(const QString &urlString)
+void OwncloudSetupWizard::slotCheckStorageServer(const QString &urlString)
 {
     QString fixedUrl = urlString;
     QUrl url = QUrl::fromUserInput(fixedUrl);
@@ -149,7 +150,7 @@ void OwncloudSetupWizard::slotCheckServer(const QString &urlString)
         url.setScheme("https");
     }
     AccountPtr account = _ocWizard->account();
-    account->setUrl(url);
+    account->setStorageUrl(url);
     // Reset the proxy which might had been determined previously in ConnectionValidator::checkServerAndAuth()
     // when there was a previous account.
     account->networkAccessManager()->setProxy(QNetworkProxy(QNetworkProxy::NoProxy));
@@ -157,7 +158,7 @@ void OwncloudSetupWizard::slotCheckServer(const QString &urlString)
     // Lookup system proxy in a thread https://github.com/owncloud/client/issues/2993
     if (ClientProxy::isUsingSystemDefault()) {
         qCDebug(lcWizard) << "Trying to look up system proxy";
-        ClientProxy::lookupSystemProxyAsync(account->url(),
+        ClientProxy::lookupSystemProxyAsync(account->storageUrl(),
             this, SLOT(slotSystemProxyLookupDone(QNetworkProxy)));
     } else {
         // We want to reset the QNAM proxy so that the global proxy settings are used (via ClientProxy settings)
@@ -165,6 +166,27 @@ void OwncloudSetupWizard::slotCheckServer(const QString &urlString)
         // use a queued invocation so we're as asynchronous as with the other code path
         QMetaObject::invokeMethod(this, "slotFindServer", Qt::QueuedConnection);
     }
+}
+
+void OwncloudSetupWizard::slotCheckArchivalServer(const QString& urlString, const QString& api_key) {
+    QString fixedUrl = urlString;
+    QUrl url = QUrl::fromUserInput(fixedUrl);
+    if (!fixedUrl.startsWith("http://") && !fixedUrl.startsWith("https://")) {
+        url.setScheme("https");
+    }
+    AccountPtr account = _ocWizard->account();
+    account->setArchivalUrl(url);
+    account->setArchivalApiKey(api_key);
+
+    CheckArchivalServer * job = new CheckArchivalServer(account, "api/v1/api/index.php", this);
+    connect(job, &CheckArchivalServer::archivalServerFailed, this, &OwncloudSetupWizard::slotArchivalServerFailed);
+    connect(job, &CheckArchivalServer::archivalServerOk, _ocWizard, &OwncloudWizard::archivalServerOk);
+    job->setTimeout((account->storageUrl().scheme() == "https") ? 30 * 1000 : 10 * 1000);
+    job->start();
+}
+
+void OwncloudSetupWizard::slotArchivalServerFailed() {
+    _ocWizard->displayError(tr("Bad archival configuration"), false);
 }
 
 void OwncloudSetupWizard::slotSystemProxyLookupDone(const QNetworkProxy &proxy)
@@ -200,7 +222,7 @@ void OwncloudSetupWizard::slotFindServer()
     connect(job, &CheckServerJob::instanceFound, this, &OwncloudSetupWizard::slotFoundServer);
     connect(job, &CheckServerJob::instanceNotFound, this, &OwncloudSetupWizard::slotFindServerBehindRedirect);
     connect(job, &CheckServerJob::timeout, this, &OwncloudSetupWizard::slotNoServerFoundTimeout);
-    job->setTimeout((account->url().scheme() == "https") ? 30 * 1000 : 10 * 1000);
+    job->setTimeout((account->storageUrl().scheme() == "https") ? 30 * 1000 : 10 * 1000);
     job->start();
 
     // Step 2 and 3 are in slotFindServerBehindRedirect()
@@ -211,7 +233,7 @@ void OwncloudSetupWizard::slotFindServerBehindRedirect()
     AccountPtr account = _ocWizard->account();
 
     // Step 2: Resolve any permanent redirect chains on the base url
-    auto redirectCheckJob = account->sendRequest("GET", account->url());
+    auto redirectCheckJob = account->sendRequest("GET", account->storageUrl());
 
     // Use a significantly reduced timeout for this redirect check:
     // the 5-minute default is inappropriate.
@@ -224,8 +246,8 @@ void OwncloudSetupWizard::slotFindServerBehindRedirect()
         [permanentRedirects, account](QNetworkReply *reply, const QUrl &targetUrl, int count) {
             int httpCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
             if (count == *permanentRedirects && (httpCode == 301 || httpCode == 308)) {
-                qCInfo(lcWizard) << account->url() << " was redirected to" << targetUrl;
-                account->setUrl(targetUrl);
+                qCInfo(lcWizard) << account->storageUrl() << " was redirected to" << targetUrl;
+                account->setStorageUrl(targetUrl);
                 *permanentRedirects += 1;
             }
         });
@@ -238,7 +260,7 @@ void OwncloudSetupWizard::slotFindServerBehindRedirect()
             connect(job, &CheckServerJob::instanceFound, this, &OwncloudSetupWizard::slotFoundServer);
             connect(job, &CheckServerJob::instanceNotFound, this, &OwncloudSetupWizard::slotNoServerFound);
             connect(job, &CheckServerJob::timeout, this, &OwncloudSetupWizard::slotNoServerFoundTimeout);
-            job->setTimeout((account->url().scheme() == "https") ? 30 * 1000 : 10 * 1000);
+            job->setTimeout((account->storageUrl().scheme() == "https") ? 30 * 1000 : 10 * 1000);
             job->start();
     });
 }
@@ -257,9 +279,9 @@ void OwncloudSetupWizard::slotFoundServer(const QUrl &url, const QJsonObject &in
     // https://github.com/owncloud/core/pull/27473/files
     _ocWizard->account()->setServerVersion(serverVersion);
 
-    if (url != _ocWizard->account()->url()) {
+    if (url != _ocWizard->account()->storageUrl()) {
         // We might be redirected, update the account
-        _ocWizard->account()->setUrl(url);
+        _ocWizard->account()->setStorageUrl(url);
         qCInfo(lcWizard) << " was redirected to" << url.toString();
     }
 
@@ -274,12 +296,12 @@ void OwncloudSetupWizard::slotNoServerFound(QNetworkReply *reply)
 
     // Do this early because reply might be deleted in message box event loop
     QString msg;
-    if (!_ocWizard->account()->url().isValid()) {
+    if (!_ocWizard->account()->storageUrl().isValid()) {
         msg = tr("Invalid URL");
     } else {
         msg = tr("Failed to connect to %1 at %2:<br/>%3")
                   .arg(Utility::escape(Theme::instance()->appNameGUI()),
-                      Utility::escape(_ocWizard->account()->url().toString()),
+                      Utility::escape(_ocWizard->account()->storageUrl().toString()),
                       Utility::escape(job->errorString()));
     }
     bool isDowngradeAdvised = checkDowngradeAdvised(reply);
@@ -378,7 +400,7 @@ void OwncloudSetupWizard::slotAuthError()
             redirectUrl.setPath(path);
 
             qCInfo(lcWizard) << "Setting account url to" << redirectUrl.toString();
-            _ocWizard->account()->setUrl(redirectUrl);
+            _ocWizard->account()->setStorageUrl(redirectUrl);
             testOwnCloudConnect();
             return;
         }
@@ -397,7 +419,7 @@ void OwncloudSetupWizard::slotAuthError()
         if (!_ocWizard->account()->credentials()->stillValid(reply)) {
             errorMsg = tr("Access forbidden by server. To verify that you have proper access, "
                           "<a href=\"%1\">click here</a> to access the service with your browser.")
-                           .arg(Utility::escape(_ocWizard->account()->url().toString()));
+                           .arg(Utility::escape(_ocWizard->account()->storageUrl().toString()));
         } else {
             errorMsg = job->errorStringParsingBody();
         }

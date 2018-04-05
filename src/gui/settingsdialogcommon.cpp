@@ -10,8 +10,8 @@ QString shortDisplayNameForSettings(Account* account, int width)
     if (user.isEmpty()) {
         user = account->credentials()->user();
     }
-    QString host = account->url().host();
-    int port = account->url().port();
+    QString host = account->storageUrl().host();
+    int port = account->storageUrl().port();
     if (port > 0 && port != 80 && port != 443) {
         host.append(QLatin1Char(':'));
         host.append(QString::number(port));

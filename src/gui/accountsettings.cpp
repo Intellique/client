@@ -625,7 +625,7 @@ void AccountSettings::slotAccountStateChanged()
     if (_accountState) {
         ui->sslButton->updateAccountState(_accountState);
         AccountPtr account = _accountState->account();
-        QUrl safeUrl(account->url());
+        QUrl safeUrl(account->storageUrl());
         safeUrl.setPassword(QString()); // Remove the password from the URL to avoid showing it in the UI
         FolderMan *folderMan = FolderMan::instance();
         foreach (Folder *folder, folderMan->map().values()) {
@@ -633,7 +633,7 @@ void AccountSettings::slotAccountStateChanged()
         }
 
         QString server = QString::fromLatin1("<a href=\"%1\">%2</a>")
-                             .arg(Utility::escape(account->url().toString()),
+                             .arg(Utility::escape(account->storageUrl().toString()),
                                  Utility::escape(safeUrl.toString()));
         QString serverWithUser = server;
         if (AbstractCredentials *cred = account->credentials()) {

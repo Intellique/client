@@ -107,7 +107,7 @@ void PropagateRemoteMove::start()
         }
     }
 
-    QString destination = QDir::cleanPath(propagator()->account()->url().path() + QLatin1Char('/')
+    QString destination = QDir::cleanPath(propagator()->account()->storageUrl().path() + QLatin1Char('/')
         + propagator()->account()->davPath() + propagator()->_remoteFolder + _item->_renameTarget);
     _job = new MoveJob(propagator()->account(),
         propagator()->_remoteFolder + _item->_file,

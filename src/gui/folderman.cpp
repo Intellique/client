@@ -1376,7 +1376,7 @@ QString FolderMan::checkPathValidityForNewFolder(const QString &path, const QUrl
         // otherwise it would mean that a new connection from the same local folder
         // to the same account is added which is not wanted. The account must differ.
         if (serverUrl.isValid() && Utility::fileNamesEqual(absCleanUserFolder, folderDir)) {
-            QUrl folderUrl = f->accountState()->account()->url();
+            QUrl folderUrl = f->accountState()->account()->storageUrl();
             QString user = f->accountState()->account()->credentials()->user();
             folderUrl.setUserName(user);
 

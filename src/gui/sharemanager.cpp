@@ -377,12 +377,12 @@ QSharedPointer<LinkShare> ShareManager::parseLinkShare(const QJsonObject &data)
         url = QUrl(data.value("url").toString());
     } else if (_account->serverVersionInt() >= Account::makeServerVersion(8, 0, 0)) {
         // From ownCloud server version 8 on, a different share link scheme is used.
-        url = QUrl(Utility::concatUrlPath(_account->url(), QLatin1String("index.php/s/") + data.value("token").toString())).toString();
+        url = QUrl(Utility::concatUrlPath(_account->storageUrl(), QLatin1String("index.php/s/") + data.value("token").toString())).toString();
     } else {
         QList<QPair<QString, QString>> queryArgs;
         queryArgs.append(qMakePair(QString("service"), QString("files")));
         queryArgs.append(qMakePair(QString("t"), data.value("token").toString()));
-        url = QUrl(Utility::concatUrlPath(_account->url(), QLatin1String("public.php"), queryArgs).toString());
+        url = QUrl(Utility::concatUrlPath(_account->storageUrl(), QLatin1String("public.php"), queryArgs).toString());
     }
 
     QDate expireDate;
