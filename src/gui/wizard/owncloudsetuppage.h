@@ -17,6 +17,7 @@
 #define MIRALL_OWNCLOUD_SETUP_PAGE_H
 
 #include <QWizard>
+#include <QSettings>
 
 #include "wizard/owncloudwizardcommon.h"
 #include "wizard/owncloudwizard.h"
@@ -49,6 +50,7 @@ public:
     void setServerUrl(const QString &);
     void setAllowPasswordStorage(bool);
     bool validatePage() Q_DECL_OVERRIDE;
+    QString archivalApiKey() const;
     QString archivalUrl() const;
     QString storageUrl() const;
     QString localFolder() const;
@@ -88,6 +90,7 @@ private:
     bool _checking;
     bool _multipleFoldersExist;
     DetermineAuthTypeJob::AuthType _authType;
+    QSettings _settings;
 
     QProgressIndicator *_progressIndi;
     QButtonGroup *_selectiveSyncButtons;

@@ -43,6 +43,7 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
     , _authTypeKnown(false)
     , _checking(false)
     , _authType(DetermineAuthTypeJob::Basic)
+    , _settings(QSettings::IniFormat, QSettings::SystemScope, "Intellique", "IntelliqueClient")
     , _progressIndi(new QProgressIndicator(this))
 {
     _ui.setupUi(this);
@@ -64,8 +65,7 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
         _ui.lnEdtAPI->setEnabled(false);
     }
 
-    QSettings intelliqueSetting(QSettings::IniFormat, QSettings::SystemScope, "Intellique", "IntelliqueClient");
-    if (intelliqueSetting.status() != QSettings::NoError or intelliqueSetting.allKeys().length() == 0) {
+    if (_settings.status() != QSettings::NoError or _settings.allKeys().length() == 0) {
         _ui.rdBttnCloudIntellique->setChecked(false);
         _ui.rdBttnCloudIntellique->setEnabled(false);
         _ui.rdBttnCustom->setChecked(true);
@@ -76,8 +76,8 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
         slotDisableForm();
 
         registerField(QLatin1String("OCUrl*"), _ui.leUrlStorage);
-        registerField(QLatin1String("IntelliqueUrl"), _ui.leUrlArchival);
-        registerField(QLatin1String("IntelliqueAPI"), _ui.lnEdtAPI);
+        registerField(QLatin1String("IntelliqueUrl*"), _ui.leUrlArchival);
+        registerField(QLatin1String("IntelliqueAPI*"), _ui.lnEdtAPI);
     }
 
     _ui.resultLayout->addWidget(_progressIndi);
@@ -269,14 +269,26 @@ int OwncloudSetupPage::nextId() const
     return WizardCommon::Page_HttpCreds;
 }
 
-QString OwncloudSetupPage::archivalUrl() const {
-    return _ui.leUrlArchival->fullText().simplified();
+QString OwncloudSetupPage::archivalApiKey() const {
+    if (_ui.rdBttnCloudIntellique->isChecked())
+        return _settings.value("Archival/api_key").toString();
+    else
+        return _ui.lnEdtAPI->text();
 }
 
-QString OwncloudSetupPage::storageUrl() const
-{
-    QString url = _ui.leUrlStorage->fullText().simplified();
-    return url;
+QString OwncloudSetupPage::archivalUrl() const {
+    if (_ui.rdBttnCloudIntellique->isChecked())
+        return _settings.value("Archival/url").toString();
+    else
+        return _ui.leUrlArchival->fullText().simplified();
+}
+
+QString OwncloudSetupPage::storageUrl() const {
+    if (_ui.rdBttnCloudIntellique->isChecked()) {
+        QString val = _settings.value("Storage/url").toString();
+        return val;
+    } else
+        return _ui.leUrlStorage->fullText().simplified();
 }
 
 bool OwncloudSetupPage::validatePage()
@@ -419,7 +431,7 @@ OwncloudSetupPage::~OwncloudSetupPage()
 }
 
 void OwncloudSetupPage::startCheckArchivalServer() {
-    emit this->checkArchivalServer(_ui.leUrlArchival->text(), _ui.lnEdtAPI->text());
+    emit this->checkArchivalServer(archivalUrl(), archivalApiKey());
 }
 
 } // namespace OCC
