@@ -206,6 +206,11 @@ void AccountManager::saveAccountHelper(Account *acc, QSettings &settings, bool s
     }
     settings.endGroup();
 
+    settings.beginGroup(QLatin1String("Archive"));
+    settings.setValue(QLatin1String("url"), acc->_archivalUrl.toString());
+    settings.setValue(QLatin1String("api_key"), acc->_archivalApiKey.toString());
+    settings.endGroup();
+
     // Save cookies.
     if (acc->_am) {
         CookieJar *jar = qobject_cast<CookieJar *>(acc->_am->cookieJar());
@@ -268,6 +273,11 @@ AccountPtr AccountManager::loadAccountHelper(QSettings &settings)
     // now the server cert, it is in the general group
     settings.beginGroup(QLatin1String("General"));
     acc->setApprovedCerts(QSslCertificate::fromData(settings.value(caCertsKeyC).toByteArray()));
+    settings.endGroup();
+
+    settings.beginGroup(QLatin1String("Archive"));
+    acc->_archivalUrl = settings.value(QLatin1String("url")).toString();
+    acc->_archivalApiKey = settings.value(QLatin1String("api_key")).toUuid();
     settings.endGroup();
 
     return acc;
