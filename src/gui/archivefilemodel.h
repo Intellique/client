@@ -9,6 +9,8 @@
 #include "archivefile.h"
 #include "archivefilecomputesize.h"
 
+class QItemSelection;
+
 class ArchiveFileModel : public QAbstractTableModel {
     Q_OBJECT
 
@@ -28,6 +30,7 @@ class ArchiveFileModel : public QAbstractTableModel {
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QJsonArray files(const QString& remote_dir) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+        void removeSelection(const QItemSelection& selection);
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
 
     signals:
@@ -39,6 +42,8 @@ class ArchiveFileModel : public QAbstractTableModel {
 
     private:
         ArchiveFile& archiveFile(int index);
+
+        void recomputeSize();
 
         QList<ArchiveFile> m_files;
         ArchiveFileComputeSize * m_compute = nullptr;

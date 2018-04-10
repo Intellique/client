@@ -81,7 +81,21 @@
            <string>Add Files...</string>
           </property>
           <property name="icon">
-           <iconset theme="list-add"/>
+           <iconset theme="list-add">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pshBttnRemoveFiles">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Remove files</string>
+          </property>
+          <property name="icon">
+           <iconset theme="list-remove"/>
           </property>
          </widget>
         </item>
@@ -98,6 +112,25 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QPushButton" name="bttnCreateArchive">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>111</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Create archive</string>
+          </property>
+          <property name="icon">
+           <iconset theme="document-new"/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -109,39 +142,6 @@
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="bttnCreateArchive">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>111</width>
-         <height>34</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Create archive</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
    </item>
   </layout>
  </widget>

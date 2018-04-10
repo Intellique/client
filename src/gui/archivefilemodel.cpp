@@ -1,5 +1,6 @@
 #include <QDir>
 #include <QIcon>
+#include <QItemSelection>
 #include <QMimeDatabase>
 
 #include "accountstate.h"
@@ -47,15 +48,7 @@ void ArchiveFileModel::addFile(const QFileInfo& file_info) {
     this->m_files << file_info;
     this->endInsertRows();
 
-    if (this->m_compute != nullptr)
-        return;
-
-    this->m_compute = new ArchiveFileComputeSize(*this, this);
-    connect(this->m_compute, SIGNAL(completed(quint64, quint64, quint64)), SLOT(sizeCompute(quint64, quint64, quint64)));
-
-    this->m_compute->start(QThread::LowestPriority);
-
-    emit this->startComputeSize();
+    this->recomputeSize();
 }
 
 ArchiveFile& ArchiveFileModel::archiveFile(int index) {
@@ -142,6 +135,32 @@ QVariant ArchiveFileModel::headerData(int section, Qt::Orientation orientation, 
         default:
             return QVariant();
     }
+}
+
+void ArchiveFileModel::recomputeSize() {
+    if (this->m_compute != nullptr)
+        return;
+
+    this->m_compute = new ArchiveFileComputeSize(*this, this);
+    connect(this->m_compute, SIGNAL(completed(quint64, quint64, quint64)), SLOT(sizeCompute(quint64, quint64, quint64)));
+
+    this->m_compute->start(QThread::LowestPriority);
+
+    emit this->startComputeSize();
+}
+
+void ArchiveFileModel::removeSelection(const QItemSelection& selection) {
+    if (selection.length() == 0)
+        return;
+
+    QModelIndex parent;
+    foreach (const QItemSelectionRange range, selection) {
+        this->beginRemoveRows(parent, range.top(), range.bottom());
+        this->m_files.erase(this->m_files.begin() + range.top(), this->m_files.begin() + range.bottom() + 1);
+        this->endRemoveRows();
+    }
+
+    this->recomputeSize();
 }
 
 int ArchiveFileModel::rowCount(const QModelIndex& parent) const {

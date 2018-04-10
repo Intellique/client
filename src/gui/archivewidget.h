@@ -8,6 +8,7 @@ namespace Ui {
 }
 
 class ArchiveFileModel;
+class QItemSelection;
 
 namespace OCC {
     class ArchiveWidget : public QWidget {
@@ -30,8 +31,10 @@ namespace OCC {
             void doCreateArchive(int pool_id);
             void getUserInfo(int user_id);
             void noPoolFound();
+            void removeFiles();
             void searchPool(QJsonObject user_info);
             void searchPoolFailure();
+            void selectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
             void startUpdatingSize();
             void sizeUpdated(quint64 size, quint64 nb_files, quint64 nb_directories);
             void userInfoFailure();

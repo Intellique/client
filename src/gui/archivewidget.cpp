@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <QShortcut>
 #include <QStringList>
 
 #include "account.h"
@@ -24,8 +25,13 @@ ArchiveWidget::ArchiveWidget(QWidget *parent) : QWidget(parent), ui(new ::Ui::Ar
 
     connect(this->model, SIGNAL(sizeComputed(quint64, quint64, quint64)), SLOT(sizeUpdated(quint64, quint64, quint64)));
     connect(this->model, SIGNAL(startComputeSize()), SLOT(startUpdatingSize()));
+    connect(this->ui->pshBttnRemoveFiles, SIGNAL(clicked()), SLOT(removeFiles()));
     connect(this->ui->bttnCreateArchive, SIGNAL(clicked()), SLOT(createArchive()));
     connect(this->ui->lnEdtArchiveName, SIGNAL(textChanged(const QString&)), SLOT(checkCanArchive()));
+    connect(this->ui->tblVwArchiveFile->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(selectionChanged(const QItemSelection&, const QItemSelection&)));
+
+    QShortcut * del = new QShortcut(QKeySequence::Delete, this);
+    connect(del, SIGNAL(activated()), SLOT(removeFiles()));
 }
 
 ArchiveWidget::~ArchiveWidget() {
@@ -125,15 +131,8 @@ void ArchiveWidget::getUserInfo(int user_id) {
 
 void ArchiveWidget::noPoolFound() {}
 
-void ArchiveWidget::startUpdatingSize() {
-    this->ui->lblSize->setText(tr("Computing size..."));
-}
-
-void ArchiveWidget::sizeUpdated(quint64 size, quint64 nb_files, quint64 nb_directories) {
-    QString text = tr("There is %1 and %2 for %3")
-        .arg(tr("%n file(s)", "", nb_files), tr("%n directory(ies)", "", nb_directories), Utility::octetsToString(size)
-    );
-    this->ui->lblSize->setText(text);
+void ArchiveWidget::removeFiles() {
+    this->model->removeSelection(this->ui->tblVwArchiveFile->selectionModel()->selection());
 }
 
 void ArchiveWidget::searchPool(QJsonObject user_info) {
@@ -148,5 +147,20 @@ void ArchiveWidget::searchPool(QJsonObject user_info) {
 }
 
 void ArchiveWidget::searchPoolFailure() {}
+
+void ArchiveWidget::selectionChanged(const QItemSelection& selected, const QItemSelection&) {
+    this->ui->pshBttnRemoveFiles->setEnabled(selected.indexes().length() != 0);
+}
+
+void ArchiveWidget::sizeUpdated(quint64 size, quint64 nb_files, quint64 nb_directories) {
+    QString text = tr("There is %1 and %2 for %3")
+        .arg(tr("%n file(s)", "", nb_files), tr("%n directory(ies)", "", nb_directories), Utility::octetsToString(size)
+    );
+    this->ui->lblSize->setText(text);
+}
+
+void ArchiveWidget::startUpdatingSize() {
+    this->ui->lblSize->setText(tr("Computing size..."));
+}
 
 void ArchiveWidget::userInfoFailure() {}
