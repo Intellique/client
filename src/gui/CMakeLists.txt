@@ -54,6 +54,7 @@ set(client_SRCS
     activitywidget.cpp
     addcertificatedialog.cpp
     application.cpp
+	archiveapi.cpp
 	archivefile.cpp
 	archivefilecomputesize.cpp
 	archivefilemodel.cpp

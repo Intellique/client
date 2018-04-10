@@ -46,7 +46,7 @@
 namespace {
 const char TOOLBAR_CSS[] =
     "QToolBar { background: %1; margin: 0; padding: 0; border: none; border-bottom: 1px solid %2; spacing: 0; } "
-    "QToolBar QToolButton { background: %1; border: none; border-bottom: 1px solid %2; margin: 0; padding: 5px; } "
+    "QToolBar QToolButton { background: %1; border: none; border-bottom: 1px solid %2; color: white; margin: 0; padding: 5px; } "
     "QToolBar QToolBarExtension { padding:0; } "
     "QToolBar QToolButton:checked { background: %3; color: %4; }";
 
@@ -329,10 +329,10 @@ void SettingsDialog::accountRemoved(AccountState *s)
 
 void SettingsDialog::customizeStyle()
 {
-    QString highlightColor(palette().highlight().color().name());
+    QString highlightColor("#919291");
     QString altBase(palette().alternateBase().color().name());
     QString dark(palette().dark().color().name());
-    QString background(palette().base().color().name());
+    QString background("#ea6746");
     _toolBar->setStyleSheet(QString::fromAscii(TOOLBAR_CSS).arg(background, dark, highlightColor, altBase));
 
     Q_FOREACH (QAction *a, _actionGroup->actions()) {

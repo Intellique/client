@@ -310,7 +310,7 @@ void Account::setSslErrorHandler(AbstractSslErrorHandler *handler)
     _sslErrorHandler.reset(handler);
 }
 
-void Account::setArchivalApiKey(const QUuid& uuid) {
+void Account::setArchivalApiKey(const QString& uuid) {
     _archivalApiKey = uuid;
 }
 

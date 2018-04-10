@@ -80,6 +80,9 @@
           <property name="text">
            <string>Add Files...</string>
           </property>
+          <property name="icon">
+           <iconset theme="list-add"/>
+          </property>
          </widget>
         </item>
         <item>

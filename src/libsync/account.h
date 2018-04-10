@@ -26,7 +26,6 @@
 #include <QSslCipher>
 #include <QSslError>
 #include <QSharedPointer>
-#include <QUuid>
 
 #ifndef TOKEN_AUTH_ONLY
 #include <QPixmap>
@@ -106,8 +105,8 @@ public:
     QUrl storageUrl() const { return _storageUrl; }
 
     // url of archival server
-    void setArchivalApiKey(const QUuid& uuid);
-    QUuid archivalApiKey() const { return _archivalApiKey; };
+    void setArchivalApiKey(const QString& uuid);
+    QString archivalApiKey() const { return _archivalApiKey; };
     void setArchivalUrl(const QUrl& archivalUrl);
     QUrl archivalUrl() const { return _archivalUrl; }
 
@@ -283,7 +282,7 @@ private:
 #endif
     QMap<QString, QVariant> _settingsMap;
     QUrl _archivalUrl;
-    QUuid _archivalApiKey;
+    QString _archivalApiKey;
     QUrl _storageUrl;
 
     /** If url to use for any user-visible urls.

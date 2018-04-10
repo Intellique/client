@@ -928,12 +928,11 @@ void CheckArchivalServer::start() {
 
     QJsonObject body_obj = {
         { "action",  "check" },
-        { "api key", account()->archivalApiKey().toString() }
+        { "api key", account()->archivalApiKey() }
     };
     QJsonDocument body;
     body.setObject(body_obj);
 
-    // TODO: add content-type
     QNetworkRequest request;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

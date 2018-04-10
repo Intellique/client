@@ -1,8 +1,11 @@
+#include <QDir>
 #include <QIcon>
 #include <QMimeDatabase>
 
+#include "accountstate.h"
 #include "archivefilemodel.h"
 #include "common/utility.h"
+#include "folderman.h"
 
 
 ArchiveFileModel::ArchiveFileModel(QObject * parent) : QAbstractTableModel(parent) {}
@@ -13,6 +16,31 @@ ArchiveFileModel::~ArchiveFileModel() {}
 void ArchiveFileModel::addFile(const QFileInfo& file_info) {
     if (this->m_files.indexOf(file_info) >= 0)
         return;
+
+    OCC::Folder * folder = OCC::FolderMan::instance()->folderForPath(file_info.absoluteFilePath());
+    if (folder == nullptr)
+        return;
+
+    OCC::AccountPtr other_account = folder->accountState()->account();
+    if (this->m_account != nullptr and this->m_account != other_account)
+        return;
+
+    if (this->m_account == nullptr)
+        this->m_account = other_account;
+
+    for (int i = 0; i < this->m_files.length(); i++) {
+        const QFileInfo& file = this->m_files[i].info();
+
+        if (file_info.absoluteFilePath().startsWith(file.absoluteFilePath()))
+            return;
+
+        if (file.absoluteFilePath().startsWith(file_info.absoluteFilePath())) {
+            this->beginRemoveRows(QModelIndex(), i, i);
+            this->m_files.removeAt(i);
+            this->endRemoveRows();
+            i--;
+        }
+    }
 
     int nb_rows = this->m_files.size();
     this->beginInsertRows(QModelIndex(), nb_rows, nb_rows);
@@ -32,6 +60,17 @@ void ArchiveFileModel::addFile(const QFileInfo& file_info) {
 
 ArchiveFile& ArchiveFileModel::archiveFile(int index) {
     return this->m_files[index];
+}
+
+bool ArchiveFileModel::canCreateArchive() {
+    OCC::FolderMan * monitor = OCC::FolderMan::instance();
+    foreach (const ArchiveFile& file, this->m_files) {
+        OCC::Folder * folder = monitor->folderForPath(file.info().absoluteFilePath());
+        if (folder->syncResult().status() != OCC::SyncResult::Success)
+            return false;
+    }
+
+    return true;
 }
 
 int ArchiveFileModel::columnCount(const QModelIndex& parent) const {
@@ -75,6 +114,18 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
     }
 
     return QVariant();
+}
+
+QJsonArray ArchiveFileModel::files(const QString& remote_dir) const {
+    OCC::FolderMan * monitor = OCC::FolderMan::instance();
+    QJsonArray files;
+    foreach (const ArchiveFile& file, this->m_files) {
+        OCC::Folder * folder = monitor->folderForPath(file.info().absoluteFilePath());
+
+        QDir dir(remote_dir + folder->remotePath());
+        files << dir.filePath(file.info().absoluteFilePath().mid(folder->path().length()));
+    }
+    return files;
 }
 
 QVariant ArchiveFileModel::headerData(int section, Qt::Orientation orientation, int role) const {

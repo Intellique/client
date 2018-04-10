@@ -208,7 +208,7 @@ void AccountManager::saveAccountHelper(Account *acc, QSettings &settings, bool s
 
     settings.beginGroup(QLatin1String("Archive"));
     settings.setValue(QLatin1String("url"), acc->_archivalUrl.toString());
-    settings.setValue(QLatin1String("api_key"), acc->_archivalApiKey.toString());
+    settings.setValue(QLatin1String("api_key"), acc->_archivalApiKey);
     settings.endGroup();
 
     // Save cookies.
@@ -277,7 +277,7 @@ AccountPtr AccountManager::loadAccountHelper(QSettings &settings)
 
     settings.beginGroup(QLatin1String("Archive"));
     acc->_archivalUrl = settings.value(QLatin1String("url")).toString();
-    acc->_archivalApiKey = settings.value(QLatin1String("api_key")).toUuid();
+    acc->_archivalApiKey = settings.value(QLatin1String("api_key")).toString();
     settings.endGroup();
 
     return acc;
