@@ -30,8 +30,14 @@ ArchiveWidget::ArchiveWidget(QWidget *parent) : QWidget(parent), ui(new ::Ui::Ar
     connect(this->ui->lnEdtArchiveName, SIGNAL(textChanged(const QString&)), SLOT(checkCanArchive()));
     connect(this->ui->tblVwArchiveFile->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(selectionChanged(const QItemSelection&, const QItemSelection&)));
 
+    // add support for DEL keystroke
     QShortcut * del = new QShortcut(QKeySequence::Delete, this);
     connect(del, SIGNAL(activated()), SLOT(removeFiles()));
+
+    // resize header
+    QHeaderView * header = this->ui->tblVwArchiveFile->horizontalHeader();
+    header->setSectionResizeMode(1, QHeaderView::Stretch);
+
 }
 
 ArchiveWidget::~ArchiveWidget() {

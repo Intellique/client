@@ -32,6 +32,7 @@ class ArchiveFileModel : public QAbstractTableModel {
         QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
         void removeSelection(const QItemSelection& selection);
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+        void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
     signals:
         void sizeComputed(quint64 size, quint64 nb_files, quint64 nb_dictories);
