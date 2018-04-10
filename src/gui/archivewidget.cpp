@@ -37,7 +37,6 @@ ArchiveWidget::ArchiveWidget(QWidget *parent) : QWidget(parent), ui(new ::Ui::Ar
     // resize header
     QHeaderView * header = this->ui->tblVwArchiveFile->horizontalHeader();
     header->setSectionResizeMode(1, QHeaderView::Stretch);
-
 }
 
 ArchiveWidget::~ArchiveWidget() {

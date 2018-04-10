@@ -159,6 +159,9 @@ QVariant ArchiveFileModel::headerData(int section, Qt::Orientation orientation, 
         return QVariant();
 
     switch (section) {
+        case 0:
+            return tr("Type");
+
         case 1:
             return tr("Name");
 

@@ -105,7 +105,7 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
 
-    QAction * archiveAction = createColorAwareAction(QLatin1String(":/client/resources/network.png"), tr("Archive"));
+    QAction * archiveAction = createColorAwareAction(QLatin1String(":/client/resources/upload-folder-button.png"), tr("Archive"));
     _actionGroup->addAction(archiveAction);
     _toolBar->addAction(archiveAction);
     _archiveWidget = new ArchiveWidget(this);

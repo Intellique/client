@@ -23,5 +23,7 @@
         <file>resources/more.png</file>
         <file>resources/delete.png</file>
         <file>resources/bell.png</file>
+        <file>resources/upload-folder-button.png</file>
+        <file>resources/upload-folder-button@2x.png</file>
     </qresource>
 </RCC>

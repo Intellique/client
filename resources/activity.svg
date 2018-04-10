@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="64" width="64" version="1.0" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
- <defs>
-  <linearGradient id="a" y2="62.102" gradientUnits="userSpaceOnUse" x2="32" y1="2.1695" x1="32">
-   <stop offset="0"/>
-   <stop stop-color="#363636" offset="1"/>
-  </linearGradient>
- </defs>
- <path opacity=".7" d="m32 2-20 36h22l-2 24 20-36h-22z" fill="url(#a)"/>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="64"
+   width="64"
+   version="1.0"
+   id="svg182"
+   sodipodi:docname="activity.svg"
+   inkscape:version="0.92.1 r15371"
+   inkscape:export-filename="/mnt/partage/Mouloud/Icon_tab_client_opa100/activity@2x.png"
+   inkscape:export-xdpi="192"
+   inkscape:export-ydpi="192">
+  <metadata
+     id="metadata186">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1002"
+     id="namedview184"
+     showgrid="false"
+     inkscape:zoom="12.90625"
+     inkscape:cx="23.360774"
+     inkscape:cy="36.571429"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg182"
+     inkscape:pagecheckerboard="true" />
+  <defs
+     id="defs178">
+    <linearGradient
+       id="a"
+       y2="62.102"
+       gradientUnits="userSpaceOnUse"
+       x2="32"
+       y1="2.1695"
+       x1="32">
+      <stop
+         offset="0"
+         id="stop173" />
+      <stop
+         stop-color="#363636"
+         offset="1"
+         id="stop175" />
+    </linearGradient>
+  </defs>
+  <path
+     opacity=".7"
+     d="m32 2-20 36h22l-2 24 20-36h-22z"
+     fill="url(#a)"
+     id="path180"
+     style="fill:#ffffff;opacity:1" />
 </svg>
