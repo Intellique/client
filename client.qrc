@@ -25,5 +25,8 @@
         <file>resources/bell.png</file>
         <file>resources/upload-folder-button.png</file>
         <file>resources/upload-folder-button@2x.png</file>
+        <file>resources/monitor.png</file>
+        <file>resources/monitor@2x.png</file>
+        <file>resources/intellique.png</file>
     </qresource>
 </RCC>

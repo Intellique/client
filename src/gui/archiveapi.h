@@ -6,6 +6,7 @@
 #include "abstractnetworkjob.h"
 
 class ArchiveFileModel;
+class Job;
 
 namespace OCC {
     class ArchivalAuthJob : public AbstractNetworkJob {
@@ -68,6 +69,49 @@ namespace OCC {
         int m_pool_id;
         QString m_user_home_directory;
         bool m_do_auth_on_failure;
+    };
+
+    class ArchivalJobInfoJob : public AbstractNetworkJob {
+        Q_OBJECT
+
+    public:
+        explicit ArchivalJobInfoJob(const AccountPtr& account, int job_id, QObject * parent = nullptr);
+
+    public slots:
+        void start() Q_DECL_OVERRIDE;
+
+    protected:
+        bool finished() Q_DECL_OVERRIDE;
+
+    signals:
+        void fetchFailure();
+        void jobInfo(const Job& job);
+        void notConnected();
+
+    private:
+        int m_job_id;
+    };
+
+    class ArchivalJobsJob : public AbstractNetworkJob {
+        Q_OBJECT
+
+    public:
+        explicit ArchivalJobsJob(const AccountPtr& account, int user_id, int limit = 5, QObject * parent = nullptr);
+
+    public slots:
+        void start() Q_DECL_OVERRIDE;
+
+    protected:
+        bool finished() Q_DECL_OVERRIDE;
+
+    signals:
+        void fetchFailure();
+        void jobsFetch(const QList<int>& jobs);
+        void notConnected();
+
+    private:
+        int m_user_id;
+        int m_limit;
     };
 
     class ArchivalSearchPoolJob : public AbstractNetworkJob {

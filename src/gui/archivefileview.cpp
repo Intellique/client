@@ -1,11 +1,12 @@
 #include <QDragEnterEvent>
 #include <QMimeData>
+#include <QPainter>
 
 #include "archivefilemodel.h"
 #include "archivefileview.h"
 #include "folderman.h"
 
-ArchiveFileView::ArchiveFileView(QWidget * parent) : QTableView(parent) {
+ArchiveFileView::ArchiveFileView(QWidget * parent) : QTableView(parent), m_logo(":/client/resources/upload-folder-button.png") {
     this->setAcceptDrops(true);
 }
 
@@ -51,6 +52,29 @@ void ArchiveFileView::dropEvent(QDropEvent * event) {
             event->acceptProposedAction();
     }
 }
+
+/*
+void ArchiveFileView::paintEvent(QPaintEvent * event) {
+    // QTableView::paintEvent(event);
+
+    QSize image_size = this->m_logo.size();
+    QSize this_size = this->size();
+    QPoint pos((this_size.width() - image_size.width()) / 2, (this_size.height() - image_size.height()) / 2);
+    QRect target(pos, image_size);
+
+    QPainter painter(this);
+
+    QTableView::render(&painter);
+
+
+
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.save();
+    painter.setOpacity(0.25);
+    painter.drawImage(event->rect(), this->m_logo, event->rect());
+    painter.restore();
+}
+*/
 
 void ArchiveFileView::setModel(ArchiveFileModel * model) {
     this->m_model = model;

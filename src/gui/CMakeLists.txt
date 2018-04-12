@@ -23,6 +23,7 @@ set(client_UI
     generalsettings.ui
     ignorelisteditor.ui
     issueswidget.ui
+    jobwidget.ui
     networksettings.ui
     notificationwidget.ui
     protocolwidget.ui
@@ -54,11 +55,11 @@ set(client_SRCS
     activitywidget.cpp
     addcertificatedialog.cpp
     application.cpp
-	archiveapi.cpp
-	archivefile.cpp
-	archivefilecomputesize.cpp
-	archivefilemodel.cpp
-	archivefileview.cpp
+    archiveapi.cpp
+    archivefile.cpp
+    archivefilecomputesize.cpp
+    archivefilemodel.cpp
+    archivefileview.cpp
     archivewidget.cpp
     authenticationdialog.cpp
     creds/credentialsfactory.cpp
@@ -75,6 +76,10 @@ set(client_SRCS
     guiutility.cpp
     ignorelisteditor.cpp
     issueswidget.cpp
+    job.cpp
+    jobdelegate.cpp
+    jobmodel.cpp
+    jobwidget.cpp
     lockwatcher.cpp
     logbrowser.cpp
     networksettings.cpp

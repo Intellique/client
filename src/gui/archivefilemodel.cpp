@@ -74,6 +74,13 @@ bool ArchiveFileModel::canCreateArchive() {
     return true;
 }
 
+void ArchiveFileModel::clear() {
+    this->beginResetModel();
+    this->m_files.clear();
+    this->m_account.clear();
+    this->endResetModel();
+}
+
 int ArchiveFileModel::columnCount(const QModelIndex& parent) const {
     if (parent.isValid())
         return 0;
@@ -198,6 +205,9 @@ void ArchiveFileModel::removeSelection(const QItemSelection& selection) {
         this->m_files.erase(this->m_files.begin() + range.top(), this->m_files.begin() + range.bottom() + 1);
         this->endRemoveRows();
     }
+
+    if (this->m_files.length() == 0)
+        this->m_account.clear();
 
     this->recomputeSize();
 }

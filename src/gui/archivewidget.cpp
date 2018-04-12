@@ -64,7 +64,10 @@ void ArchiveWidget::addFiles() {
     this->checkCanArchive();
 }
 
-void ArchiveWidget::archiveCreated() {}
+void ArchiveWidget::archiveCreated() {
+    this->ui->lnEdtArchiveName->clear();
+    this->model->clear();
+}
 
 void ArchiveWidget::archiveCreationFailure() {}
 

@@ -26,6 +26,7 @@ class ArchiveFileModel : public QAbstractTableModel {
         }
         void addFile(const QFileInfo& file_info);
         bool canCreateArchive();
+        void clear();
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QJsonArray files(const QString& remote_dir) const;

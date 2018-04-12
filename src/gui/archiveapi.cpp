@@ -6,11 +6,14 @@
 #include "archiveapi.h"
 #include "archivefilemodel.h"
 #include "creds/abstractcredentials.h"
+#include "job.h"
 
 using OCC::AbstractNetworkJob;
 using OCC::ArchivalAuthJob;
 using OCC::ArchivalCheckConnectionJob;
 using OCC::ArchivalCreateArchiveJob;
+using OCC::ArchivalJobInfoJob;
+using OCC::ArchivalJobsJob;
 using OCC::ArchivalSearchPoolJob;
 using OCC::ArchivalUserInfoJob;
 
@@ -59,7 +62,9 @@ void ArchivalAuthJob::start() {
 
 
 
-ArchivalCheckConnectionJob::ArchivalCheckConnectionJob(const AccountPtr& account, QObject * parent) : AbstractNetworkJob(account, "api/v1/auth/index.php", parent) {}
+ArchivalCheckConnectionJob::ArchivalCheckConnectionJob(const AccountPtr& account, QObject * parent) : AbstractNetworkJob(account, "api/v1/auth/index.php", parent) {
+    setIgnoreCredentialFailure(true);
+}
 
 
 bool ArchivalCheckConnectionJob::finished() {
@@ -124,6 +129,97 @@ void ArchivalCreateArchiveJob::start() {
     body_buffer->setData(body.toJson());
 
     sendRequest("POST", Utility::concatUrlPath(url, path()), request, body_buffer);
+    AbstractNetworkJob::start();
+}
+
+
+
+ArchivalJobInfoJob::ArchivalJobInfoJob(const AccountPtr& account, int job_id, QObject * parent) : AbstractNetworkJob(account, "api/v1/job/index.php", parent), m_job_id(job_id) {}
+
+
+bool ArchivalJobInfoJob::finished() {
+    QNetworkReply * serverReply = reply();
+    QVariant code = serverReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    switch (code.toInt()) {
+        case 200: {
+            QJsonDocument doc = QJsonDocument::fromJson(serverReply->readAll());
+            QJsonObject obj = doc.object();
+            Job job(obj["job"].toObject());
+            if (not job.is_null())
+                emit this->jobInfo(job);
+            else
+                emit this->fetchFailure();
+            return true;
+        }
+
+        case 404:
+            emit this->notConnected();
+            return true;
+
+        default:
+            emit this->fetchFailure();
+            return true;
+    }
+}
+
+void ArchivalJobInfoJob::start() {
+    QUrl url = Utility::concatUrlPath(account()->archivalUrl(), path());
+
+    QList<QPair<QString, QString>> params;
+    params << qMakePair(QString::fromLatin1("id"), QString::number(this->m_job_id));
+    url.setQueryItems(params);
+
+    sendRequest("GET", url);
+    AbstractNetworkJob::start();
+}
+
+
+
+ArchivalJobsJob::ArchivalJobsJob(const AccountPtr& account, int user_id, int limit, QObject * parent) : AbstractNetworkJob(account, "api/v1/job/search/index.php", parent), m_user_id(user_id), m_limit(limit) {}
+
+
+bool ArchivalJobsJob::finished() {
+    QNetworkReply * serverReply = reply();
+    QVariant code = serverReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    QList<int> list;
+    switch (code.toInt()) {
+        case 200: {
+            QJsonDocument doc = QJsonDocument::fromJson(serverReply->readAll());
+            QJsonObject obj = doc.object();
+            QJsonArray jobs = obj["jobs_id"].toArray();
+            foreach (const QJsonValue& val, jobs)
+                list << val.toInt();
+            emit this->jobsFetch(list);
+            return true;
+        }
+
+        case 401:
+            emit this->notConnected();
+            return true;
+
+        case 404:
+            emit this->jobsFetch(list);
+            return true;
+
+        default:
+            emit this->fetchFailure();
+            return true;
+    }
+}
+
+void ArchivalJobsJob::start() {
+    QUrl url = Utility::concatUrlPath(account()->archivalUrl(), path());
+
+    QList<QPair<QString, QString>> params;
+    params << qMakePair(QString::fromLatin1("order_by"), QString::fromLatin1("id"));
+    params << qMakePair(QString::fromLatin1("order_asc"), QString::fromLatin1("false"));
+    params << qMakePair(QString::fromLatin1("limit"), QString::number(this->m_limit));
+    params << qMakePair(QString::fromLatin1("login"), QString::number(this->m_user_id));
+    url.setQueryItems(params);
+
+    sendRequest("GET", url);
     AbstractNetworkJob::start();
 }
 

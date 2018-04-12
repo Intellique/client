@@ -98,7 +98,8 @@
            <string>Remove files</string>
           </property>
           <property name="icon">
-           <iconset theme="list-remove"/>
+           <iconset theme="list-remove">
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
@@ -130,7 +131,8 @@
            <string>Create archive</string>
           </property>
           <property name="icon">
-           <iconset theme="document-new"/>
+           <iconset theme="document-new">
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>
