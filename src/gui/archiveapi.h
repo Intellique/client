@@ -137,6 +137,27 @@ namespace OCC {
         bool m_do_auth_on_failure;
 };
 
+    class ArchivalStopJob : public AbstractNetworkJob {
+        Q_OBJECT
+
+    public:
+        explicit ArchivalStopJob(const AccountPtr& account, int job_id, QObject * parent = nullptr);
+
+    public slots:
+        void start() Q_DECL_OVERRIDE;
+
+    protected:
+        bool finished() Q_DECL_OVERRIDE;
+
+    signals:
+        void failure();
+        void jobKilled();
+        void notConnected();
+
+    private:
+        int m_job_id;
+    };
+
     class ArchivalUserInfoJob : public AbstractNetworkJob {
         Q_OBJECT
 

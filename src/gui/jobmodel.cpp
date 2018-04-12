@@ -10,7 +10,7 @@ int JobModel::columnCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     else
-        return 5;
+        return 6;
 }
 
 QVariant JobModel::data(const QModelIndex &index, int role) const {
@@ -24,35 +24,54 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
             case 0:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return job.name();
+                        return job.id();
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
 
             case 1:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return QLocale::system().toString(job.startTime(), QLocale::ShortFormat);
+                        return job.name();
                 }
                 break;
 
             case 2:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return job.done();
+                        return QLocale::system().toString(job.startTime(), QLocale::ShortFormat);
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
 
             case 3:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return QLocale::system().toString(job.endTime(), QLocale::ShortFormat);
+                        return job.done();
                 }
                 break;
 
             case 4:
                 switch (role) {
                     case Qt::DisplayRole:
+                        return QLocale::system().toString(job.endTime(), QLocale::ShortFormat);
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
+                }
+                break;
+
+            case 5:
+                switch (role) {
+                    case Qt::DisplayRole:
                         return job.statusString();
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
         }
@@ -67,23 +86,34 @@ QVariant JobModel::headerData(int section, Qt::Orientation orientation, int role
 
     switch (section) {
         case 0:
-            return tr("Name");
+            return "#";
 
         case 1:
-            return tr("Start time");
+            return tr("Name");
 
         case 2:
-            return tr("Progress");
+            return tr("Start time");
 
         case 3:
-            return tr("ETA");
+            return tr("Progress");
 
         case 4:
+            return tr("ETA");
+
+        case 5:
             return tr("Status");
 
         default:
             return QVariant();
     }
+}
+
+QModelIndex JobModel::index(int row, int column, const QModelIndex& parent) const {
+    if (not parent.isValid() and row < this->m_jobs.size()) {
+        int current_key = this->m_jobs.keys().at(row);
+        return createIndex(row, column, &this->m_jobs[current_key]);
+    } else
+        return QModelIndex();
 }
 
 int JobModel::rowCount(const QModelIndex &parent) const {

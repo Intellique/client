@@ -15,6 +15,7 @@ using OCC::ArchivalCreateArchiveJob;
 using OCC::ArchivalJobInfoJob;
 using OCC::ArchivalJobsJob;
 using OCC::ArchivalSearchPoolJob;
+using OCC::ArchivalStopJob;
 using OCC::ArchivalUserInfoJob;
 
 ArchivalAuthJob::ArchivalAuthJob(const AccountPtr& account, const QString& password, QObject * parent) : AbstractNetworkJob(account, "api/v1/auth/index.php", parent), m_password(password) {}
@@ -268,6 +269,42 @@ void ArchivalSearchPoolJob::start() {
     sendRequest("GET", url);
     AbstractNetworkJob::start();
 }
+
+
+
+ArchivalStopJob::ArchivalStopJob(const AccountPtr &account, int job_id, QObject *parent) : AbstractNetworkJob(account, "api/v1/job/index.php", parent), m_job_id(job_id) {}
+
+
+bool ArchivalStopJob::finished() {
+    QNetworkReply * serverReply = reply();
+    QVariant code = serverReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    switch (code.toInt()) {
+        case 200:
+            emit this->jobKilled();
+            return true;
+
+        case 401:
+            emit this->notConnected();
+            return true;
+
+        default:
+            emit this->failure();
+            return true;
+    }
+}
+
+void ArchivalStopJob::start() {
+    QUrl url = Utility::concatUrlPath(account()->archivalUrl(), path());
+
+    QList<QPair<QString, QString>> params;
+    params << qMakePair(QString::fromLatin1("id"), QString::number(this->m_job_id));
+    url.setQueryItems(params);
+
+    sendRequest("GET", url);
+    AbstractNetworkJob::start();
+}
+
 
 
 ArchivalUserInfoJob::ArchivalUserInfoJob(const AccountPtr& account, int user_id, bool do_auth_on_failure, QObject * parent) : AbstractNetworkJob(account, "api/v1/user/index.php", parent), m_user_id(user_id), m_do_auth_on_failure(do_auth_on_failure) {}

@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QPainter>
 #include <QStyle>
 
 #include "jobdelegate.h"
@@ -10,8 +11,9 @@ void JobDelegate::paint(QPainter * painter, const QStyleOptionViewItem& option, 
     QStyleOptionProgressBar progressBarOption;
     progressBarOption.rect = option.rect;
 
-    int progress = 100 * index.model()->data(index).toFloat();
+    int progress = 100 * index.data().toFloat();
 
+    progressBarOption.state = option.state;
     progressBarOption.minimum = 0;
     progressBarOption.maximum = 100;
     progressBarOption.textAlignment = Qt::AlignCenter;
@@ -19,5 +21,7 @@ void JobDelegate::paint(QPainter * painter, const QStyleOptionViewItem& option, 
     progressBarOption.text = QString("%1%").arg(progress);
     progressBarOption.textVisible = true;
 
+    if (option.state & QStyle::State_Selected)
+        painter->fillRect(option.rect, option.palette.highlight());
     QApplication::style()->drawControl(QStyle::CE_ProgressBar, &progressBarOption, painter);
 }

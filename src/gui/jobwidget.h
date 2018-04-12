@@ -6,10 +6,6 @@
 
 #include "account.h"
 
-namespace QKeychain {
-    class Job;
-}
-
 namespace OCC {
     class AbstractCredentials;
 }
@@ -20,6 +16,7 @@ namespace Ui {
 
 class Job;
 class JobModel;
+class QItemSelection;
 
 class JobWidget : public QWidget {
     Q_OBJECT
@@ -31,10 +28,15 @@ public:
 private slots:
     void credentialAsked(OCC::AbstractCredentials * credentials);
     void credentialFetched(OCC::AbstractCredentials * credentials);
-    void doAuthentication();
+    void doAuthForUpdate();
+    void doStopTask(int user_id);
     void fetchJobs(int user_id);
     void job(const Job& job);
+    void jobKilled();
+    void jobKillFailure();
     void jobs(const QList<int>& jobs);
+    void selectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
+    void stopTask();
     void updateModel();
 
 private:
@@ -44,6 +46,7 @@ private:
     JobModel * model;
     OCC::AccountPtr account;
     QList<int> jobs_remain;
+    int selected_job = -1;
 };
 
 #endif // JOBWIDGET_H
