@@ -37,6 +37,7 @@ JobWidget::JobWidget(QWidget *parent) : QWidget(parent), ui(new Ui::JobWidget) {
     header->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     header->setSectionResizeMode(1, QHeaderView::Stretch);
     header->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+    header->setSectionResizeMode(3, QHeaderView::Stretch);
     header->setSectionResizeMode(4, QHeaderView::ResizeToContents);
 
     QTimer::singleShot(5000, this, SLOT(updateModel()));

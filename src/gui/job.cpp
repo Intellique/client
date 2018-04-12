@@ -3,6 +3,7 @@
 #include <QHash>
 
 #include "job.h"
+#include "common/utility.h"
 
 Job::Job(const QJsonObject& job) {
     this->m_is_null = not this->parseJson(job);
@@ -12,11 +13,18 @@ Job::Job(const Job& job) : m_id(job.m_id), m_name(job.m_name), m_start_time(job.
 
 
 QDateTime Job::endTime() const {
-    if (this->m_end_time.isValid())
-        return this->m_end_time;
+    return this->m_end_time;
+}
 
-    qint64 seconds = this->m_start_time.secsTo(QDateTime::currentDateTime());
-    return this->m_start_time.addSecs(seconds / this->m_done);
+QString Job::eta() const {
+    if (this->m_end_time.isValid())
+        return "";
+
+    QDateTime now = QDateTime::currentDateTime();
+    qint64 msec = this->m_start_time.msecsTo(now);
+    QDateTime eta = this->m_start_time.addMSecs(msec / this->m_done);
+
+    return OCC::Utility::durationToDescriptiveString1(now.msecsTo(eta));
 }
 
 bool Job::parseJson(const QJsonObject& job) {

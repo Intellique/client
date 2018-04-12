@@ -116,12 +116,15 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
                 switch (role) {
                     case Qt::DisplayRole:
                         return OCC::Utility::octetsToString(file.size());
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
 
             case 3: {
                 switch (role) {
-                    case Qt::DisplayRole:
+                    case Qt::DisplayRole: {
                         Folder * folder = FolderMan::instance()->folderForPath(file.info().absoluteFilePath());
                         switch (folder->syncResult().status()) {
                             case SyncResult::NotYetStarted:
@@ -140,6 +143,10 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
                             default:
                                 return tr("Error");
                         }
+                    }
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
             }

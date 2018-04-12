@@ -58,7 +58,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
             case 4:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return QLocale::system().toString(job.endTime(), QLocale::ShortFormat);
+                        return job.eta();
 
                     case Qt::TextAlignmentRole:
                         return Qt::AlignCenter;

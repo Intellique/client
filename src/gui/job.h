@@ -27,6 +27,7 @@ class Job {
         };
 
         QDateTime endTime() const;
+        QString eta() const;
         inline double done() const {
             return this->m_done;
         }

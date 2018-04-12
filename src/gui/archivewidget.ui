@@ -10,6 +10,43 @@
     <height>469</height>
    </rect>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>234</red>
+        <green>103</green>
+        <blue>70</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>234</red>
+        <green>103</green>
+        <blue>70</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Highlight">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>227</red>
+        <green>229</green>
+        <blue>231</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -53,6 +90,14 @@
       </item>
       <item>
        <widget class="ArchiveFileView" name="tblVwArchiveFile">
+        <property name="styleSheet">
+         <string notr="true">* {
+	background-color: white;
+	background-image: url(:/client/resources/intellique_logo_background.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}</string>
+        </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
         </property>

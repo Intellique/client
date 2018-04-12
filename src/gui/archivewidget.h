@@ -25,8 +25,6 @@ namespace OCC {
             void authenticationFailure();
             void checkCanArchive();
             void createArchive();
-            void credentialAsked(AbstractCredentials * credentials);
-            void credentialFetched(AbstractCredentials * credentials);
             void doAuthentication();
             void doCreateArchive(int pool_id);
             void getUserInfo(int user_id);

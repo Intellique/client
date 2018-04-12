@@ -1,4 +1,5 @@
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QShortcut>
 #include <QStringList>
 
@@ -65,14 +66,33 @@ void ArchiveWidget::addFiles() {
 }
 
 void ArchiveWidget::archiveCreated() {
+    QMessageBox message;
+    message.setIcon(QMessageBox::Information);
+    message.setText(tr("Your archival task \"%1\" has been created.").arg(this->ui->lnEdtArchiveName->text()));
+    message.setInformativeText(tr("The task will start soon."));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
+
     this->ui->lnEdtArchiveName->clear();
     this->model->clear();
 }
 
-void ArchiveWidget::archiveCreationFailure() {}
+void ArchiveWidget::archiveCreationFailure() {
+    QMessageBox message;
+    message.setIcon(QMessageBox::Critical);
+    message.setText(tr("Failed to create your archival task"));
+    message.setInformativeText(tr("Please contact Intellique for further information"));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
+}
 
 void ArchiveWidget::authenticationFailure() {
-
+    QMessageBox message;
+    message.setIcon(QMessageBox::Critical);
+    message.setText(tr("Failed to login into archival backend."));
+    message.setInformativeText(tr("Please contact Intellique for further information"));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
 }
 
 void ArchiveWidget::checkCanArchive() {
@@ -80,17 +100,6 @@ void ArchiveWidget::checkCanArchive() {
     if (this->ui->lnEdtArchiveName->text().simplified().length() == 0 or this->model->rowCount() == 0 or not this->model->canCreateArchive())
         ok = false;
     this->ui->bttnCreateArchive->setEnabled(ok);
-}
-
-void ArchiveWidget::credentialAsked(AbstractCredentials * cred) {
-    HttpCredentials * httpCreds = qobject_cast<HttpCredentials *>(cred);
-
-    if (httpCreds != nullptr and httpCreds->ready())
-        this->doAuthentication();
-}
-
-void ArchiveWidget::credentialFetched(AbstractCredentials *) {
-
 }
 
 void ArchiveWidget::createArchive() {
@@ -109,9 +118,10 @@ void ArchiveWidget::doAuthentication() {
     HttpCredentials * httpCreds = qobject_cast<HttpCredentials *>(cred);
 
     if (httpCreds != nullptr) {
-        if (not httpCreds->ready()) {
-            connect(this->model->account().data(), SIGNAL(credentialsAsked(AbstractCredentials *)), SLOT(credentialAsked(AbstractCredentials *)));
-            connect(this->model->account().data(), SIGNAL(credentialsFetched(AbstractCredentials *)), SLOT(credentialFetched(AbstractCredentials *)));
+        if (not httpCreds->wasFetched()) {
+            connect(this->model->account().data(), SIGNAL(credentialsFetched(AbstractCredentials *)), SLOT(doAuthentication()));
+            httpCreds->fetchFromKeychain();
+            return;
         } else {
             ArchivalAuthJob * job = new ArchivalAuthJob(this->model->account(), httpCreds->password(), this);
             connect(job, SIGNAL(connectionFailure()), SLOT(authenticationFailure()));
@@ -137,7 +147,14 @@ void ArchiveWidget::getUserInfo(int user_id) {
     job->start();
 }
 
-void ArchiveWidget::noPoolFound() {}
+void ArchiveWidget::noPoolFound() {
+    QMessageBox message;
+    message.setIcon(QMessageBox::Critical);
+    message.setText(tr("There is no pool available."));
+    message.setInformativeText(tr("Please contact Intellique for further information"));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
+}
 
 void ArchiveWidget::removeFiles() {
     this->model->removeSelection(this->ui->tblVwArchiveFile->selectionModel()->selection());
@@ -154,7 +171,14 @@ void ArchiveWidget::searchPool(QJsonObject user_info) {
     job->start();
 }
 
-void ArchiveWidget::searchPoolFailure() {}
+void ArchiveWidget::searchPoolFailure() {
+    QMessageBox message;
+    message.setIcon(QMessageBox::Critical);
+    message.setText(tr("An error occured while creating your archival task."));
+    message.setInformativeText(tr("Please contact Intellique for further information"));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
+}
 
 void ArchiveWidget::selectionChanged(const QItemSelection& selected, const QItemSelection&) {
     this->ui->pshBttnRemoveFiles->setEnabled(selected.indexes().length() != 0);
@@ -171,4 +195,11 @@ void ArchiveWidget::startUpdatingSize() {
     this->ui->lblSize->setText(tr("Computing size..."));
 }
 
-void ArchiveWidget::userInfoFailure() {}
+void ArchiveWidget::userInfoFailure() {
+    QMessageBox message;
+    message.setIcon(QMessageBox::Critical);
+    message.setText(tr("An error occured while creating your archival task."));
+    message.setInformativeText(tr("Please contact Intellique for further information"));
+    message.setStandardButtons(QMessageBox::Ok);
+    message.exec();
+}
