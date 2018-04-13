@@ -30,23 +30,23 @@
 ; Some paths.
 ;-----------------------------------------------------------------------------
 !ifndef MING_PATH
-    !define MING_PATH "/usr/i686-w64-mingw32/sys-root/mingw"
+    !define MING_PATH "C:\Qt\5.9.4\mingw53_32"
 !endif
-!define MING_BIN "${MING_PATH}/bin"
-!define MING_LIB "${MING_PATH}/lib"
-!define MING_SHARE "${MING_PATH}/share"
-!define BUILD_PATH "@CMAKE_BINARY_DIR@"
-!define SOURCE_PATH "@CMAKE_SOURCE_DIR@"
+!define MING_BIN "${MING_PATH}\bin"
+!define MING_LIB "${MING_PATH}\lib"
+!define MING_SHARE "${MING_PATH}\share"
+!define BUILD_PATH "C:\Users\Guillaume\prog\IntelliqueClient\client\build"
+!define SOURCE_PATH "C:\Users\Guillaume\prog\IntelliqueClient\client"
 !define QT_DLL_PATH "${MING_BIN}"
-!define ACCESSIBLE_DLL_PATH "${MING_LIB}/qt5/plugins/accessible"
-!define SQLITE_DLL_PATH "${MING_LIB}/qt5/plugins/sqldrivers"
-!define IMAGEFORMATS_DLL_PATH "${MING_LIB}/qt5/plugins/imageformats"
-!define PLATFORMS_DLL_PATH "${MING_LIB}/qt5/plugins/platforms"
+!define ACCESSIBLE_DLL_PATH "${MING_PATH}\plugins\accessible"
+!define SQLITE_DLL_PATH "${MING_PATH}\plugins\sqldrivers"
+!define IMAGEFORMATS_DLL_PATH "${MING_PATH}\plugins\imageformats"
+!define PLATFORMS_DLL_PATH "${MING_PATH}\plugins\platforms"
 
 !define CSYNC_LIBRARY_DIR "@CSYNC_LIBRARY_DIR@"
 !define CSYNC_CONFIG_DIR "@CSYNC_CONFIG_DIR@"
 
-!define NSI_PATH "${source_path}/admin/win/nsi"
+!define NSI_PATH "${source_path}\admin\win\nsi"
 
 ;-----------------------------------------------------------------------------
 ; Installer version
@@ -112,9 +112,9 @@ ReserveFile "${NSISDIR}\Plugins\InstallOptions.dll"
 !define MUI_ABORTWARNING
 !define MUI_ICON ${NSI_PATH}\installer.ico
 !define MUI_UNICON ${NSI_PATH}\installer.ico
-!define MUI_WELCOMEFINISHPAGE_BITMAP ${WIN_SETUP_BITMAP_PATH}/welcome.bmp
+!define MUI_WELCOMEFINISHPAGE_BITMAP ${WIN_SETUP_BITMAP_PATH}\welcome.bmp
 !define MUI_HEADERIMAGE
-!define MUI_HEADERIMAGE_BITMAP  ${WIN_SETUP_BITMAP_PATH}/page_header.bmp
+!define MUI_HEADERIMAGE_BITMAP  ${WIN_SETUP_BITMAP_PATH}\page_header.bmp
 !define MUI_COMPONENTSPAGE_SMALLDESC
 ; We removed this, h1 issue 191687
 ;!define MUI_FINISHPAGE_LINK "${APPLICATION_DOMAIN}"
@@ -153,8 +153,8 @@ Page custom PageReinstall PageLeaveReinstall
 ;-----------------------------------------------------------------------------
 !insertmacro MUI_LANGUAGE "English"
 
-!include ${source_path}/admin/win/nsi/l10n/languages.nsh
-!include ${source_path}/admin/win/nsi/l10n/declarations.nsh
+!include ${source_path}\admin\win\nsi\l10n\languages.nsh
+!include ${source_path}\admin\win\nsi\l10n\declarations.nsh
 
 ; Set version strings with english locale
 VIProductVersion "${VERSION}"
@@ -165,7 +165,7 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}"
 !macro SETLANG un
    Function ${un}SetLang
       # load the selected language file
-      !include "${source_path}/admin/win/nsi/l10n\English.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\English.nsh"
       StrCmp $LANGUAGE ${LANG_GERMAN} German 0
       StrCmp $LANGUAGE ${LANG_DUTCH} Dutch 0
       StrCmp $LANGUAGE ${LANG_FINNISH} Finnish 0
@@ -182,49 +182,49 @@ VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}"
       StrCmp $LANGUAGE ${LANG_NORWEGIAN} Norwegian 0
       StrCmp $LANGUAGE ${LANG_PORTUGUESEBR} Brazilian EndLanguageCmp
       German:
-      !include "${source_path}/admin/win/nsi/l10n\German.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\German.nsh"
       Goto EndLanguageCmp
       Dutch:
-      !include "${source_path}/admin/win/nsi/l10n\Dutch.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Dutch.nsh"
       Goto EndLanguageCmp
       Finnish:
-      !include "${source_path}/admin/win/nsi/l10n\Finnish.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Finnish.nsh"
       Goto EndLanguageCmp
       Japanese:
-      !include "${source_path}/admin/win/nsi/l10n\Japanese.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Japanese.nsh"
       Goto EndLanguageCmp
       Slovenian:
-      !include "${source_path}/admin/win/nsi/l10n\Slovenian.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Slovenian.nsh"
       Goto EndLanguageCmp
       Spanish:
-      !include "${source_path}/admin/win/nsi/l10n\Spanish.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Spanish.nsh"
       Goto EndLanguageCmp
       Italian:
-      !include "${source_path}/admin/win/nsi/l10n\Italian.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Italian.nsh"
       Goto EndLanguageCmp
       Estonian:
-      !include "${source_path}/admin/win/nsi/l10n\Estonian.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Estonian.nsh"
       Goto EndLanguageCmp
       Greek:
-      !include "${source_path}/admin/win/nsi/l10n\Greek.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Greek.nsh"
       Goto EndLanguageCmp
       Basque:
-      !include "${source_path}/admin/win/nsi/l10n\Basque.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Basque.nsh"
       Goto EndLanguageCmp
       Galician:
-      !include "${source_path}/admin/win/nsi/l10n\Galician.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Galician.nsh"
       Goto EndLanguageCmp
       Polish:
-      !include "${source_path}/admin/win/nsi/l10n\Polish.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Polish.nsh"
       Goto EndLanguageCmp
       Turkish:
-      !include "${source_path}/admin/win/nsi/l10n\Turkish.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Turkish.nsh"
       Goto EndLanguageCmp
       Brazilian:
-      !include "${source_path}/admin/win/nsi/l10n\PortugueseBR.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\PortugueseBR.nsh"
       Goto EndLanguageCmp
       Norwegian:
-      !include "${source_path}/admin/win/nsi/l10n\Norwegian.nsh"
+      !include "${source_path}\admin\win\nsi\l10n\Norwegian.nsh"
       EndLanguageCmp:
 
    FunctionEnd
@@ -389,13 +389,13 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
 
    File "${BUILD_PATH}\src\gui\client*.qm"
    ; Make sure only to copy qt, not qt_help, etc
-   File "${MING_SHARE}\qt5\translations\qt_??.qm"
-   File "${MING_SHARE}\qt5\translations\qt_??_??.qm"
-   File "${MING_SHARE}\qt5\translations\qtbase_*.qm"
-   File "${MING_SHARE}\qt5\translations\qtkeychain_*.qm"
+   File "${MING_PATH}\translations\qt_??.qm"
+   File "${MING_PATH}\translations\qt_??_??.qm"
+   File "${MING_PATH}\translations\qtbase_*.qm"
+   File "${MING_PATH}\translations\qtkeychain_*.qm"
 
    ;Add crash reporter if it was built
-   File /nonfatal "${BUILD_PATH}/bin/${CRASHREPORTER_EXECUTABLE}.exe"
+   File /nonfatal "${BUILD_PATH}\bin\${CRASHREPORTER_EXECUTABLE}.exe"
 
    SetOutPath "$INSTDIR\platforms"
    File "${PLATFORMS_DLL_PATH}\qwindows.dll"
@@ -409,7 +409,7 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
 
    SetOutPath "$INSTDIR"
    ;License & release notes.
-   File "@CPACK_RESOURCE_FILE_LICENSE@"
+   ;File "@CPACK_RESOURCE_FILE_LICENSE@"
    ;File /oname=NOTES.txt ${NSI_PATH}\RELEASE_NOTES.txt
 
    ;Qt config:
@@ -422,8 +422,8 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
    File "${QT_DLL_PATH}\Qt5PrintSupport.dll"
    File "${QT_DLL_PATH}\Qt5Qml.dll"
    File "${QT_DLL_PATH}\Qt5Sql.dll"
-   File "${QT_DLL_PATH}\Qt5WebKit.dll"
-   File "${QT_DLL_PATH}\Qt5WebKitWidgets.dll"
+   ; File "${QT_DLL_PATH}\Qt5WebKit.dll"
+   ; File "${QT_DLL_PATH}\Qt5WebKitWidgets.dll"
    File "${QT_DLL_PATH}\Qt5Widgets.dll"
    File "${QT_DLL_PATH}\Qt5Xml.dll"
 
@@ -433,37 +433,37 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
    File "${QT_DLL_PATH}\Qt5Sensors.dll"
 
    ;Qt deps
-   File "${MING_BIN}\libpng16-16.dll"
-   File "${MING_BIN}\icudata56.dll"
-   File "${MING_BIN}\icui18n56.dll"
-   File "${MING_BIN}\icuuc56.dll"
-   File "${MING_BIN}\libEGL.dll"
-   File "${MING_BIN}\libGLESv2.dll"
-   File "${MING_BIN}\libjpeg-8.dll"
-   File "${MING_BIN}\libpcre16-0.dll"
-   File "${MING_BIN}\libsqlite3-0.dll"
-   File "${MING_BIN}\libcrypto-10.dll"
-   File "${MING_BIN}\libssl-10.dll"
-   File "${MING_BIN}\libstdc++-6.dll"
-   File "${MING_BIN}\libwebp-5.dll"
-   File "${MING_BIN}\libxslt-1.dll"
-   File "${MING_BIN}\libxml2-2.dll"
-   File "${MING_BIN}\zlib1.dll"
-   File "${MING_BIN}\libharfbuzz-0.dll"
-   File "${MING_BIN}\libfreetype-6.dll"
-   File "${MING_BIN}\libglib-2.0-0.dll"
-   File "${MING_BIN}\libintl-8.dll"
+   ;File "${MING_BIN}\libpng16-16.dll"
+   ;File "${MING_BIN}\icudata56.dll"
+   ;File "${MING_BIN}\icui18n56.dll"
+   ;File "${MING_BIN}\icuuc56.dll"
+   ;File "${MING_BIN}\libEGL.dll"
+   ;File "${MING_BIN}\libGLESv2.dll"
+   ;File "${MING_BIN}\libjpeg-8.dll"
+   ;File "${MING_BIN}\libpcre16-0.dll"
+   ;File "${MING_BIN}\libsqlite3-0.dll"
+   ;File "${MING_BIN}\libcrypto-10.dll"
+   ;File "${MING_BIN}\libssl-10.dll"
+   ;File "${MING_BIN}\libstdc++-6.dll"
+   ;File "${MING_BIN}\libwebp-5.dll"
+   ;File "${MING_BIN}\libxslt-1.dll"
+   ;File "${MING_BIN}\libxml2-2.dll"
+   File "${BUILD_PATH}\bin\zlib1.dll"
+   ;File "${MING_BIN}\libharfbuzz-0.dll"
+   ;File "${MING_BIN}\libfreetype-6.dll"
+   ;File "${MING_BIN}\libglib-2.0-0.dll"
+   ;File "${MING_BIN}\libintl-8.dll"
 
    ;QtKeyChain stuff
-   File "${MING_BIN}\libqt5keychain.dll"
+   File "${BUILD_PATH}\bin\libqt5keychain.dll"
 
    ;MinGW stuff
-   File "${MING_BIN}\libgcc_s_sjlj-1.dll"
-   File "${MING_BIN}\libstdc++-6.dll"
-   File "${MING_BIN}\libwinpthread-1.dll"
+   File "${BUILD_PATH}\bin\libgcc_s_dw2-1.dll"
+   File "${BUILD_PATH}\bin\libstdc++-6.dll"
+   File "${BUILD_PATH}\bin\libwinpthread-1.dll"
 
    ;CSync configs
-   File "${SOURCE_PATH}/sync-exclude.lst"
+   File "${SOURCE_PATH}\sync-exclude.lst"
 
 SectionEnd
 
