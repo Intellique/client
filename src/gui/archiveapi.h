@@ -71,6 +71,23 @@ namespace OCC {
         bool m_do_auth_on_failure;
     };
 
+    class ArchivalGetToken : public AbstractNetworkJob {
+        Q_OBJECT
+
+    public:
+        explicit ArchivalGetToken(const AccountPtr& account, QObject * parent = nullptr);
+
+    public slots:
+        void start() Q_DECL_OVERRIDE;
+
+    protected:
+        bool finished() Q_DECL_OVERRIDE;
+
+    signals:
+        void failure();
+        void token(const QString& token);
+    };
+
     class ArchivalJobInfoJob : public AbstractNetworkJob {
         Q_OBJECT
 

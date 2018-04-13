@@ -70,6 +70,16 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QPushButton" name="pshBttnWeb">
+       <property name="text">
+        <string>Consult archive files</string>
+       </property>
+       <property name="icon">
+        <iconset theme="view-dual-symbolic"/>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

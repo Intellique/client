@@ -18,6 +18,9 @@ namespace OCC {
             explicit ArchiveWidget(QWidget * parent = nullptr);
             ~ArchiveWidget();
 
+        signals:
+            void newArchive();
+
         private slots:
             void addFiles();
             void archiveCreated();

@@ -12,6 +12,7 @@ using OCC::AbstractNetworkJob;
 using OCC::ArchivalAuthJob;
 using OCC::ArchivalCheckConnectionJob;
 using OCC::ArchivalCreateArchiveJob;
+using OCC::ArchivalGetToken;
 using OCC::ArchivalJobInfoJob;
 using OCC::ArchivalJobsJob;
 using OCC::ArchivalSearchPoolJob;
@@ -33,9 +34,12 @@ bool ArchivalAuthJob::finished() {
             return true;
         }
 
-        default:
+        default: {
+            QJsonDocument doc = QJsonDocument::fromJson(serverReply->readAll());
+            QJsonObject obj = doc.object();
             emit this->connectionFailure();
             return true;
+        }
     }
 }
 
@@ -130,6 +134,33 @@ void ArchivalCreateArchiveJob::start() {
     body_buffer->setData(body.toJson());
 
     sendRequest("POST", Utility::concatUrlPath(url, path()), request, body_buffer);
+    AbstractNetworkJob::start();
+}
+
+
+
+ArchivalGetToken::ArchivalGetToken(const AccountPtr& account, QObject * parent) : AbstractNetworkJob(account, "api/v1/auth/token/index.php", parent) {}
+
+
+bool ArchivalGetToken::finished() {
+    QNetworkReply * serverReply = reply();
+    QVariant code = serverReply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
+    switch (code.toInt()) {
+        case 201:
+            emit this->token(QString::fromLatin1(serverReply->rawHeader("Authorization").data()));
+            return true;
+
+        default:
+            emit this->failure();
+            return true;
+    }
+}
+
+void ArchivalGetToken::start() {
+    QUrl url = Utility::concatUrlPath(account()->archivalUrl(), path());
+
+    sendRequest("POST", url);
     AbstractNetworkJob::start();
 }
 

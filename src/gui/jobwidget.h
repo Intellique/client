@@ -6,10 +6,6 @@
 
 #include "account.h"
 
-namespace OCC {
-    class AbstractCredentials;
-}
-
 namespace Ui {
     class JobWidget;
 }
@@ -26,8 +22,6 @@ public:
     ~JobWidget();
 
 private slots:
-    void credentialAsked(OCC::AbstractCredentials * credentials);
-    void credentialFetched(OCC::AbstractCredentials * credentials);
     void doAuthForUpdate();
     void doStopTask(int user_id);
     void fetchJobs(int user_id);
@@ -38,6 +32,10 @@ private slots:
     void selectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
     void stopTask();
     void updateModel();
+
+    void getToken();
+    void gotToken(const QString& token);
+    void noToken();
 
 private:
     void fetchNextJob();

@@ -75,6 +75,8 @@ void ArchiveWidget::archiveCreated() {
 
     this->ui->lnEdtArchiveName->clear();
     this->model->clear();
+
+    emit this->newArchive();
 }
 
 void ArchiveWidget::archiveCreationFailure() {

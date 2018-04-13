@@ -147,7 +147,6 @@ void JobModel::setJobList(const QList<int> &jobs) {
             this->beginRemoveRows(QModelIndex(), pos, pos);
             this->m_jobs.remove(key);
             this->endRemoveRows();
-            pos--;
         }
     }
 }

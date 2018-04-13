@@ -17,6 +17,7 @@ using OCC::AccountManager;
 using OCC::AccountStatePtr;
 using OCC::ArchivalAuthJob;
 using OCC::ArchivalCheckConnectionJob;
+using OCC::ArchivalGetToken;
 using OCC::ArchivalJobInfoJob;
 using OCC::ArchivalJobsJob;
 using OCC::ArchivalStopJob;
@@ -31,6 +32,7 @@ JobWidget::JobWidget(QWidget *parent) : QWidget(parent), ui(new Ui::JobWidget) {
 
     connect(this->ui->tblVwJobs->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)), SLOT(selectionChanged(const QItemSelection&, const QItemSelection&)));
     connect(this->ui->pshBttnStopTask, SIGNAL(pressed()), SLOT(stopTask()));
+    connect(this->ui->pshBttnWeb, SIGNAL(pressed()), SLOT(getToken()));
 
     // resize header
     QHeaderView * header = this->ui->tblVwJobs->horizontalHeader();
@@ -49,20 +51,6 @@ JobWidget::~JobWidget() {
 }
 
 
-void JobWidget::credentialAsked(AbstractCredentials * cred) {
-    HttpCredentials * httpCreds = qobject_cast<HttpCredentials *>(cred);
-
-    if (httpCreds != nullptr and httpCreds->ready())
-        this->doAuthForUpdate();
-}
-
-void JobWidget::credentialFetched(AbstractCredentials * cred) {
-    HttpCredentials * httpCreds = qobject_cast<HttpCredentials *>(cred);
-
-    if (httpCreds != nullptr and httpCreds->ready())
-        this->doAuthForUpdate();
-}
-
 void JobWidget::doAuthForUpdate() {
     OCC::AbstractCredentials * cred = this->account->credentials();
     HttpCredentials * httpCreds = qobject_cast<HttpCredentials *>(cred);
@@ -74,7 +62,7 @@ void JobWidget::doAuthForUpdate() {
             return;
         } else {
             ArchivalAuthJob * job = new ArchivalAuthJob(this->account, httpCreds->password(), this);
-            // connect(job, SIGNAL(connectionFailure()), SLOT(authenticationFailure()));
+            connect(job, SIGNAL(connectionFailure()), SLOT(doAuthForUpdate()));
             connect(job, SIGNAL(connectionSuccess(int)), SLOT(fetchJobs(int)));
             job->start();
         }
@@ -110,6 +98,17 @@ void JobWidget::fetchNextJob() {
         QTimer::singleShot(5000, this, SLOT(updateModel()));
 }
 
+void JobWidget::getToken() {
+    ArchivalGetToken * job = new ArchivalGetToken(this->account, this);
+    connect(job, SIGNAL(failure()), SLOT(noToken()));
+    connect(job, SIGNAL(token(QString)), SLOT(gotToken(QString)));
+    job->start();
+}
+
+void JobWidget::gotToken(const QString& token) {
+
+}
+
 void JobWidget::job(const Job& job) {
     this->model->setJob(job);
     this->fetchNextJob();
@@ -134,6 +133,10 @@ void JobWidget::jobs(const QList<int>& jobs) {
     std::sort(this->jobs_remain.begin(), this->jobs_remain.end());
     this->model->setJobList(this->jobs_remain);
     this->fetchNextJob();
+}
+
+void JobWidget::noToken() {
+
 }
 
 void JobWidget::selectionChanged(const QItemSelection& selected, const QItemSelection&) {

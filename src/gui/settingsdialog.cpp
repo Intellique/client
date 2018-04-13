@@ -117,6 +117,7 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     _toolBar->addAction(jobAction);
     QWidget * jobWidget = new JobWidget(this);
     _ui->stack->addWidget(jobWidget);
+    connect(_archiveWidget, SIGNAL(newArchive()), jobAction, SLOT(trigger()));
 
     // Note: all the actions have a '\n' because the account name is in two lines and
     // all buttons must have the same size in order to keep a good layout
