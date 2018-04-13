@@ -171,11 +171,15 @@ void JobWidget::stopTask() {
 }
 
 void JobWidget::updateModel() {
-    OCC::AccountStatePtr ptr = AccountManager::instance()->accounts().first();
-    this->account = ptr->account();
+    AccountManager * mng = AccountManager::instance();
+    if (mng->accounts().length() > 0) {
+        OCC::AccountStatePtr ptr = mng->accounts().first();
+        this->account = ptr->account();
 
-    ArchivalCheckConnectionJob * job = new ArchivalCheckConnectionJob(this->account, this);
-    connect(job, SIGNAL(authenticationRequire()), SLOT(doAuthForUpdate()));
-    connect(job, SIGNAL(connectionAlive(int)), SLOT(fetchJobs(int)));
-    job->start();
+        ArchivalCheckConnectionJob * job = new ArchivalCheckConnectionJob(this->account, this);
+        connect(job, SIGNAL(authenticationRequire()), SLOT(doAuthForUpdate()));
+        connect(job, SIGNAL(connectionAlive(int)), SLOT(fetchJobs(int)));
+        job->start();
+    } else
+        QTimer::singleShot(5000, this, SLOT(updateModel()));
 }
