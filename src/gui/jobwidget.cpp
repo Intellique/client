@@ -1,5 +1,7 @@
 #include <algorithm>
 
+#include <QDesktopServices>
+#include <QFileInfo>
 #include <QTimer>
 
 #include "accountmanager.h"
@@ -99,10 +101,19 @@ void JobWidget::fetchNextJob() {
 }
 
 void JobWidget::getToken() {
+    /*
     ArchivalGetToken * job = new ArchivalGetToken(this->account, this);
     connect(job, SIGNAL(failure()), SLOT(noToken()));
     connect(job, SIGNAL(token(QString)), SLOT(gotToken(QString)));
     job->start();
+    */
+
+    QUrl url = this->account->archivalUrl();
+    QFileInfo path = url.path();
+    url.setPath(path.absolutePath() + "intellique/");
+    // url.setFragment("archivePage");
+
+    QDesktopServices::openUrl(url);
 }
 
 void JobWidget::gotToken(const QString& token) {
