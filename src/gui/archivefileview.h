@@ -17,7 +17,6 @@ class ArchiveFileView : public QTableView {
         void dragLeaveEvent(QDragLeaveEvent * event) override;
         void dragMoveEvent(QDragMoveEvent * event) override;
         void dropEvent(QDropEvent * event) override;
-        // void paintEvent(QPaintEvent * event) override;
 
     private:
         ArchiveFileModel * m_model = nullptr;

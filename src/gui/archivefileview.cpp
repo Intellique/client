@@ -13,12 +13,20 @@ ArchiveFileView::ArchiveFileView(QWidget * parent) : QTableView(parent), m_logo(
 
 void ArchiveFileView::dragEnterEvent(QDragEnterEvent * event) {
     const QMimeData * mime_data = event->mimeData();
-    if (mime_data->hasFormat("text/plain")) {
+    if (mime_data == nullptr) {
+        event->ignore();
+        return;
+    }
+
+    if (mime_data->hasUrls()) {
         OCC::FolderMan * fm = OCC::FolderMan::instance();
-        QStringList files = mime_data->text().split('\n', QString::SkipEmptyParts);
+        QList<QUrl> urls = mime_data->urls();
         bool ok = true;
-        foreach (QUrl url, files) {
-            if (fm->folderForPath(url.path()) == nullptr)
+        foreach (const QUrl url, urls) {
+            QString path = url.path();
+            if (path.at(2) == ':')
+                path = path.mid(1);
+            if (fm->folderForPath(path) == nullptr)
                 ok = false;
         }
 
@@ -37,13 +45,19 @@ void ArchiveFileView::dragMoveEvent(QDragMoveEvent * event) {
 
 void ArchiveFileView::dropEvent(QDropEvent * event) {
     const QMimeData * mime_data = event->mimeData();
-    if (mime_data->hasFormat("text/plain")) {
+    if (mime_data == nullptr)
+        return;
+
+    if (mime_data->hasUrls()) {
         OCC::FolderMan * fm = OCC::FolderMan::instance();
-        QStringList files = mime_data->text().split('\n', QString::SkipEmptyParts);
+        QList<QUrl> urls = mime_data->urls();
         bool ok = false;
-        foreach (QUrl url, files) {
-            if (fm->folderForPath(url.path()) != nullptr) {
-                this->m_model->addFile(url.path());
+        foreach (const QUrl url, urls) {
+            QString path = url.path();
+            if (path.at(2) == ':')
+                path = path.mid(1);
+            if (fm->folderForPath(path) != nullptr) {
+                this->m_model->addFile(path);
                 ok = true;
             }
         }
@@ -52,29 +66,6 @@ void ArchiveFileView::dropEvent(QDropEvent * event) {
             event->acceptProposedAction();
     }
 }
-
-/*
-void ArchiveFileView::paintEvent(QPaintEvent * event) {
-    // QTableView::paintEvent(event);
-
-    QSize image_size = this->m_logo.size();
-    QSize this_size = this->size();
-    QPoint pos((this_size.width() - image_size.width()) / 2, (this_size.height() - image_size.height()) / 2);
-    QRect target(pos, image_size);
-
-    QPainter painter(this);
-
-    QTableView::render(&painter);
-
-
-
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.save();
-    painter.setOpacity(0.25);
-    painter.drawImage(event->rect(), this->m_logo, event->rect());
-    painter.restore();
-}
-*/
 
 void ArchiveFileView::setModel(ArchiveFileModel * model) {
     this->m_model = model;
