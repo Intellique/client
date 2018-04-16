@@ -101,23 +101,18 @@ void JobWidget::fetchNextJob() {
 }
 
 void JobWidget::getToken() {
-    /*
     ArchivalGetToken * job = new ArchivalGetToken(this->account, this);
     connect(job, SIGNAL(failure()), SLOT(noToken()));
     connect(job, SIGNAL(token(QString)), SLOT(gotToken(QString)));
     job->start();
-    */
-
-    QUrl url = this->account->archivalUrl();
-    QFileInfo path = url.path();
-    url.setPath(path.absolutePath() + "intellique/");
-    // url.setFragment("archivePage");
-
-    QDesktopServices::openUrl(url);
 }
 
 void JobWidget::gotToken(const QString& token) {
-
+    QUrl url = this->account->archivalUrl();
+    QFileInfo path = url.path();
+    url.setPath(path.absolutePath() + "intellique/");
+    url.setQuery(QString("token=%1").arg(QString(token).replace(" ", "%20")));
+    QDesktopServices::openUrl(url);
 }
 
 void JobWidget::job(const Job& job) {
