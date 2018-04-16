@@ -2,6 +2,7 @@
 
 #include <QCollator>
 #include <QDir>
+#include <QFileIconProvider>
 #include <QIcon>
 #include <QItemSelection>
 #include <QMimeDatabase>
@@ -98,9 +99,21 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
         switch (index.column()) {
             case 0:
                 switch (role) {
-                    case Qt::DecorationRole:
+                    case Qt::DecorationRole: {
                         QMimeType type = db_mime_type.mimeTypeForFile(file.info(), QMimeDatabase::MatchExtension);
-                        return QIcon::fromTheme(type.iconName());
+                        if (QIcon::hasThemeIcon(type.iconName()))
+                            return QIcon::fromTheme(type.iconName());
+                        else {
+                           QFileIconProvider icons;
+                           if (file.info().isDir())
+                               return icons.icon(QFileIconProvider::Folder);
+                           else
+                               return icons.icon(QFileIconProvider::File);
+                        }
+                    }
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
 
