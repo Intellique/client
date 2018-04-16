@@ -30,7 +30,7 @@
 ; Some paths.
 ;-----------------------------------------------------------------------------
 !ifndef MING_PATH
-    !define MING_PATH "C:\Qt\5.9.4\mingw53_32"
+    !define MING_PATH "C:\Qt\5.9.5\mingw53_32"
 !endif
 !define MING_BIN "${MING_PATH}\bin"
 !define MING_LIB "${MING_PATH}\lib"
@@ -464,6 +464,14 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
 
    ;CSync configs
    File "${SOURCE_PATH}\sync-exclude.lst"
+
+   ;LibSSL
+   File "${BUILD_PATH}\libeay32.dll"
+   File "${BUILD_PATH}\ssleay32.dll"
+
+   ;Intellique
+   SetOutPath "$COMMONFILES\platforms"
+   File "${BUILD_PATH}\bin\Intellique.ini"
 
 SectionEnd
 
