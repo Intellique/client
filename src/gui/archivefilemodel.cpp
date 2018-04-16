@@ -80,6 +80,8 @@ void ArchiveFileModel::clear() {
     this->m_files.clear();
     this->m_account.clear();
     this->endResetModel();
+
+    this->recomputeSize();
 }
 
 int ArchiveFileModel::columnCount(const QModelIndex& parent) const {
