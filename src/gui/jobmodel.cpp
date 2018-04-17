@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include <QLocale>
 #include <QJsonArray>
 
@@ -18,7 +20,9 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
         return QVariant();
 
     if (index.row() < this->m_jobs.size()) {
-        int current_key = this->m_jobs.keys().at(index.row());
+        QList<int> current_keys = this->m_jobs.keys();
+        std::sort(current_keys.rbegin(), current_keys.rend());
+        int current_key = current_keys.at(index.row());
         const Job& job = this->m_jobs[current_key];
         switch (index.column()) {
             case 0:
@@ -141,6 +145,7 @@ void JobModel::setJob(const Job& job) {
 
 void JobModel::setJobList(const QList<int> &jobs) {
     QList<int> current_keys = this->m_jobs.keys();
+    std::sort(current_keys.rbegin(), current_keys.rend());
     for (int pos = 0; pos < current_keys.length(); pos++) {
         int key = current_keys[pos];
         if (not jobs.contains(key)) {
