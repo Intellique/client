@@ -79,7 +79,7 @@ void JobWidget::doStopTask(int) {
 }
 
 void JobWidget::fetchJobs(int user_id) {
-    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, 5, this);
+    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, 12, this);
     // connect(job, SIGNAL(fetchFailure()), SLOT(???));
     connect(job, SIGNAL(jobsFetch(const QList<int>&)), SLOT(jobs(const QList<int>&)));
     connect(job, SIGNAL(notConnected()), SLOT(doAuthForUpdate()));
