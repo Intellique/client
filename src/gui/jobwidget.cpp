@@ -136,7 +136,6 @@ void JobWidget::jobKillFailure() {
 
 void JobWidget::jobs(const QList<int>& jobs) {
     this->jobs_remain = jobs;
-    std::sort(this->jobs_remain.begin(), this->jobs_remain.end());
     this->model->setJobList(this->jobs_remain);
     this->fetchNextJob();
 }

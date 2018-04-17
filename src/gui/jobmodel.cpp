@@ -143,7 +143,7 @@ void JobModel::setJob(const Job& job) {
     }
 }
 
-void JobModel::setJobList(const QList<int> &jobs) {
+void JobModel::setJobList(const QList<int>& jobs) {
     QList<int> current_keys = this->m_jobs.keys();
     std::sort(current_keys.rbegin(), current_keys.rend());
     for (int pos = 0; pos < current_keys.length(); pos++) {
