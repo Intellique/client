@@ -21,7 +21,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
 
     if (index.row() < this->m_jobs.size()) {
         QList<int> current_keys = this->m_jobs.keys();
-        std::sort(current_keys.rbegin(), current_keys.rend());
+        std::sort(current_keys.begin(), current_keys.end(), std::greater<int>());
         int current_key = current_keys.at(index.row());
         const Job& job = this->m_jobs[current_key];
         switch (index.column()) {
@@ -145,7 +145,7 @@ void JobModel::setJob(const Job& job) {
 
 void JobModel::setJobList(const QList<int>& jobs) {
     QList<int> current_keys = this->m_jobs.keys();
-    std::sort(current_keys.rbegin(), current_keys.rend());
+    std::sort(current_keys.begin(), current_keys.end(), std::greater<int>());
     for (int pos = 0; pos < current_keys.length(); pos++) {
         int key = current_keys[pos];
         if (not jobs.contains(key)) {
