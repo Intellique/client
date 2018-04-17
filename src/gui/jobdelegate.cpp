@@ -17,9 +17,14 @@ void JobDelegate::paint(QPainter * painter, const QStyleOptionViewItem& option, 
     progressBarOption.minimum = 0;
     progressBarOption.maximum = 100;
     progressBarOption.textAlignment = Qt::AlignCenter;
-    progressBarOption.progress = progress;
-    progressBarOption.text = QString("%1%").arg(progress);
     progressBarOption.textVisible = true;
+
+    if (progress >= 0) {
+        progressBarOption.progress = progress;
+        progressBarOption.text = QString("%1%").arg(progress);
+    } else {
+        progressBarOption.progress = -1;
+    }
 
     if (option.state & QStyle::State_Selected)
         painter->fillRect(option.rect, option.palette.highlight());
