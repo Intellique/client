@@ -469,8 +469,12 @@ Section "${APPLICATION_NAME}" SEC_APPLICATION
    File "${BUILD_PATH}\libeay32.dll"
    File "${BUILD_PATH}\ssleay32.dll"
 
+   ;Icon
+   File "${WIN_SETUP_BITMAP_PATH}\installer.ico"
+
    ;Intellique
-   SetOutPath "$COMMONFILES\platforms"
+   SetShellVarContext all
+   SetOutPath "$APPDATA"
    File "${BUILD_PATH}\bin\Intellique.ini"
 
 SectionEnd
@@ -513,7 +517,7 @@ SectionGroup $SectionGroup_Shortcuts
       DetailPrint $OPTION_SECTION_SC_START_MENU_DetailPrint
       SetDetailsPrint listonly
       SetShellVarContext all
-      CreateShortCut "$SMPROGRAMS\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}"
+      CreateShortCut "$SMPROGRAMS\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}" "" "$INSTDIR\installer.ico" 0
       SetShellVarContext current
    ${MementoSectionEnd}
 !endif
@@ -525,7 +529,7 @@ SectionGroup $SectionGroup_Shortcuts
       DetailPrint $OPTION_SECTION_SC_DESKTOP_DetailPrint
       SetDetailsPrint listonly
       SetShellVarContext all
-      CreateShortCut "$DESKTOP\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}"
+      CreateShortCut "$DESKTOP\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}" "" "$INSTDIR\installer.ico" 0
       SetShellVarContext current
    ${MementoSectionEnd}
 !endif
@@ -537,7 +541,7 @@ SectionGroup $SectionGroup_Shortcuts
       DetailPrint $OPTION_SECTION_SC_QUICK_LAUNCH_DetailPrint
       SetShellVarContext all
       SetDetailsPrint listonly
-      CreateShortCut "$QUICKLAUNCH\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}"
+      CreateShortCut "$QUICKLAUNCH\${APPLICATION_NAME}.lnk" "$INSTDIR\${APPLICATION_EXECUTABLE}" "" "$INSTDIR\installer.ico" 0
       SetShellVarContext current
    ${MementoSectionEnd}
 !endif
