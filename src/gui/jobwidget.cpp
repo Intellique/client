@@ -110,7 +110,7 @@ void JobWidget::getToken() {
 void JobWidget::gotToken(const QString& token) {
     QUrl url = this->account->archivalUrl();
     QFileInfo path = url.path();
-    url.setPath(path.absolutePath() + "intellique/");
+    url.setPath(path.absolutePath() + "intellique-test/");
     url.setQuery(QString("token=%1").arg(QString(token).replace(" ", "%20")));
     QDesktopServices::openUrl(url);
 }
