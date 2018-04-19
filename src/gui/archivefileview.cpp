@@ -56,6 +56,11 @@ void ArchiveFileView::dropEvent(QDropEvent * event) {
             QString path = url.path();
             if (path.at(2) == ':')
                 path = path.mid(1);
+
+            static QRegExp trailingSlash("[\\/]+$");
+            if (path.endsWith('/') or path.endsWith('\\'))
+                path.remove(trailingSlash);
+
             if (fm->folderForPath(path) != nullptr) {
                 this->m_model->addFile(path);
                 ok = true;
