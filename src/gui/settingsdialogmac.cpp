@@ -97,6 +97,7 @@ SettingsDialogMac::SettingsDialogMac(ownCloudGui *gui, QWidget *parent)
     QIcon archiveIcon(":/client/resources/upload-folder-button.png");
     ArchiveWidget * archiveWidget = new ArchiveWidget;
     addPreferencesPanel(archiveIcon, tr("Archive"), archiveWidget);
+    connect(archiveWidget, SIGNAL(newArchive()), SLOT(showMonitor()));
 
     QIcon jobIcon(":/client/resources/monitor.png");
     JobWidget * jobWidget = new JobWidget;
@@ -153,6 +154,9 @@ void SettingsDialogMac::showIssuesList(const QString &folderAlias)
     _activitySettings->slotShowIssuesTab(folderAlias);
 }
 
+void SettingsDialogMac::showMonitor() {
+    setCurrentPanelIndex(preferencePanelCount() - 4);
+}
 
 void SettingsDialogMac::accountAdded(AccountState *s)
 {
