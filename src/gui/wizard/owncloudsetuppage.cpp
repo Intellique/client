@@ -43,7 +43,6 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
     , _authTypeKnown(false)
     , _checking(false)
     , _authType(DetermineAuthTypeJob::Basic)
-    , _settings(QSettings::IniFormat, QSettings::SystemScope, "Intellique", "IntelliqueClient")
     , _progressIndi(new QProgressIndicator(this))
 {
     _ui.setupUi(this);
@@ -65,12 +64,7 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
         _ui.lnEdtAPI->setEnabled(false);
     }
 
-    if (_settings.status() != QSettings::NoError or _settings.allKeys().length() == 0) {
-        _ui.rdBttnCloudIntellique->setChecked(false);
-        _ui.rdBttnCloudIntellique->setEnabled(false);
-        _ui.rdBttnCustom->setChecked(true);
-        slotEnableForm();
-    } else {
+    if (this->loadSettings()) {
         connect(_ui.rdBttnCloudIntellique, &QRadioButton::clicked, this, &OwncloudSetupPage::slotDisableForm);
         connect(_ui.rdBttnCustom, &QRadioButton::clicked, this, &OwncloudSetupPage::slotEnableForm);
         slotDisableForm();
@@ -78,6 +72,11 @@ OwncloudSetupPage::OwncloudSetupPage(QWidget *parent)
         registerField(QLatin1String("OCUrl*"), _ui.leUrlStorage);
         registerField(QLatin1String("IntelliqueUrl*"), _ui.leUrlArchival);
         registerField(QLatin1String("IntelliqueAPI*"), _ui.lnEdtAPI);
+    } else {
+        _ui.rdBttnCloudIntellique->setChecked(false);
+        _ui.rdBttnCloudIntellique->setEnabled(false);
+        _ui.rdBttnCustom->setChecked(true);
+        slotEnableForm();
     }
 
     _ui.resultLayout->addWidget(_progressIndi);
@@ -432,6 +431,30 @@ OwncloudSetupPage::~OwncloudSetupPage()
 
 void OwncloudSetupPage::startCheckArchivalServer() {
     emit this->checkArchivalServer(archivalUrl(), archivalApiKey());
+}
+
+bool OwncloudSetupPage::loadSettings() {
+#ifdef Q_OS_MACOS
+    QString path = QCoreApplication::applicationDirPath() + "/../Resources/Intellique.ini";
+    QSettings mac_settings(path,QSettings::IniFormat);
+    if (mac_settings.status() == QSettings::NoError and mac_settings.allKeys().length() > 0) {
+        this->loadSettings(mac_settings);
+        return true;
+    }
+#else
+    QSettings settings(QSettings::IniFormat, QSettings::SystemScope, "Intellique", "IntelliqueClient");
+    if (settings.status() == QSettings::NoError and settings.allKeys().length() > 0) {
+        this->loadSettings(settings);
+        return true;
+    }
+#endif
+
+    return false;
+}
+
+void OwncloudSetupPage::loadSettings(QSettings& settings) {
+    foreach (const QString& key, settings.allKeys())
+        this->_settings[key] = settings.value(key);
 }
 
 } // namespace OCC

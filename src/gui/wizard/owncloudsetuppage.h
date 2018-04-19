@@ -16,8 +16,8 @@
 #ifndef MIRALL_OWNCLOUD_SETUP_PAGE_H
 #define MIRALL_OWNCLOUD_SETUP_PAGE_H
 
+#include <QHash>
 #include <QWizard>
-#include <QSettings>
 
 #include "wizard/owncloudwizardcommon.h"
 #include "wizard/owncloudwizard.h"
@@ -30,6 +30,7 @@
 class QLabel;
 class QVariant;
 class QProgressIndicator;
+class QSettings;
 
 namespace OCC {
 
@@ -80,6 +81,8 @@ signals:
     void determineAuthType(const QString &);
 
 private:
+    bool loadSettings();
+    void loadSettings(QSettings& settings);
     bool urlHasChanged();
 
     Ui_OwncloudSetupPage _ui;
@@ -90,7 +93,7 @@ private:
     bool _checking;
     bool _multipleFoldersExist;
     DetermineAuthTypeJob::AuthType _authType;
-    QSettings _settings;
+    QHash<QString, QVariant> _settings;
 
     QProgressIndicator *_progressIndi;
     QButtonGroup *_selectiveSyncButtons;
