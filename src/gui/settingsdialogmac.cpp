@@ -28,6 +28,8 @@
 #include "protocolwidget.h"
 #include "activitywidget.h"
 #include "accountmanager.h"
+#include "archivewidget.h"
+#include "jobwidget.h"
 
 #include <QLabel>
 #include <QStandardItemModel>
@@ -91,6 +93,14 @@ SettingsDialogMac::SettingsDialogMac(ownCloudGui *gui, QWidget *parent)
     setObjectName("SettingsMac"); // required as group for saveGeometry call
 
     setWindowTitle(tr("%1").arg(Theme::instance()->appNameGUI()));
+
+    QIcon archiveIcon(":/client/resources/upload-folder-button.png");
+    ArchiveWidget * archiveWidget = new ArchiveWidget;
+    addPreferencesPanel(archiveIcon, tr("Archive"), archiveWidget);
+
+    QIcon jobIcon(":/client/resources/monitor.png");
+    JobWidget * jobWidget = new JobWidget;
+    addPreferencesPanel(jobIcon, tr("Monitor"), jobWidget);
 
     QIcon activityIcon(QLatin1String(":/client/resources/activity.png"));
     _activitySettings = new ActivitySettings;
