@@ -21,6 +21,7 @@
 #include "generalsettings.h"
 #include "networksettings.h"
 #include "accountsettings.h"
+#include "accountstate.h"
 #include "creds/abstractcredentials.h"
 #include "configfile.h"
 #include "progressdispatcher.h"
@@ -132,6 +133,7 @@ SettingsDialogMac::SettingsDialogMac(ownCloudGui *gui, QWidget *parent)
 
     ConfigFile cfg;
     cfg.restoreGeometry(this);
+    _activitySettings->setNotificationRefreshInterval(cfg.notificationRefreshInterval());
 }
 
 void SettingsDialogMac::closeEvent(QCloseEvent *event)
@@ -174,6 +176,9 @@ void SettingsDialogMac::accountAdded(AccountState *s)
     connect(s->account().data(), &Account::accountChangedAvatar, this, &SettingsDialogMac::slotAccountAvatarChanged);
     connect(s->account().data(), &Account::accountChangedDisplayName, this, &SettingsDialogMac::slotAccountDisplayNameChanged);
 
+    // Refresh immediatly when getting online
+    connect(s, &AccountState::isConnectedChanged, this, &SettingsDialogMac::slotRefreshActivityAccountStateSender);
+
     slotRefreshActivity(s);
 }
 
@@ -187,6 +192,11 @@ void SettingsDialogMac::accountRemoved(AccountState *s)
     }
 
     _activitySettings->slotRemoveAccount(s);
+}
+
+void SettingsDialogMac::slotRefreshActivityAccountStateSender()
+{
+    slotRefreshActivity(qobject_cast<AccountState*>(sender()));
 }
 
 void SettingsDialogMac::slotRefreshActivity(AccountState *accountState)

@@ -50,6 +50,7 @@ public slots:
     void showIssuesList(const QString &folderAlias);
     void showMonitor();
     void slotRefreshActivity(AccountState *accountState);
+    void slotRefreshActivityAccountStateSender();
 
 private slots:
     void accountAdded(AccountState *);
