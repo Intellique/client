@@ -3320,38 +3320,38 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::SettingsDialogMac</name>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="95"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="96"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="99"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="100"/>
         <source>Archive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="104"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="105"/>
         <source>Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="108"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="109"/>
         <source>Activity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="122"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="123"/>
         <source>General</source>
         <translation type="unfinished">一般</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="126"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="127"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="166"/>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="225"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="168"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="235"/>
         <source>Account</source>
         <translation type="unfinished">帳號</translation>
     </message>

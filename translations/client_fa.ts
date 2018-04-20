@@ -1,4 +1,92 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fa" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fa">
+<context>
+    <name>ArchiveFileModel</name>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="146"/>
+        <source>Not synchonized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="150"/>
+        <source>Synchonizing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="153"/>
+        <source>Synchonized</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="156"/>
+        <source>Paused</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="159"/>
+        <source>Error</source>
+        <translation type="unfinished">خطا</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="192"/>
+        <source>Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="195"/>
+        <source>Name</source>
+        <translation type="unfinished">نام</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="198"/>
+        <source>Size</source>
+        <translation type="unfinished">اندازه</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="201"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ArchiveWidget</name>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="51"/>
+        <source>Form</source>
+        <translation type="unfinished">فرم</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="65"/>
+        <source>Archive&apos;s name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="72"/>
+        <source>Name used for current archiving queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="87"/>
+        <source>Files in current queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="129"/>
+        <source>Add Files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="143"/>
+        <source>Remove files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="176"/>
+        <source>Create archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>FolderWizardSourcePage</name>
     <message>
@@ -51,6 +139,52 @@
     </message>
 </context>
 <context>
+    <name>JobModel</name>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="96"/>
+        <source>Name</source>
+        <translation type="unfinished">نام</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="99"/>
+        <source>Start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="102"/>
+        <source>Progress</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="105"/>
+        <source>ETA</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="108"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>JobWidget</name>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">فرم</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="52"/>
+        <source>Stop Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="76"/>
+        <source>Consult archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NotificationWidget</name>
     <message>
         <location filename="../src/gui/notificationwidget.ui" line="20"/>
@@ -60,12 +194,12 @@
     <message>
         <location filename="../src/gui/notificationwidget.ui" line="56"/>
         <source>Lorem ipsum dolor sit amet</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/notificationwidget.ui" line="69"/>
         <source>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temporm </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/notificationwidget.ui" line="89"/>
@@ -76,19 +210,16 @@
 <context>
     <name>OCC::AbstractNetworkJob</name>
     <message>
-        <location filename="../src/libsync/abstractnetworkjob.cpp" line="245"/>
         <source>Connection timed out</source>
-        <translation>زمان ارتباط تمام شد</translation>
+        <translation type="vanished">زمان ارتباط تمام شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/abstractnetworkjob.cpp" line="247"/>
         <source>Unknown error: network reply was deleted</source>
-        <translation>خطای ناشناخته: پاسخ شبکه پاک شد</translation>
+        <translation type="vanished">خطای ناشناخته: پاسخ شبکه پاک شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/abstractnetworkjob.cpp" line="390"/>
         <source>Server replied &quot;%1 %2&quot; to &quot;%3 %4&quot;</source>
-        <translation>سرور &quot;1% 2%&quot; به &quot;3% 4%&quot; پاسخ داد</translation>
+        <translation type="vanished">سرور &quot;1% 2%&quot; به &quot;3% 4%&quot; پاسخ داد</translation>
     </message>
 </context>
 <context>
@@ -173,7 +304,7 @@
     <message>
         <location filename="../src/gui/accountsettings.cpp" line="305"/>
         <source>Force sync now</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/accountsettings.cpp" line="307"/>
@@ -496,12 +627,16 @@
     <message numerus="yes">
         <location filename="../src/gui/activitywidget.cpp" line="349"/>
         <source>You received %n new notification(s) from %2.</source>
-        <translation><numerusform>شما n% هشدار جدید از 2% دریافت کردید.</numerusform></translation>
+        <translation>
+            <numerusform>شما n% هشدار جدید از 2% دریافت کردید.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/activitywidget.cpp" line="356"/>
         <source>You received %n new notification(s) from %1 and %2.</source>
-        <translation><numerusform>شما n% هشدار جدید از 1% و 2% دریافت کردید.</numerusform></translation>
+        <translation>
+            <numerusform>شما n% هشدار جدید از 1% و 2% دریافت کردید.</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/gui/activitywidget.cpp" line="358"/>
@@ -571,6 +706,73 @@
     </message>
 </context>
 <context>
+    <name>OCC::ArchiveWidget</name>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="71"/>
+        <source>Your archival task &quot;%1&quot; has been created.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="72"/>
+        <source>The task will start soon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="85"/>
+        <source>Failed to create your archival task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="86"/>
+        <location filename="../src/gui/archivewidget.cpp" line="95"/>
+        <location filename="../src/gui/archivewidget.cpp" line="156"/>
+        <location filename="../src/gui/archivewidget.cpp" line="180"/>
+        <location filename="../src/gui/archivewidget.cpp" line="204"/>
+        <source>Please contact Intellique for further information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="94"/>
+        <source>Failed to login into archival backend.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="155"/>
+        <source>There is no pool available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="179"/>
+        <location filename="../src/gui/archivewidget.cpp" line="203"/>
+        <source>An error occured while creating your archival task.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="190"/>
+        <source>There is %1 and %2 for %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/gui/archivewidget.cpp" line="191"/>
+        <source>%n file(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../src/gui/archivewidget.cpp" line="191"/>
+        <source>%n directory(ies)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.cpp" line="197"/>
+        <source>Computing size...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>OCC::AuthenticationDialog</name>
     <message>
         <location filename="../src/gui/authenticationdialog.cpp" line="30"/>
@@ -596,50 +798,42 @@
 <context>
     <name>OCC::CleanupPollsJob</name>
     <message>
-        <location filename="../src/libsync/owncloudpropagator.cpp" line="1001"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::ConnectionValidator</name>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="75"/>
         <source>No ownCloud account configured</source>
-        <translation>هیچ حساب ownCloud پیکربندی نشده است</translation>
+        <translation type="vanished">هیچ حساب ownCloud پیکربندی نشده است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="310"/>
         <source>The configured server for this client is too old</source>
-        <translation>پیکربندی سرور برای این مشتری بسیار قدیمی است.</translation>
+        <translation type="vanished">پیکربندی سرور برای این مشتری بسیار قدیمی است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="311"/>
         <source>Please update to the latest server and restart the client.</source>
-        <translation>لطفا به آخرین سرور به روز رسانی کنید و مشتری را مجددا راه اندازی نمایید.</translation>
+        <translation type="vanished">لطفا به آخرین سرور به روز رسانی کنید و مشتری را مجددا راه اندازی نمایید.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="172"/>
         <source>Authentication error: Either username or password are wrong.</source>
-        <translation>خطای تأیید: نام کاربری یا رمز عبور اشتباه است.</translation>
+        <translation type="vanished">خطای تأیید: نام کاربری یا رمز عبور اشتباه است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="184"/>
         <source>timeout</source>
-        <translation>وقفه</translation>
+        <translation type="vanished">وقفه</translation>
     </message>
     <message>
-        <location filename="../src/libsync/connectionvalidator.cpp" line="221"/>
         <source>The provided credentials are not correct</source>
-        <translation>مدارک ارائه شده صحیح نیستند</translation>
+        <translation type="vanished">مدارک ارائه شده صحیح نیستند</translation>
     </message>
 </context>
 <context>
     <name>OCC::DiscoveryMainThread</name>
     <message>
-        <location filename="../src/libsync/discoveryphase.cpp" line="613"/>
         <source>Aborted by the user</source>
-        <translation>متوقف شده توسط کاربر</translation>
+        <translation type="vanished">متوقف شده توسط کاربر</translation>
     </message>
 </context>
 <context>
@@ -691,32 +885,44 @@
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="364"/>
         <source>%1 and %n other file(s) have been removed.</source>
-        <translation><numerusform>1% و n% پرونده های دیگر حذف شده اند.</numerusform></translation>
+        <translation>
+            <numerusform>1% و n% پرونده های دیگر حذف شده اند.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="371"/>
         <source>%1 and %n other file(s) have been downloaded.</source>
-        <translation><numerusform>1% و n% پرونده های دیگر دانلود شده اند.</numerusform></translation>
+        <translation>
+            <numerusform>1% و n% پرونده های دیگر دانلود شده اند.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="378"/>
         <source>%1 and %n other file(s) have been updated.</source>
-        <translation><numerusform> 1% و n% پرونده های دیگر به روز رسانی شده اند.</numerusform></translation>
+        <translation>
+            <numerusform> 1% و n% پرونده های دیگر به روز رسانی شده اند.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="385"/>
         <source>%1 has been renamed to %2 and %n other file(s) have been renamed.</source>
-        <translation><numerusform>1% به 2% تغییر نام داده شده و n% پرونده های دیگر تغییر نام داده شده اند.</numerusform></translation>
+        <translation>
+            <numerusform>1% به 2% تغییر نام داده شده و n% پرونده های دیگر تغییر نام داده شده اند.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="392"/>
         <source>%1 has been moved to %2 and %n other file(s) have been moved.</source>
-        <translation><numerusform>1% به 2% منتقل شده و n% پرونده های دیگر منتقل شده اند.</numerusform></translation>
+        <translation>
+            <numerusform>1% به 2% منتقل شده و n% پرونده های دیگر منتقل شده اند.</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="399"/>
         <source>%1 has and %n other file(s) have sync conflicts.</source>
-        <translation><numerusform>1% و n% سایر پرونده ها ناسازگاری همگام سازی دارند.</numerusform></translation>
+        <translation>
+            <numerusform>1% و n% سایر پرونده ها ناسازگاری همگام سازی دارند.</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/gui/folder.cpp" line="401"/>
@@ -726,7 +932,9 @@
     <message numerus="yes">
         <location filename="../src/gui/folder.cpp" line="406"/>
         <source>%1 and %n other file(s) could not be synced due to errors. See the log for details.</source>
-        <translation><numerusform>1% و n% سایر پرونده ها به دلیل خطاها نمی توانند همگام سازی شوند. برای جزییات log را مشاهده کنید.</numerusform></translation>
+        <translation>
+            <numerusform>1% و n% سایر پرونده ها به دلیل خطاها نمی توانند همگام سازی شوند. برای جزییات log را مشاهده کنید.</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/gui/folder.cpp" line="408"/>
@@ -764,7 +972,7 @@
     </message>
     <message>
         <location filename="../src/gui/folder.cpp" line="927"/>
-        <source>All files in the sync folder '%1' folder were deleted on the server.
+        <source>All files in the sync folder &apos;%1&apos; folder were deleted on the server.
 These deletes will be synchronized to your local sync folder, making such files unavailable unless you have a right to restore. 
 If you decide to keep the files, they will be re-synced with the server if you have rights to do so.
 If you decide to delete the files, they will be unavailable to you, unless you are the owner.</source>
@@ -775,7 +983,7 @@ If you decide to delete the files, they will be unavailable to you, unless you a
     </message>
     <message>
         <location filename="../src/gui/folder.cpp" line="932"/>
-        <source>All the files in your local sync folder '%1' were deleted. These deletes will be synchronized with your server, making such files unavailable unless restored.
+        <source>All the files in your local sync folder &apos;%1&apos; were deleted. These deletes will be synchronized with your server, making such files unavailable unless restored.
 Are you sure you want to sync those actions with the server?
 If this was an accident and you decide to keep your files, they will be re-synced from the server.</source>
         <translation>تمامی پرونده های پوشه همگام ساز &apos;1%&apos; در سرور حذف شد. این حذف ها با پوشه همگام ساز محلی شما هماهنگ خواهند شد، ساخت چنین پرونده هایی در دسترس نیستند مگر اینکه حق بازگرداندن داشته باشید.
@@ -799,7 +1007,7 @@ If this was an accident and you decide to keep your files, they will be re-synce
     </message>
     <message>
         <location filename="../src/gui/folder.cpp" line="957"/>
-        <source>This sync would reset the files to an earlier time in the sync folder '%1'.
+        <source>This sync would reset the files to an earlier time in the sync folder &apos;%1&apos;.
 This might be because a backup was restored on the server.
 Continuing the sync as normal will cause all your files to be overwritten by an older file in an earlier state. Do you want to keep your local most recent files as conflict files?</source>
         <translation>این همگام سازی پرونده ها را به زمان قبلی در پوشه همگام ساز 1% مجددا تنظیم می کند.
@@ -1017,7 +1225,7 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
     <message>
         <location filename="../src/gui/folderstatusmodel.cpp" line="946"/>
         <source>Syncing %1</source>
-        <extracomment>Example text: &quot;Syncing 'foo.txt', 'bar.txt'&quot;</extracomment>
+        <extracomment>Example text: &quot;Syncing &apos;foo.txt&apos;, &apos;bar.txt&apos;&quot;</extracomment>
         <translation>همگام‌سازی %1</translation>
     </message>
     <message>
@@ -1034,8 +1242,17 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
     </message>
     <message>
         <location filename="../src/gui/folderstatusmodel.cpp" line="954"/>
+        <source>↓ %1/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/folderstatusmodel.cpp" line="965"/>
+        <source>↑ %1/s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>u2193 %1/s</source>
-        <translation>u2193 %1/s</translation>
+        <translation type="vanished">u2193 %1/s</translation>
     </message>
     <message>
         <location filename="../src/gui/folderstatusmodel.cpp" line="963"/>
@@ -1044,9 +1261,8 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
         <translation>آپلود %1/s</translation>
     </message>
     <message>
-        <location filename="../src/gui/folderstatusmodel.cpp" line="965"/>
         <source>u2191 %1/s</source>
-        <translation>u2191 %1/s</translation>
+        <translation type="vanished">u2191 %1/s</translation>
     </message>
     <message>
         <location filename="../src/gui/folderstatusmodel.cpp" line="972"/>
@@ -1085,7 +1301,9 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
     <message numerus="yes">
         <location filename="../src/gui/folderstatusmodel.cpp" line="1058"/>
         <source>Waiting for %n other folder(s)...</source>
-        <translation><numerusform>در انتظار برای %n پوشه‌‎ی دیگر ...</numerusform></translation>
+        <translation>
+            <numerusform>در انتظار برای %n پوشه‌‎ی دیگر ...</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../src/gui/folderstatusmodel.cpp" line="1064"/>
@@ -1188,24 +1406,20 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
 <context>
     <name>OCC::GETFileJob</name>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="183"/>
         <source>No E-Tag received from server, check Proxy/Gateway</source>
-        <translation>E-Tag از سرور دریافت نشده است، لطفا پروکسی/دروازه را بررسی نمایید</translation>
+        <translation type="vanished">E-Tag از سرور دریافت نشده است، لطفا پروکسی/دروازه را بررسی نمایید</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="190"/>
         <source>We received a different E-Tag for resuming. Retrying next time.</source>
-        <translation>ما برای بازخوانی E-Tag متفاوتی دریافت کردیم. بار بعدی دوباره امتحان کنید.</translation>
+        <translation type="vanished">ما برای بازخوانی E-Tag متفاوتی دریافت کردیم. بار بعدی دوباره امتحان کنید.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="217"/>
         <source>Server returned wrong content-range</source>
-        <translation>سرور محدوده محتوای اشتباهی برگرداند.</translation>
+        <translation type="vanished">سرور محدوده محتوای اشتباهی برگرداند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="330"/>
         <source>Connection Timeout</source>
-        <translation>تایم اوت اتصال</translation>
+        <translation type="vanished">تایم اوت اتصال</translation>
     </message>
 </context>
 <context>
@@ -1223,7 +1437,7 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
     <message>
         <location filename="../src/gui/generalsettings.ui" line="40"/>
         <source>For System Tray</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/generalsettings.ui" line="139"/>
@@ -1298,7 +1512,7 @@ Continuing the sync as normal will cause all your files to be overwritten by an 
     <message>
         <location filename="../src/gui/creds/httpcredentialsgui.cpp" line="114"/>
         <source>Reading from keychain failed with error: &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/creds/httpcredentialsgui.cpp" line="120"/>
@@ -1429,7 +1643,7 @@ Items where deletion is allowed will be deleted if they prevent a directory from
     <message>
         <location filename="../src/gui/issueswidget.ui" line="133"/>
         <source>There were too many issues. Not all will be visible here.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/issueswidget.ui" line="155"/>
@@ -1518,14 +1732,12 @@ Items where deletion is allowed will be deleted if they prevent a directory from
 <context>
     <name>OCC::Logger</name>
     <message>
-        <location filename="../src/libsync/logger.cpp" line="195"/>
         <source>Error</source>
-        <translation>خطا</translation>
+        <translation type="vanished">خطا</translation>
     </message>
     <message>
-        <location filename="../src/libsync/logger.cpp" line="196"/>
         <source>&lt;nobr&gt;File &apos;%1&apos;&lt;br/&gt;cannot be opened for writing.&lt;br/&gt;&lt;br/&gt;The log output can &lt;b&gt;not&lt;/b&gt; be saved!&lt;/nobr&gt;</source>
-        <translation>&lt;nobr&gt;پرونده &apos;1%&apos; &lt;br/&gt; را نمی توان برای نوشتن باز کرد. &lt;br/&gt;&lt;br/&gt;خروجی log &lt;b&gt;نمی تواند&lt;/b&gt; ذخیره شود!&lt;/nobr&gt;</translation>
+        <translation type="vanished">&lt;nobr&gt;پرونده &apos;1%&apos; &lt;br/&gt; را نمی توان برای نوشتن باز کرد. &lt;br/&gt;&lt;br/&gt;خروجی log &lt;b&gt;نمی تواند&lt;/b&gt; ذخیره شود!&lt;/nobr&gt;</translation>
     </message>
 </context>
 <context>
@@ -1679,13 +1891,13 @@ Items where deletion is allowed will be deleted if they prevent a directory from
     <message>
         <location filename="../src/gui/notificationwidget.cpp" line="138"/>
         <source>%1 request failed at %2</source>
-        <extracomment>The second parameter is a time, such as 'failed at 09:58pm'</extracomment>
+        <extracomment>The second parameter is a time, such as &apos;failed at 09:58pm&apos;</extracomment>
         <translation>درخواست 1% در 2% شکست خورد</translation>
     </message>
     <message>
         <location filename="../src/gui/notificationwidget.cpp" line="144"/>
         <source>&apos;%1&apos; selected at %2</source>
-        <extracomment>The second parameter is a time, such as 'selected at 09:58pm'</extracomment>
+        <extracomment>The second parameter is a time, such as &apos;selected at 09:58pm&apos;</extracomment>
         <translation>&apos;1%&apos; در 2% انتخاب شد</translation>
     </message>
 </context>
@@ -1845,7 +2057,7 @@ for additional privileges during the process.</source>
     <message>
         <location filename="../src/gui/wizard/owncloudconnectionmethoddialog.ui" line="62"/>
         <source>Retry unencrypted over HTTP (insecure)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/wizard/owncloudconnectionmethoddialog.ui" line="69"/>
@@ -1892,29 +2104,31 @@ for additional privileges during the process.</source>
 <context>
     <name>OCC::OwncloudSetupPage</name>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="50"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="52"/>
         <source>Connect to %1</source>
         <translation>متصل به %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="51"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="53"/>
         <source>Setup %1 server</source>
         <translation>راه‌اندازی %1 سرور</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="129"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="130"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="167"/>
         <source>This url is NOT secure as it is not encrypted.
 It is not advisable to use it.</source>
         <translation>این آدرس امن نیست زیرا رمزگذاری شده نیست.
 استفاده از آن توصیه نمی شود.</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="133"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="134"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="171"/>
         <source>This url is secure. You can use it.</source>
         <translation>این ادرس امن است. شما می توانید از آن استفاده کنید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="172"/>
+        <location filename="../src/gui/wizard/owncloudsetuppage.cpp" line="228"/>
         <source>&amp;Next &gt;</source>
         <translation>&amp;بعدی&gt;</translation>
     </message>
@@ -1922,149 +2136,154 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::OwncloudSetupWizard</name>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="250"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="272"/>
         <source>&lt;font color=&quot;green&quot;&gt;Successfully connected to %1: %2 version %3 (%4)&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;</source>
         <translation>&lt;font color=&quot;green&quot;&gt; با موفقیت متصل شده است به  %1: %2 نسخه %3 (%4)&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="280"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="302"/>
         <source>Failed to connect to %1 at %2:&lt;br/&gt;%3</source>
         <translation>ارتباط ناموفق با %1 در %2:&lt;br/&gt;%3</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="315"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="337"/>
         <source>Timeout while trying to connect to %1 at %2.</source>
         <translation>هنگام تلاش برای اتصال به 1% در 2% زمان به پایان رسید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="334"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="356"/>
         <source>Trying to connect to %1 at %2...</source>
         <translation>تلاش برای اتصال  %1 به  %2...</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="385"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="407"/>
         <source>The authenticated request to the server was redirected to &apos;%1&apos;. The URL is bad, the server is misconfigured.</source>
         <translation>درخواست تایید شده به سرور &apos;1%&apos; هدایت شد. آدرس بد است، سرور اشتباه پیکربندی شده است.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="407"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="429"/>
         <source>There was an invalid response to an authenticated webdav request</source>
         <translation>یک پاسخ نادرست به درخواست webdov تایید شده وجود داشت</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="398"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="420"/>
         <source>Access forbidden by server. To verify that you have proper access, &lt;a href=&quot;%1&quot;&gt;click here&lt;/a&gt; to access the service with your browser.</source>
         <translation>دسترسی توسط سرور ممنوع شد. برای تأیید اینکه شما دسترسی مناسب دارید، &lt;a href=&quot;%1&quot;&gt;اینجا را کلیک کنید &lt;/a&gt; تا با مرورگر خود به سرویس دسترسی پیدا کنید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="278"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="189"/>
+        <source>Bad archival configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="300"/>
         <source>Invalid URL</source>
         <translation>آدرس نامعتبر</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="297"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="319"/>
         <source>The server reported the following error:</source>
         <translation>سرور خطای زیر را گزارش کرد:</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="452"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="474"/>
         <source>Local sync folder %1 already exists, setting it up for sync.&lt;br/&gt;&lt;br/&gt;</source>
         <translation>پوشه همگام سازی محلی %1 در حال حاضر موجود است، تنظیم آن برای همگام سازی. &lt;br/&gt;&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="455"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="477"/>
         <source>Creating local sync folder %1...</source>
         <translation>ساخت پوشه همگام سازی محلی 1%...</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="459"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="481"/>
         <source>ok</source>
         <translation>خوب</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="461"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="483"/>
         <source>failed.</source>
         <translation>ناموفق.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="463"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="485"/>
         <source>Could not create local folder %1</source>
         <translation>نمی تواند پوشه محلی ایجاد کند %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="489"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="511"/>
         <source>No remote folder specified!</source>
         <translation>هیچ پوشه از راه دوری مشخص نشده است!</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="495"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="517"/>
         <source>Error: %1</source>
         <translation>خطا: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="508"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="530"/>
         <source>creating folder on ownCloud: %1</source>
         <translation>ایجاد کردن پوشه بر روی ownCloud:  %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="524"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="546"/>
         <source>Remote folder %1 created successfully.</source>
         <translation>پوشه از راه دور %1 با موفقیت ایجاد شده است.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="526"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="548"/>
         <source>The remote folder %1 already exists. Connecting it for syncing.</source>
         <translation>در حال حاضر پوشه از راه دور %1 موجود است. برای همگام سازی به آن متصل شوید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="528"/>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="530"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="550"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="552"/>
         <source>The folder creation resulted in HTTP error code %1</source>
         <translation>ایجاد پوشه به خطای HTTP کد 1% منجر شد</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="532"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="554"/>
         <source>The remote folder creation failed because the provided credentials are wrong!&lt;br/&gt;Please go back and check your credentials.&lt;/p&gt;</source>
         <translation>ایجاد پوشه از راه دور ناموفق بود به علت اینکه اعتبارهای ارائه شده اشتباه هستند!&lt;br/&gt;لطفا اعتبارهای خودتان را بررسی کنید.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="536"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="558"/>
         <source>&lt;p&gt;&lt;font color=&quot;red&quot;&gt;Remote folder creation failed probably because the provided credentials are wrong.&lt;/font&gt;&lt;br/&gt;Please go back and check your credentials.&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;font color=&quot;red&quot;&gt; ایجاد پوشه از راه دور  ناموفق بود، شاید به علت اعتبارهایی که ارئه شده اند، اشتباه هستند.&lt;/font&gt;&lt;br/&gt; لطفا باز گردید و اعتبار خود را بررسی کنید.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="541"/>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="542"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="563"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="564"/>
         <source>Remote folder %1 creation failed with error &lt;tt&gt;%2&lt;/tt&gt;.</source>
         <translation>ایجاد پوشه از راه دور %1 ناموفق بود با خطا &lt;tt&gt;%2&lt;/tt&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="559"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="581"/>
         <source>A sync connection from %1 to remote directory %2 was set up.</source>
         <translation>یک اتصال همگام سازی از %1 تا %2 پوشه از راه دور راه اندازی شد.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="564"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="586"/>
         <source>Successfully connected to %1!</source>
         <translation>با موفقیت به %1 اتصال یافت!</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="571"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="593"/>
         <source>Connection to %1 could not be established. Please check again.</source>
         <translation>اتصال به %1 نمی تواند مقرر باشد. لطفا دوباره بررسی کنید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="585"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="607"/>
         <source>Folder rename failed</source>
         <translation>تغییر نام پوشه ناموفق بود</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="586"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="608"/>
         <source>Can&apos;t remove and back up the folder because the folder or a file in it is open in another program. Please close the folder or file and hit retry or cancel the setup.</source>
         <translation>نمی توانید پوشه را حذف کنید یا پشتیبان بگیرید زیرا پوشه یا یک پرونده در آن در برنامه دیگری باز است. لطفا پوشه یا پرونده را ببندید و مجددا تلاش کنید یا تنظیم را لغو کنید.</translation>
     </message>
     <message>
-        <location filename="../src/gui/owncloudsetupwizard.cpp" line="631"/>
+        <location filename="../src/gui/owncloudsetupwizard.cpp" line="653"/>
         <source>&lt;font color=&quot;green&quot;&gt;&lt;b&gt;Local sync folder %1 successfully created!&lt;/b&gt;&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;green&quot;&gt;&lt;b&gt; پوشه همگام سازی محلی %1 با موفقیت ساخته شده است!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
@@ -2072,12 +2291,12 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::OwncloudWizard</name>
     <message>
-        <location filename="../src/gui/wizard/owncloudwizard.cpp" line="84"/>
+        <location filename="../src/gui/wizard/owncloudwizard.cpp" line="85"/>
         <source>%1 Connection Wizard</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudwizard.cpp" line="93"/>
+        <location filename="../src/gui/wizard/owncloudwizard.cpp" line="94"/>
         <source>Skip folders configuration</source>
         <translation>از پیکربندی پوشه‌ها بگذرید</translation>
     </message>
@@ -2103,278 +2322,224 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::PollJob</name>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="134"/>
         <source>Invalid JSON reply from the poll URL</source>
-        <translation>پاسخ JSON نامعتبر از آدرس نظرسنجی</translation>
+        <translation type="vanished">پاسخ JSON نامعتبر از آدرس نظرسنجی</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateDirectory</name>
     <message>
-        <location filename="../src/libsync/owncloudpropagator.cpp" line="953"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateDownloadFile</name>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="409"/>
         <source>File %1 can not be downloaded because of a local file name clash!</source>
-        <translation>پرونده 1% بخاطر یک پرونده محلی به نام برخورد دانلود نمی شود!</translation>
+        <translation type="vanished">پرونده 1% بخاطر یک پرونده محلی به نام برخورد دانلود نمی شود!</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="459"/>
         <source>The download would reduce free local disk space below the limit</source>
-        <translation>دانلود فضای دیسک محلی آزاد تحت محدودیت را کاهش می دهد</translation>
+        <translation type="vanished">دانلود فضای دیسک محلی آزاد تحت محدودیت را کاهش می دهد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="463"/>
         <source>Free space on disk is less than %1</source>
-        <translation>فضای خالی دیسک کمتر از %1 است</translation>
+        <translation type="vanished">فضای خالی دیسک کمتر از %1 است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="577"/>
         <source>File was deleted from server</source>
-        <translation>فایل از روی سرور حذف شد</translation>
+        <translation type="vanished">فایل از روی سرور حذف شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="630"/>
         <source>The file could not be downloaded completely.</source>
-        <translation>فایل به طور کامل قابل دانلود نیست.</translation>
+        <translation type="vanished">فایل به طور کامل قابل دانلود نیست.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="637"/>
         <source>The downloaded file is empty despite the server announced it should have been %1.</source>
-        <translation>پرونده دانلود شده خالی است با وجود اینکه سرور اعلام کرده است این باید 1% باشد.</translation>
+        <translation type="vanished">پرونده دانلود شده خالی است با وجود اینکه سرور اعلام کرده است این باید 1% باشد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="798"/>
         <source>File %1 cannot be saved because of a local file name clash!</source>
-        <translation>پرونده 1% بخاطر یک پرونده محلی به نام برخورد ذخیره نمی شود!</translation>
+        <translation type="vanished">پرونده 1% بخاطر یک پرونده محلی به نام برخورد ذخیره نمی شود!</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="846"/>
         <source>File has changed since discovery</source>
-        <translation>پرونده از زمان کشف تغییر کرده است.</translation>
+        <translation type="vanished">پرونده از زمان کشف تغییر کرده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatedownload.cpp" line="897"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateItemJob</name>
     <message>
-        <location filename="../src/libsync/owncloudpropagator.cpp" line="234"/>
         <source>; Restoration Failed: %1</source>
-        <translation>؛ بازگردانی شکست خورد: 1%</translation>
+        <translation type="vanished">؛ بازگردانی شکست خورد: 1%</translation>
     </message>
     <message>
-        <location filename="../src/libsync/owncloudpropagator.cpp" line="355"/>
         <source>A file or folder was removed from a read only share, but restoring failed: %1</source>
-        <translation>یک پرونده یا پوشه از یک اشتراک فقط خواندنی حذف شد، اما بازگردانی شکست خورد: 1%</translation>
+        <translation type="vanished">یک پرونده یا پوشه از یک اشتراک فقط خواندنی حذف شد، اما بازگردانی شکست خورد: 1%</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateLocalMkdir</name>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="158"/>
         <source>could not delete file %1, error: %2</source>
-        <translation>نمی توان پرونده 1% را حذف کرد: خطای 2%</translation>
+        <translation type="vanished">نمی توان پرونده 1% را حذف کرد: خطای 2%</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="166"/>
-        <source>Attention, possible case sensitivity clash with %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="172"/>
         <source>could not create folder %1</source>
-        <translation>امکان ایجاد پوشه %1 وجود ندارد</translation>
+        <translation type="vanished">امکان ایجاد پوشه %1 وجود ندارد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="184"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateLocalRemove</name>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="76"/>
         <source>Error removing &apos;%1&apos;: %2;</source>
-        <translation>خطا در حذف &apos;%1&apos;: %2;</translation>
+        <translation type="vanished">خطا در حذف &apos;%1&apos;: %2;</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="101"/>
         <source>Could not remove folder &apos;%1&apos;</source>
-        <translation>پوشه &apos;1%&apos; حذف نمی شود</translation>
+        <translation type="vanished">پوشه &apos;1%&apos; حذف نمی شود</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="120"/>
         <source>Could not remove %1 because of a local file name clash</source>
-        <translation>1% بخاطر یک پرونده محلی به نام برخورد حذف نمی شود</translation>
+        <translation type="vanished">1% بخاطر یک پرونده محلی به نام برخورد حذف نمی شود</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateLocalRename</name>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="219"/>
         <source>File %1 can not be renamed to %2 because of a local file name clash</source>
-        <translation>پرونده 1% بخاطر یک پرونده محلی به نام برخورد نتغییر نام داده نمی شود</translation>
+        <translation type="vanished">پرونده 1% بخاطر یک پرونده محلی به نام برخورد نتغییر نام داده نمی شود</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="250"/>
-        <location filename="../src/libsync/propagatorjobs.cpp" line="255"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateRemoteDelete</name>
     <message>
-        <location filename="../src/libsync/propagateremotedelete.cpp" line="100"/>
         <source>The file has been removed from a read only share. It was restored.</source>
-        <translation>پرونده از یک استراک فقط خواندنی حذف شد. این بازگردانی شد.</translation>
+        <translation type="vanished">پرونده از یک استراک فقط خواندنی حذف شد. این بازگردانی شد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotedelete.cpp" line="121"/>
         <source>Wrong HTTP code returned by server. Expected 204, but received &quot;%1 %2&quot;.</source>
-        <translation>کد HTTP اشتباه توسط سرور  برگردانده شد. 204 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
+        <translation type="vanished">کد HTTP اشتباه توسط سرور  برگردانده شد. 204 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateRemoteMkdir</name>
     <message>
-        <location filename="../src/libsync/propagateremotemkdir.cpp" line="99"/>
         <source>Wrong HTTP code returned by server. Expected 201, but received &quot;%1 %2&quot;.</source>
-        <translation>کد HTTP اشتباه توسط سرور برگردانده شد. 201 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
+        <translation type="vanished">کد HTTP اشتباه توسط سرور برگردانده شد. 201 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemkdir.cpp" line="151"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateRemoteMove</name>
     <message>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="102"/>
         <source>This folder must not be renamed. It is renamed back to its original name.</source>
-        <translation>این پوشه نباید تغییر نام داده شود. نام آن به نام اصلی خود تغییر داده شده است.</translation>
+        <translation type="vanished">این پوشه نباید تغییر نام داده شود. نام آن به نام اصلی خود تغییر داده شده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="104"/>
         <source>This folder must not be renamed. Please name it back to Shared.</source>
-        <translation>این پوشه نباید تغییر نام داده شود. لطفا نام آن را اشتراک برگردانید.</translation>
+        <translation type="vanished">این پوشه نباید تغییر نام داده شود. لطفا نام آن را اشتراک برگردانید.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="141"/>
         <source>The file was renamed but is part of a read only share. The original file was restored.</source>
-        <translation>این پرونده تغییر نام داده شده است اما بخشی از یک اشتراک فقط خواندنی است. پرونده اصلی  برگردانده شده است.</translation>
+        <translation type="vanished">این پرونده تغییر نام داده شده است اما بخشی از یک اشتراک فقط خواندنی است. پرونده اصلی  برگردانده شده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="158"/>
         <source>Wrong HTTP code returned by server. Expected 201, but received &quot;%1 %2&quot;.</source>
-        <translation>کد HTTP اشتباه توسط سرور برگردانده شد. 201 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
+        <translation type="vanished">کد HTTP اشتباه توسط سرور برگردانده شد. 201 انتظار می رفت، اما &quot;1% 2%&quot; دریافت شد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="190"/>
-        <location filename="../src/libsync/propagateremotemove.cpp" line="196"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateUploadFileCommon</name>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="175"/>
         <source>File %1 cannot be uploaded because another file with the same name, differing only in case, exists</source>
-        <translation>پرونده 1% بارگذاری نمی شود زیرا پرونده دیگری با نام مشابه، که تنها در وضعیت متفاوت است، وجود دارد</translation>
+        <translation type="vanished">پرونده 1% بارگذاری نمی شود زیرا پرونده دیگری با نام مشابه، که تنها در وضعیت متفاوت است، وجود دارد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="291"/>
         <source>File Removed</source>
-        <translation>فایل حذف شد</translation>
+        <translation type="vanished">فایل حذف شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="305"/>
         <source>Local file changed during syncing. It will be resumed.</source>
-        <translation>پرونده محلی در طول همگام سازی تغییر کرد. این ادامه خواهد یافت.</translation>
+        <translation type="vanished">پرونده محلی در طول همگام سازی تغییر کرد. این ادامه خواهد یافت.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="317"/>
         <source>Local file changed during sync.</source>
-        <translation>فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
+        <translation type="vanished">فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="186"/>
-        <location filename="../src/libsync/propagateupload.cpp" line="549"/>
         <source>Upload of %1 exceeds the quota for the folder</source>
-        <translation>بارگذاری از 1% بیش از سهمیه برای پوشه است</translation>
+        <translation type="vanished">بارگذاری از 1% بیش از سهمیه برای پوشه است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateupload.cpp" line="622"/>
         <source>Error writing metadata to the database</source>
-        <translation>خطا در نوشتن متادیتا در پایگاه داده</translation>
+        <translation type="vanished">خطا در نوشتن متادیتا در پایگاه داده</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateUploadFileNG</name>
     <message>
-        <location filename="../src/libsync/propagateuploadng.cpp" line="399"/>
         <source>The local file was removed during sync.</source>
-        <translation>فایل محلی در حین همگام‌سازی حذف شده است.</translation>
+        <translation type="vanished">فایل محلی در حین همگام‌سازی حذف شده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadng.cpp" line="410"/>
         <source>Local file changed during sync.</source>
-        <translation>فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
+        <translation type="vanished">فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadng.cpp" line="444"/>
         <source>Unexpected return code from server (%1)</source>
-        <translation>کد بازگشت غیر منتظره از سرور (1%)</translation>
+        <translation type="vanished">کد بازگشت غیر منتظره از سرور (1%)</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadng.cpp" line="451"/>
         <source>Missing File ID from server</source>
-        <translation>فاقد شناسه پرونده از سرور</translation>
+        <translation type="vanished">فاقد شناسه پرونده از سرور</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadng.cpp" line="465"/>
         <source>Missing ETag from server</source>
-        <translation>فاقد ETag از سرور</translation>
+        <translation type="vanished">فاقد ETag از سرور</translation>
     </message>
 </context>
 <context>
     <name>OCC::PropagateUploadFileV1</name>
     <message>
-        <location filename="../src/libsync/propagateuploadv1.cpp" line="191"/>
         <source>The file was edited locally but is part of a read only share. It is restored and your edit is in the conflict file.</source>
-        <translation>پرونده به طور محلی ویرایش شده اما بخشی از یک اشتراک فقط خواندنی است. این بازسازی شده و ویرایش شما در پرونده ناسازگاری است.</translation>
+        <translation type="vanished">پرونده به طور محلی ویرایش شده اما بخشی از یک اشتراک فقط خواندنی است. این بازسازی شده و ویرایش شما در پرونده ناسازگاری است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadv1.cpp" line="205"/>
         <source>Poll URL missing</source>
-        <translation>فاقد آدرس نظرسنجی</translation>
+        <translation type="vanished">فاقد آدرس نظرسنجی</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadv1.cpp" line="228"/>
         <source>The local file was removed during sync.</source>
-        <translation>فایل محلی در حین همگام‌سازی حذف شده است.</translation>
+        <translation type="vanished">فایل محلی در حین همگام‌سازی حذف شده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadv1.cpp" line="239"/>
         <source>Local file changed during sync.</source>
-        <translation>فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
+        <translation type="vanished">فایل محلی در حین همگام‌سازی تغییر کرده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/propagateuploadv1.cpp" line="254"/>
         <source>The server did not acknowledge the last chunk. (No e-tag was present)</source>
-        <translation>سرور آخرین تکه را تایید نکرد. (برچسب الکترونیکی وجود نداشت)</translation>
+        <translation type="vanished">سرور آخرین تکه را تایید نکرد. (برچسب الکترونیکی وجود نداشت)</translation>
     </message>
 </context>
 <context>
@@ -2522,21 +2687,31 @@ It is not advisable to use it.</source>
     </message>
     <message>
         <location filename="../src/gui/settingsdialog.cpp" line="109"/>
+        <source>Archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/settingsdialog.cpp" line="115"/>
+        <source>Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/settingsdialog.cpp" line="124"/>
         <source>Activity</source>
         <translation>فعالیت</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialog.cpp" line="118"/>
+        <location filename="../src/gui/settingsdialog.cpp" line="133"/>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialog.cpp" line="124"/>
+        <location filename="../src/gui/settingsdialog.cpp" line="139"/>
         <source>Network</source>
         <translation>شبکه</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialog.cpp" line="230"/>
+        <location filename="../src/gui/settingsdialog.cpp" line="247"/>
         <source>Account</source>
         <translation>حساب کاربری</translation>
     </message>
@@ -2544,28 +2719,38 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::SettingsDialogMac</name>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="94"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="96"/>
         <source>%1</source>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="98"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="100"/>
+        <source>Archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="105"/>
+        <source>Monitor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="109"/>
         <source>Activity</source>
         <translation>فعالیت</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="112"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="123"/>
         <source>General</source>
         <translation>عمومی</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="116"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="127"/>
         <source>Network</source>
         <translation>شبکه</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="154"/>
-        <location filename="../src/gui/settingsdialogmac.cpp" line="221"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="168"/>
+        <location filename="../src/gui/settingsdialogmac.cpp" line="235"/>
         <source>Account</source>
         <translation>حساب کاربری</translation>
     </message>
@@ -2898,7 +3083,7 @@ It is not advisable to use it.</source>
     <message>
         <location filename="../src/gui/creds/shibboleth/shibbolethwebview.cpp" line="93"/>
         <source>SSL Chipher Debug View</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/creds/shibboleth/shibbolethwebview.cpp" line="101"/>
@@ -3137,307 +3322,245 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::SyncEngine</name>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="118"/>
         <source>Success.</source>
-        <translation>موفقیت</translation>
+        <translation type="vanished">موفقیت</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="125"/>
         <source>CSync failed to load the journal file. The journal file is corrupted.</source>
-        <translation>CSync در بارگذاری پرونده مجله شکست خورد. پرونده مجله از بین رفته است.</translation>
+        <translation type="vanished">CSync در بارگذاری پرونده مجله شکست خورد. پرونده مجله از بین رفته است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="128"/>
         <source>&lt;p&gt;The %1 plugin for csync could not be loaded.&lt;br/&gt;Please verify the installation!&lt;/p&gt;</source>
-        <translation>&lt;p&gt;ماژول %1 برای csync نمی تواند بارگذاری شود.&lt;br/&gt;لطفا نصب را بررسی کنید!&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;ماژول %1 برای csync نمی تواند بارگذاری شود.&lt;br/&gt;لطفا نصب را بررسی کنید!&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="131"/>
         <source>CSync fatal parameter error.</source>
-        <translation>خطای پارامتری وخیم CSync.</translation>
+        <translation type="vanished">خطای پارامتری وخیم CSync.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="134"/>
         <source>CSync processing step update failed.</source>
-        <translation>مرحله به روز روسانی پردازش CSync ناموفق بود.</translation>
+        <translation type="vanished">مرحله به روز روسانی پردازش CSync ناموفق بود.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="137"/>
         <source>CSync processing step reconcile failed.</source>
-        <translation>مرحله تطبیق پردازش CSync ناموفق بود.</translation>
+        <translation type="vanished">مرحله تطبیق پردازش CSync ناموفق بود.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="140"/>
         <source>CSync could not authenticate at the proxy.</source>
-        <translation>CSync نمی تواند پروکسی را تصدیق کند.</translation>
+        <translation type="vanished">CSync نمی تواند پروکسی را تصدیق کند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="143"/>
         <source>CSync failed to lookup proxy or server.</source>
-        <translation>عدم موفقیت CSync  برای مراجعه به پروکسی یا سرور.</translation>
+        <translation type="vanished">عدم موفقیت CSync  برای مراجعه به پروکسی یا سرور.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="146"/>
         <source>CSync failed to authenticate at the %1 server.</source>
-        <translation>عدم موفقیت CSync  برای اعتبار دادن در %1 سرور.</translation>
+        <translation type="vanished">عدم موفقیت CSync  برای اعتبار دادن در %1 سرور.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="149"/>
         <source>CSync failed to connect to the network.</source>
-        <translation>عدم موفقیت CSync برای اتصال به شبکه.</translation>
+        <translation type="vanished">عدم موفقیت CSync برای اتصال به شبکه.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="152"/>
         <source>A network connection timeout happened.</source>
-        <translation>وقفه اتصال شبکه روی داده است.</translation>
+        <translation type="vanished">وقفه اتصال شبکه روی داده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="155"/>
         <source>A HTTP transmission error happened.</source>
-        <translation>خطا در انتقال HTTP اتفاق افتاده است.</translation>
+        <translation type="vanished">خطا در انتقال HTTP اتفاق افتاده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="179"/>
         <source>The mounted folder is temporarily not available on the server</source>
-        <translation>پوشه نصب شده به طور موقت در سرور موجود نیست</translation>
+        <translation type="vanished">پوشه نصب شده به طور موقت در سرور موجود نیست</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="185"/>
         <source>An error occurred while opening a folder</source>
-        <translation>یک خطا در هنگام باز کردن یک پوشه رخ داده‌ است</translation>
+        <translation type="vanished">یک خطا در هنگام باز کردن یک پوشه رخ داده‌ است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="188"/>
         <source>Error while reading folder.</source>
-        <translation>خطا در هنگام خواندن پوشه</translation>
+        <translation type="vanished">خطا در هنگام خواندن پوشه</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="264"/>
         <source>%1 (skipped due to earlier error, trying again in %2)</source>
-        <translation>1% (به علت خطای قبلی از بین رفته است، دوباره در 2% امتحان کنید)</translation>
+        <translation type="vanished">1% (به علت خطای قبلی از بین رفته است، دوباره در 2% امتحان کنید)</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="474"/>
         <source>File/Folder is ignored because it&apos;s hidden.</source>
-        <translation>پرونده/پوشه رد شد زیرا مخفی است.</translation>
+        <translation type="vanished">پرونده/پوشه رد شد زیرا مخفی است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="477"/>
         <source>Folder hierarchy is too deep</source>
-        <translation>سلسله مراتب پوشه خیلی عمیق است</translation>
+        <translation type="vanished">سلسله مراتب پوشه خیلی عمیق است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="493"/>
         <source>Conflict: Server version downloaded, local copy renamed and not uploaded.</source>
-        <translation>ناسازگاری: نسخه سرور دانلود شد، کپی محلی تغییر نام داده شده و بارگذاری نشده است.</translation>
+        <translation type="vanished">ناسازگاری: نسخه سرور دانلود شد، کپی محلی تغییر نام داده شده و بارگذاری نشده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="777"/>
         <source>Only %1 are available, need at least %2 to start</source>
         <comment>Placeholders are postfixed with file sizes using Utility::octetsToString()</comment>
-        <translation>تنها 1% موجود است، حداقل 2% برای شروع مورد نیاز است</translation>
+        <translation type="vanished">تنها 1% موجود است، حداقل 2% برای شروع مورد نیاز است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="812"/>
         <source>Unable to open or create the local sync database. Make sure you have write access in the sync folder.</source>
-        <translation>پایگاه داده محلی باز یا ساخته نمی شود. اطمینان حاصل کنید که دسترسی به نوشتن در پوشه همگام سازی دارید.</translation>
+        <translation type="vanished">پایگاه داده محلی باز یا ساخته نمی شود. اطمینان حاصل کنید که دسترسی به نوشتن در پوشه همگام سازی دارید.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1290"/>
         <source>Not allowed because you don&apos;t have permission to add parent folder</source>
-        <translation>مجاز نیستید زیرا شما اجازه افزودن به پوشه والد را ندارید</translation>
+        <translation type="vanished">مجاز نیستید زیرا شما اجازه افزودن به پوشه والد را ندارید</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1297"/>
         <source>Not allowed because you don&apos;t have permission to add files in that folder</source>
-        <translation>مجاز نیستید زیرا شما اجازه افزودن پرونده به آن پوشه را ندارید</translation>
+        <translation type="vanished">مجاز نیستید زیرا شما اجازه افزودن پرونده به آن پوشه را ندارید</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1600"/>
         <source>Disk space is low: Downloads that would reduce free space below %1 were skipped.</source>
-        <translation>فضای دیسک کم است: دانلودهایی که فضای آزاد را به کمتر از 1% کاهش می دهند رد می شوند.</translation>
+        <translation type="vanished">فضای دیسک کم است: دانلودهایی که فضای آزاد را به کمتر از 1% کاهش می دهند رد می شوند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1607"/>
         <source>There is insufficient space available on the server for some uploads.</source>
-        <translation>برای بعضی از بارگذاری ها در سرور فضای کافی موجود نیست.</translation>
+        <translation type="vanished">برای بعضی از بارگذاری ها در سرور فضای کافی موجود نیست.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="167"/>
         <source>CSync: No space on %1 server available.</source>
-        <translation>CSync: فضا در %1 سرور در دسترس نیست.</translation>
+        <translation type="vanished">CSync: فضا در %1 سرور در دسترس نیست.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="170"/>
         <source>CSync unspecified error.</source>
-        <translation>خطای نامشخص CSync </translation>
+        <translation type="vanished">خطای نامشخص CSync </translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="173"/>
         <source>Aborted by the user</source>
-        <translation>متوقف شده توسط کاربر</translation>
+        <translation type="vanished">متوقف شده توسط کاربر</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="161"/>
         <source>CSync failed to access</source>
-        <translation>CSync برای دسترسی شکست خورد</translation>
+        <translation type="vanished">CSync برای دسترسی شکست خورد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="121"/>
         <source>CSync failed to load or create the journal file. Make sure you have read and write permissions in the local sync folder.</source>
-        <translation>CSync در بارگذاری یا ساخت پرونده مجله شکست خورد. اطمینان حااصل کنید که شما اجازه خواندن و نوشتن در پوشه همگام سازی محلی را دارید.</translation>
+        <translation type="vanished">CSync در بارگذاری یا ساخت پرونده مجله شکست خورد. اطمینان حااصل کنید که شما اجازه خواندن و نوشتن در پوشه همگام سازی محلی را دارید.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="158"/>
         <source>CSync failed due to unhandled permission denied.</source>
-        <translation>CSync به علت رد شدن مجوز نادرست شکست خورد.</translation>
+        <translation type="vanished">CSync به علت رد شدن مجوز نادرست شکست خورد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="164"/>
         <source>CSync tried to create a folder that already exists.</source>
-        <translation>CSync سعی کرد پوشه ای بسازد که از قبل موجود بود.</translation>
+        <translation type="vanished">CSync سعی کرد پوشه ای بسازد که از قبل موجود بود.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="176"/>
         <source>The service is temporarily unavailable</source>
-        <translation>سرویس بصورت موقت خارج از دسترس است</translation>
+        <translation type="vanished">سرویس بصورت موقت خارج از دسترس است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="182"/>
         <source>Access is forbidden</source>
-        <translation>دسترسی ممنوع است</translation>
+        <translation type="vanished">دسترسی ممنوع است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="193"/>
         <source>An internal error number %1 occurred.</source>
-        <translation>یک خطای داخلی با شماره خطای  %1  رخ داده است.</translation>
+        <translation type="vanished">یک خطای داخلی با شماره خطای  %1  رخ داده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="443"/>
         <source>Symbolic links are not supported in syncing.</source>
-        <translation>پیوندهای نمادین در همگام سازی پشتیبانی نمی شوند.</translation>
+        <translation type="vanished">پیوندهای نمادین در همگام سازی پشتیبانی نمی شوند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="446"/>
         <source>File is listed on the ignore list.</source>
-        <translation>پرونده در فهرست رد شده ها موجود است.</translation>
+        <translation type="vanished">پرونده در فهرست رد شده ها موجود است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="450"/>
         <source>File names ending with a period are not supported on this file system.</source>
-        <translation>نام پرونده هایی که با دوره ای پایان می یابند در این سیستم پرونده پشتیبانی نشده اند.</translation>
+        <translation type="vanished">نام پرونده هایی که با دوره ای پایان می یابند در این سیستم پرونده پشتیبانی نشده اند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="460"/>
         <source>File names containing the character &apos;%1&apos; are not supported on this file system.</source>
-        <translation>نام پرونده هایی که شامل کاراکتر &apos;1%&apos; هستند در این سیستم پرونده پشتیبانی نشده اند.</translation>
+        <translation type="vanished">نام پرونده هایی که شامل کاراکتر &apos;1%&apos; هستند در این سیستم پرونده پشتیبانی نشده اند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="463"/>
         <source>The file name is a reserved name on this file system.</source>
-        <translation>نام پرونده یک نام رزرو شده در این سیستم پرونده است.</translation>
+        <translation type="vanished">نام پرونده یک نام رزرو شده در این سیستم پرونده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="468"/>
         <source>Filename contains trailing spaces.</source>
-        <translation>نام پرونده شامل دنباله فضای خالی است.</translation>
+        <translation type="vanished">نام پرونده شامل دنباله فضای خالی است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="471"/>
         <source>Filename is too long.</source>
-        <translation>نام فایل خیلی طولانی است.</translation>
+        <translation type="vanished">نام فایل خیلی طولانی است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="480"/>
         <source>The filename cannot be encoded on your file system.</source>
-        <translation>نام پرونده در سیستم پرونده شما رمزگذاری نمی شود.</translation>
+        <translation type="vanished">نام پرونده در سیستم پرونده شما رمزگذاری نمی شود.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="489"/>
         <source>Unresolved conflict.</source>
-        <translation>ناسازگاری حل نشده.</translation>
+        <translation type="vanished">ناسازگاری حل نشده.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="500"/>
         <source>Stat failed.</source>
-        <translation>وضعیت ناموفق</translation>
+        <translation type="vanished">وضعیت ناموفق</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="527"/>
         <source>Filename encoding is not valid</source>
-        <translation>رمزگذاری نام فایل معتبر نیست</translation>
+        <translation type="vanished">رمزگذاری نام فایل معتبر نیست</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="707"/>
         <source>Invalid characters, please rename &quot;%1&quot;</source>
-        <translation>کاراکتر نامعتبر، لطفا &quot;%1&quot; را تغییر نام دهید</translation>
+        <translation type="vanished">کاراکتر نامعتبر، لطفا &quot;%1&quot; را تغییر نام دهید</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="827"/>
         <source>Unable to read the blacklist from the local database</source>
-        <translation>نمی توان لیست سیاه را از پایگاه داده محلی خواند</translation>
+        <translation type="vanished">نمی توان لیست سیاه را از پایگاه داده محلی خواند</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="868"/>
         <source>Unable to read from the sync journal.</source>
-        <translation>نمی توان از مجله همگام ساز خواند.</translation>
+        <translation type="vanished">نمی توان از مجله همگام ساز خواند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="917"/>
         <source>Cannot open the sync journal</source>
-        <translation>نمی توان مجله همگام ساز را باز کرد</translation>
+        <translation type="vanished">نمی توان مجله همگام ساز را باز کرد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="980"/>
         <source>File name contains at least one invalid character</source>
-        <translation>نام فایل دارای حداقل یک کاراکتر نامعتبر است</translation>
+        <translation type="vanished">نام فایل دارای حداقل یک کاراکتر نامعتبر است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1216"/>
-        <location filename="../src/libsync/syncengine.cpp" line="1256"/>
         <source>Ignored because of the &quot;choose what to sync&quot; blacklist</source>
-        <translation>به علت لیست سیاه &quot;انتخاب کنید چه چیزی همگام سازی شود&quot; رد شد</translation>
+        <translation type="vanished">به علت لیست سیاه &quot;انتخاب کنید چه چیزی همگام سازی شود&quot; رد شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1275"/>
         <source>Not allowed because you don&apos;t have permission to add subfolders to that folder</source>
-        <translation>با توجه به عدم اجازه‌ی شما به ایجاد زیرپوشه به پوشه مجاز نیست</translation>
+        <translation type="vanished">با توجه به عدم اجازه‌ی شما به ایجاد زیرپوشه به پوشه مجاز نیست</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1322"/>
         <source>Not allowed to upload this file because it is read-only on the server, restoring</source>
-        <translation>آپلود این فایل با توجه به فقط-خواندنی بودن آن در سرور مجاز نیست، در حال بازگرداندن</translation>
+        <translation type="vanished">آپلود این فایل با توجه به فقط-خواندنی بودن آن در سرور مجاز نیست، در حال بازگرداندن</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1338"/>
-        <location filename="../src/libsync/syncengine.cpp" line="1357"/>
         <source>Not allowed to remove, restoring</source>
-        <translation>حذف مجاز نیست، در حال بازگردادن</translation>
+        <translation type="vanished">حذف مجاز نیست، در حال بازگردادن</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1371"/>
         <source>Local files and share folder removed.</source>
-        <translation>فایل‌های محلی و پوشه‌ی اشتراک حذف شد.</translation>
+        <translation type="vanished">فایل‌های محلی و پوشه‌ی اشتراک حذف شد.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1425"/>
         <source>Move not allowed, item restored</source>
-        <translation>انتقال مجاز نیست، مورد بازگردانده شد</translation>
+        <translation type="vanished">انتقال مجاز نیست، مورد بازگردانده شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1436"/>
         <source>Move not allowed because %1 is read-only</source>
-        <translation>انتقال مجاز نیست زیرا 1% فقط خواندنی است</translation>
+        <translation type="vanished">انتقال مجاز نیست زیرا 1% فقط خواندنی است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1436"/>
         <source>the destination</source>
-        <translation>مقصد</translation>
+        <translation type="vanished">مقصد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncengine.cpp" line="1436"/>
         <source>the source</source>
-        <translation>مبدا</translation>
+        <translation type="vanished">مبدا</translation>
     </message>
 </context>
 <context>
@@ -3459,37 +3582,27 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::Theme</name>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="315"/>
         <source>&lt;p&gt;Version %1. For more information please visit &lt;a href=&apos;%2&apos;&gt;%3&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;نسخه %1. برای اطلاعات بیشتر لطفا اینجا را مشاهده کنید t &lt;a href=&apos;%2&apos;&gt;%3&lt;/a&gt;.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;نسخه %1. برای اطلاعات بیشتر لطفا اینجا را مشاهده کنید t &lt;a href=&apos;%2&apos;&gt;%3&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="320"/>
-        <source>&lt;p&gt;Copyright ownCloud GmbH&lt;/p&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/libsync/theme.cpp" line="321"/>
         <source>&lt;p&gt;Distributed by %1 and licensed under the GNU General Public License (GPL) Version 2.0.&lt;br/&gt;%2 and the %2 logo are registered trademarks of %1 in the United States, other countries, or both.&lt;/p&gt;</source>
-        <translation>&lt;p&gt; توسط 1% توزیع شده و تحت مجوز GNU مجوز عمومی سراسری (GPL) نسخه 2.0 است. &lt;br/&gt; 2% و لوگوی 2% علائم تجاری 1% در ایالات متحده، سایر کشورها، یا هر دو را ثبت نام کرده اند. &lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt; توسط 1% توزیع شده و تحت مجوز GNU مجوز عمومی سراسری (GPL) نسخه 2.0 است. &lt;br/&gt; 2% و لوگوی 2% علائم تجاری 1% در ایالات متحده، سایر کشورها، یا هر دو را ثبت نام کرده اند. &lt;/p&gt;</translation>
     </message>
 </context>
 <context>
     <name>OCC::ValidateChecksumHeader</name>
     <message>
-        <location filename="../src/common/checksums.cpp" line="233"/>
         <source>The checksum header is malformed.</source>
-        <translation>سرتیتر checksum نادرست است.</translation>
+        <translation type="vanished">سرتیتر checksum نادرست است.</translation>
     </message>
     <message>
-        <location filename="../src/common/checksums.cpp" line="248"/>
         <source>The checksum header contained an unknown checksum type &apos;%1&apos;</source>
-        <translation>سرتیتر checksum شامل یک checksum نوع &apos;1%&apos; ناشناخته است</translation>
+        <translation type="vanished">سرتیتر checksum شامل یک checksum نوع &apos;1%&apos; ناشناخته است</translation>
     </message>
     <message>
-        <location filename="../src/common/checksums.cpp" line="252"/>
         <source>The downloaded file does not match the checksum, it will be resumed.</source>
-        <translation>پرونده دانلود شده با checksum مطابق نیست، این ادامه خواهد یافت.</translation>
+        <translation type="vanished">پرونده دانلود شده با checksum مطابق نیست، این ادامه خواهد یافت.</translation>
     </message>
 </context>
 <context>
@@ -3688,7 +3801,7 @@ It is not advisable to use it.</source>
         <location filename="../src/gui/owncloudgui.cpp" line="728"/>
         <source>Crash now</source>
         <comment>Only shows in debug mode to allow testing the crash handler</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/owncloudgui.cpp" line="744"/>
@@ -3729,9 +3842,8 @@ It is not advisable to use it.</source>
 <context>
     <name>OCC::ownCloudTheme</name>
     <message>
-        <location filename="../src/libsync/owncloudtheme.cpp" line="46"/>
         <source>&lt;p&gt;Version %2. For more information visit &lt;a href=&quot;%3&quot;&gt;https://%4&lt;/a&gt;&lt;/p&gt;&lt;p&gt;For known issues and help, please visit: &lt;a href=&quot;https://central.owncloud.org/c/desktop-client&quot;&gt;https://central.owncloud.org&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;small&gt;By Klaas Freitag, Daniel Molkentin, Olivier Goffart, Markus Götz,  Jan-Christoph Borchardt, and others.&lt;/small&gt;&lt;/p&gt;&lt;p&gt;Copyright ownCloud GmbH&lt;/p&gt;&lt;p&gt;Licensed under the GNU General Public License (GPL) Version 2.0&lt;br/&gt;ownCloud and the ownCloud Logo are registered trademarks of ownCloud GmbH in the United States, other countries, or both.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;نسخه 2%. برای اطلاعات بیشتر https://%4 را مشاهده کنید.&lt;/p&gt; &lt;p&gt;برای موضوعات آشنا و کمک، لطفا &lt;a href=&quot;https://central.owncloud.org/c/desktop-client&quot;&gt;https://central.owncloud.org&lt;/a&gt; را مشاهده کنید.&lt;/p&gt;&lt;p&gt;&lt;small&gt;توسط Klaas Freitag و Daniel Molkentin و Olivier Goffart و Markus Götz و Jan-Christoph Borchardt و دیگران. &lt;/small&gt;&lt;/p&gt;&lt;p&gt; Copyright ownCloud GmbH&lt;/p&gt;&lt;p&gt;تحت مجوز GNU مجوز عمومی سراسری (GPL) نسخه 2.0 &lt;br/&gt; ownCloud و لوگوی ownCloud علائم تجاری ownCloud GmbH در ایالت متحده، سایر کشورها، یا هر دو را ثبت کرده اند. &lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;نسخه 2%. برای اطلاعات بیشتر https://%4 را مشاهده کنید.&lt;/p&gt; &lt;p&gt;برای موضوعات آشنا و کمک، لطفا &lt;a href=&quot;https://central.owncloud.org/c/desktop-client&quot;&gt;https://central.owncloud.org&lt;/a&gt; را مشاهده کنید.&lt;/p&gt;&lt;p&gt;&lt;small&gt;توسط Klaas Freitag و Daniel Molkentin و Olivier Goffart و Markus Götz و Jan-Christoph Borchardt و دیگران. &lt;/small&gt;&lt;/p&gt;&lt;p&gt; Copyright ownCloud GmbH&lt;/p&gt;&lt;p&gt;تحت مجوز GNU مجوز عمومی سراسری (GPL) نسخه 2.0 &lt;br/&gt; ownCloud و لوگوی ownCloud علائم تجاری ownCloud GmbH در ایالت متحده، سایر کشورها، یا هر دو را ثبت کرده اند. &lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -3796,7 +3908,7 @@ It is not advisable to use it.</source>
     <message>
         <location filename="../src/gui/wizard/owncloudadvancedsetuppage.ui" line="225"/>
         <source>pbSelectLocalFolder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/wizard/owncloudadvancedsetuppage.ui" line="193"/>
@@ -3864,22 +3976,47 @@ It is not advisable to use it.</source>
     </message>
     <message>
         <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="32"/>
-        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="196"/>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="269"/>
         <source>TextLabel</source>
         <translation>برچسب متنی</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="86"/>
-        <source>Ser&amp;ver Address</source>
-        <translation>آدرس سرور</translation>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="48"/>
+        <source>Cloud Intelli&amp;que</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="102"/>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="58"/>
+        <source>Cus&amp;tom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="103"/>
+        <source>Storage Server Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="113"/>
+        <source>Archival Server Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="139"/>
+        <source>API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ser&amp;ver Address</source>
+        <translation type="vanished">آدرس سرور</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="155"/>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="168"/>
         <source>https://...</source>
         <translation>https://...</translation>
     </message>
     <message>
-        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="160"/>
+        <location filename="../src/gui/wizard/owncloudsetupnocredspage.ui" line="233"/>
         <source>Error Label</source>
         <translation>برچسب خطا</translation>
     </message>
@@ -3911,103 +4048,102 @@ It is not advisable to use it.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/common/utility.cpp" line="442"/>
         <source>in the future</source>
-        <translation>در آینده</translation>
+        <translation type="vanished">در آینده</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="438"/>
         <source>%n day(s) ago</source>
-        <translation><numerusform>n% روز پیش</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% روز پیش</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="446"/>
         <source>%n hour(s) ago</source>
-        <translation><numerusform>n% ساعت پیش</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% ساعت پیش</numerusform>
+        </translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="451"/>
         <source>now</source>
-        <translation>اکنون</translation>
+        <translation type="vanished">اکنون</translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="453"/>
         <source>Less than a minute ago</source>
-        <translation>کمتر از یک دقیقه پیش</translation>
+        <translation type="vanished">کمتر از یک دقیقه پیش</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="456"/>
         <source>%n minute(s) ago</source>
-        <translation><numerusform>n% دقیقه پیش</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% دقیقه پیش</numerusform>
+        </translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="459"/>
         <source>Some time ago</source>
-        <translation>چند وقت پیش</translation>
+        <translation type="vanished">چند وقت پیش</translation>
     </message>
     <message>
-        <location filename="../src/libsync/syncresult.cpp" line="145"/>
         <source>%1: %2</source>
         <extracomment>this displays an error string (%2) for a file %1</extracomment>
-        <translation>%1: %2</translation>
+        <translation type="vanished">%1: %2</translation>
     </message>
 </context>
 <context>
     <name>Utility</name>
     <message>
-        <location filename="../src/common/utility.cpp" line="130"/>
         <source>%L1 GB</source>
-        <translation>%L1 GB</translation>
+        <translation type="vanished">%L1 GB</translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="134"/>
         <source>%L1 MB</source>
-        <translation>%L1 MB</translation>
+        <translation type="vanished">%L1 MB</translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="138"/>
         <source>%L1 KB</source>
-        <translation>%L1 KB</translation>
+        <translation type="vanished">%L1 KB</translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="141"/>
         <source>%L1 B</source>
-        <translation>%L1 B</translation>
+        <translation type="vanished">%L1 B</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="310"/>
         <source>%n year(s)</source>
-        <translation><numerusform>n% سال</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% سال</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="311"/>
         <source>%n month(s)</source>
-        <translation><numerusform>n% ماه</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% ماه</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="312"/>
         <source>%n day(s)</source>
-        <translation><numerusform>n% روز</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% روز</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="313"/>
         <source>%n hour(s)</source>
-        <translation><numerusform>n% ساعت</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% ساعت</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="314"/>
         <source>%n minute(s)</source>
-        <translation><numerusform>n% دقیقه</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% دقیقه</numerusform>
+        </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/utility.cpp" line="315"/>
         <source>%n second(s)</source>
-        <translation><numerusform>n% ثانیه</numerusform></translation>
+        <translation type="vanished">
+            <numerusform>n% ثانیه</numerusform>
+        </translation>
     </message>
     <message>
-        <location filename="../src/common/utility.cpp" line="339"/>
         <source>%1 %2</source>
-        <translation>%1 %2</translation>
+        <translation type="vanished">%1 %2</translation>
     </message>
 </context>
 <context>
@@ -4015,163 +4151,129 @@ It is not advisable to use it.</source>
     <message>
         <location filename="../src/gui/main.cpp" line="38"/>
         <source>System Tray not available</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/main.cpp" line="39"/>
         <source>%1 requires on a working system tray. If you are running XFCE, please follow &lt;a href=&quot;http://docs.xfce.org/xfce/xfce4-panel/systray&quot;&gt;these instructions&lt;/a&gt;. Otherwise, please install a system tray application such as &apos;trayer&apos; and try again.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ownCloudTheme::about()</name>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="299"/>
         <source>&lt;p&gt;&lt;small&gt;Built from Git revision &lt;a href=&quot;%1&quot;&gt;%2&lt;/a&gt; on %3, %4 using Qt %5, %6&lt;/small&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;small&gt;ساخته شده از اصلاح &lt;a href=&quot;%1&quot;&gt;2%&lt;/a&gt; Git روی 3%، 4% با استفاده از Qt 5%، 6% &lt;/small&gt;&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;&lt;small&gt;ساخته شده از اصلاح &lt;a href=&quot;%1&quot;&gt;2%&lt;/a&gt; Git روی 3%، 4% با استفاده از Qt 5%، 6% &lt;/small&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
     <name>progress</name>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="32"/>
         <source>Downloaded</source>
-        <translation>دریافت شده اند</translation>
+        <translation type="vanished">دریافت شده اند</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="34"/>
         <source>Uploaded</source>
-        <translation>بارگذاری شده است.</translation>
+        <translation type="vanished">بارگذاری شده است.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="37"/>
         <source>Server version downloaded, copied changed local file into conflict file</source>
-        <translation>نسخه سرور دانلود شد، پرونده محلی تغییر یافته به پرونده ناسازگار کپی شد</translation>
+        <translation type="vanished">نسخه سرور دانلود شد، پرونده محلی تغییر یافته به پرونده ناسازگار کپی شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="39"/>
         <source>Deleted</source>
-        <translation>حذف شده</translation>
+        <translation type="vanished">حذف شده</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="42"/>
         <source>Moved to %1</source>
-        <translation>به %1 انتقال یافت </translation>
+        <translation type="vanished">به %1 انتقال یافت </translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="44"/>
         <source>Ignored</source>
-        <translation>نادیده گرفته شد</translation>
+        <translation type="vanished">نادیده گرفته شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="46"/>
         <source>Filesystem access error</source>
-        <translation>خطای دسترسی به فایل‌های سیستمی</translation>
+        <translation type="vanished">خطای دسترسی به فایل‌های سیستمی</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="48"/>
         <source>Error</source>
-        <translation>خطا</translation>
+        <translation type="vanished">خطا</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="50"/>
         <source>Updated local metadata</source>
-        <translation>فرا داده محلی به روز رسانی شده</translation>
+        <translation type="vanished">فرا داده محلی به روز رسانی شده</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="53"/>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="55"/>
         <source>Unknown</source>
-        <translation>نامشخص</translation>
+        <translation type="vanished">نامشخص</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="66"/>
         <source>downloading</source>
-        <translation>در حال دانلود</translation>
+        <translation type="vanished">در حال دانلود</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="68"/>
         <source>uploading</source>
-        <translation>در حال آپلود</translation>
+        <translation type="vanished">در حال آپلود</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="70"/>
         <source>deleting</source>
-        <translation>در حال حذف</translation>
+        <translation type="vanished">در حال حذف</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="73"/>
         <source>moving</source>
-        <translation>در حال انتقال</translation>
+        <translation type="vanished">در حال انتقال</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="75"/>
         <source>ignoring</source>
-        <translation>نادیده گرفتن</translation>
+        <translation type="vanished">نادیده گرفتن</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="77"/>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="79"/>
         <source>error</source>
-        <translation>خطا</translation>
+        <translation type="vanished">خطا</translation>
     </message>
     <message>
-        <location filename="../src/libsync/progressdispatcher.cpp" line="81"/>
         <source>updating local metadata</source>
-        <translation>فرا داده محلی به روز رسانی شده</translation>
+        <translation type="vanished">فرا داده محلی به روز رسانی شده</translation>
     </message>
 </context>
 <context>
     <name>theme</name>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="60"/>
         <source>Status undefined</source>
-        <translation>وضعیت نامشخص است</translation>
+        <translation type="vanished">وضعیت نامشخص است</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="63"/>
         <source>Waiting to start sync</source>
-        <translation>در حال انتظار برای شروع همگام‌سازی</translation>
+        <translation type="vanished">در حال انتظار برای شروع همگام‌سازی</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="66"/>
         <source>Sync is running</source>
-        <translation>همگام سازی در حال اجراست</translation>
+        <translation type="vanished">همگام سازی در حال اجراست</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="69"/>
         <source>Sync Success</source>
-        <translation>همگام‌سازی با موفقیت انجام شد</translation>
+        <translation type="vanished">همگام‌سازی با موفقیت انجام شد</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="72"/>
         <source>Sync Success, some files were ignored.</source>
-        <translation>همگام‌سازی موفق، تعداد از فایل‌ها نادیده گرفته شده‌اند.</translation>
+        <translation type="vanished">همگام‌سازی موفق، تعداد از فایل‌ها نادیده گرفته شده‌اند.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="75"/>
         <source>Sync Error</source>
-        <translation>خطای همگام‌سازی</translation>
+        <translation type="vanished">خطای همگام‌سازی</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="78"/>
         <source>Setup Error</source>
-        <translation>خطای نصب</translation>
+        <translation type="vanished">خطای نصب</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="81"/>
         <source>Preparing to sync</source>
-        <translation>آماده‌سازی همگام‌سازی</translation>
+        <translation type="vanished">آماده‌سازی همگام‌سازی</translation>
     </message>
     <message>
-        <location filename="../src/libsync/theme.cpp" line="84"/>
-        <source>Aborting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/libsync/theme.cpp" line="87"/>
         <source>Sync is paused</source>
-        <translation>همگام‌سازیی فعلا متوقف شده است</translation>
+        <translation type="vanished">همگام‌سازیی فعلا متوقف شده است</translation>
     </message>
 </context>
 <context>
