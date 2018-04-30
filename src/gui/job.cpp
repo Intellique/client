@@ -119,6 +119,9 @@ QString Job::statusString() const {
         case Job::Stopped:
             return "Stopped";
 
+        case Job::Waiting:
+            return "Waiting";
+
         default:
             return "Unkown";
     }
