@@ -24,9 +24,6 @@
 	background-position: center center;
 }</string>
      </property>
-     <property name="alternatingRowColors">
-      <bool>true</bool>
-     </property>
      <property name="selectionMode">
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
@@ -76,7 +73,8 @@
         <string>Consult archive files</string>
        </property>
        <property name="icon">
-        <iconset theme="view-dual-symbolic"/>
+        <iconset theme="view-dual-symbolic">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
