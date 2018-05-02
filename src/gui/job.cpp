@@ -1,3 +1,4 @@
+#include <QCoreApplication>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QHash>
@@ -99,31 +100,31 @@ bool Job::parseJson(const QJsonObject& job) {
 QString Job::statusString() const {
     switch (this->m_status) {
         case Job::Disable:
-            return "Disable";
+            return QCoreApplication::tr("Disable");
 
         case Job::Error:
-            return "Error";
+            return QCoreApplication::tr("Error");
 
         case Job::Finished:
-            return "Finished";
+            return QCoreApplication::tr("Finished");
 
         case Job::Pause:
-            return "Pause";
+            return QCoreApplication::tr("Pause");
 
         case Job::Running:
-            return "Running";
+            return QCoreApplication::tr("Running");
 
         case Job::Scheduled:
-            return "Scheduled";
+            return QCoreApplication::tr("Scheduled");
 
         case Job::Stopped:
-            return "Stopped";
+            return QCoreApplication::tr("Stopped");
 
         case Job::Waiting:
-            return "Waiting";
+            return QCoreApplication::tr("Waiting");
 
         default:
-            return "Unkown";
+            return QCoreApplication::tr("Unkown", "job status");
     }
 }
 

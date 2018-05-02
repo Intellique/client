@@ -4071,6 +4071,55 @@ Il est déconseillé de l&apos;utiliser.</translation>
     </message>
 </context>
 <context>
+    <name>QCoreApplication</name>
+    <message>
+        <location filename="../src/gui/job.cpp" line="103"/>
+        <source>Disable</source>
+        <translation>Désactivée</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="106"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="109"/>
+        <source>Finished</source>
+        <translation>Terminée</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="112"/>
+        <source>Pause</source>
+        <translation>Pause</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="115"/>
+        <source>Running</source>
+        <translation>En cours</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="118"/>
+        <source>Scheduled</source>
+        <translation>Programmé</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="121"/>
+        <source>Stopped</source>
+        <translation>Arrêtée</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="124"/>
+        <source>Waiting</source>
+        <translation>En attendante</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/job.cpp" line="127"/>
+        <source>Unkown</source>
+        <comment>job status</comment>
+        <translation>Inconnue</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <source>in the future</source>
