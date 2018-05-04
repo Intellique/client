@@ -8,6 +8,7 @@
 #include "account.h"
 #include "archivefile.h"
 #include "archivefilecomputesize.h"
+#include "syncfilestatus.h"
 
 class QItemSelection;
 
@@ -44,6 +45,7 @@ class ArchiveFileModel : public QAbstractTableModel {
 
     private:
         ArchiveFile& archiveFile(int index);
+        static OCC::SyncFileStatus::SyncFileStatusTag fileStatus(const QString& path);
 
         void recomputeSize();
 

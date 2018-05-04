@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include <QBrush>
 #include <QCollator>
 #include <QDir>
 #include <QFileIconProvider>
@@ -11,6 +12,7 @@
 #include "archivefilemodel.h"
 #include "common/utility.h"
 #include "folderman.h"
+#include "syncengine.h"
 
 using OCC::AccountPtr;
 using OCC::Folder;
@@ -98,6 +100,40 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
     static QMimeDatabase db_mime_type;
     if (index.row() < this->m_files.length()) {
         const ArchiveFile& file = this->m_files[index.row()];
+        switch (role) {
+            case Qt::BackgroundRole: {
+                OCC::SyncFileStatus::SyncFileStatusTag status = this->fileStatus(file.info().absoluteFilePath());
+                switch(status) {
+                    case OCC::SyncFileStatus::StatusNone:
+                    case OCC::SyncFileStatus::StatusWarning:
+                    case OCC::SyncFileStatus::StatusError:
+                        return QBrush(Qt::red);
+
+                    case OCC::SyncFileStatus::StatusSync:
+                        return QBrush(Qt::yellow);
+
+                    default:
+                        return QVariant();
+                }
+            }
+
+            case Qt::ForegroundRole: {
+                OCC::SyncFileStatus::SyncFileStatusTag status = this->fileStatus(file.info().absoluteFilePath());
+                switch(status) {
+                    case OCC::SyncFileStatus::StatusNone:
+                    case OCC::SyncFileStatus::StatusWarning:
+                    case OCC::SyncFileStatus::StatusError:
+                        return QBrush(Qt::white);
+
+                    default:
+                        return QVariant();
+                }
+            }
+
+            default:
+                break;
+        }
+
         switch (index.column()) {
             case 0:
                 switch (role) {
@@ -140,20 +176,19 @@ QVariant ArchiveFileModel::data(const QModelIndex& index, int role) const {
             case 3: {
                 switch (role) {
                     case Qt::DisplayRole: {
-                        Folder * folder = FolderMan::instance()->folderForPath(file.info().absoluteFilePath());
-                        switch (folder->syncResult().status()) {
-                            case SyncResult::NotYetStarted:
+                        OCC::SyncFileStatus::SyncFileStatusTag status = this->fileStatus(file.info().absoluteFilePath());
+                        switch(status) {
+                            case OCC::SyncFileStatus::StatusNone:
                                 return tr("Not synchonized");
 
-                            case SyncResult::SyncPrepare:
-                            case SyncResult::SyncRunning:
+                            case OCC::SyncFileStatus::StatusSync:
                                 return tr("Synchonizing");
 
-                            case SyncResult::Success:
-                                return tr("Synchonized");
+                            case OCC::SyncFileStatus::StatusWarning:
+                                return tr("Warning");
 
-                            case SyncResult::Paused:
-                                return tr("Paused");
+                            case OCC::SyncFileStatus::StatusUpToDate:
+                                return tr("Synchonized");
 
                             default:
                                 return tr("Error");
@@ -181,6 +216,16 @@ QJsonArray ArchiveFileModel::files(const QString& remote_dir) const {
         files << dir.filePath(file.info().absoluteFilePath().mid(folder->path().length()));
     }
     return files;
+}
+
+OCC::SyncFileStatus::SyncFileStatusTag ArchiveFileModel::fileStatus(const QString& path) {
+    Folder * folder = FolderMan::instance()->folderForPath(path);
+    if (folder == nullptr)
+        return OCC::SyncFileStatus::StatusError;
+
+    QString systemPath = QDir::cleanPath(path);
+    QString relativePath = systemPath.mid(folder->cleanPath().length() + 1);
+    return folder->syncEngine().syncFileStatusTracker().fileStatus(relativePath).tag();
 }
 
 QVariant ArchiveFileModel::headerData(int section, Qt::Orientation orientation, int role) const {
