@@ -44,6 +44,10 @@ JobWidget::JobWidget(QWidget *parent) : QWidget(parent), ui(new Ui::JobWidget) {
     header->setSectionResizeMode(3, QHeaderView::Stretch);
     header->setSectionResizeMode(4, QHeaderView::ResizeToContents);
 
+    // icon
+    QStyle * style = this->style();
+    this->ui->lblJobIcon->setPixmap(style->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(32, 32));
+
     QTimer::singleShot(5000, this, SLOT(updateModel()));
 }
 

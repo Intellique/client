@@ -10,6 +10,7 @@
 #include "creds/httpcredentialsgui.h"
 #include "folderman.h"
 #include "settingsdialog.h"
+#include "theme.h"
 #include "ui_archivewidget.h"
 
 using OCC::ArchivalAuthJob;
@@ -38,6 +39,10 @@ ArchiveWidget::ArchiveWidget(QWidget *parent) : QWidget(parent), ui(new ::Ui::Ar
     // resize header
     QHeaderView * header = this->ui->tblVwArchiveFile->horizontalHeader();
     header->setSectionResizeMode(1, QHeaderView::Stretch);
+
+    // icon
+    QStyle * style = this->style();
+    this->ui->lblArchiveIcon->setPixmap(style->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(32, 32));
 }
 
 ArchiveWidget::~ArchiveWidget() {
