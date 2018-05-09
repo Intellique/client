@@ -10,7 +10,7 @@ Job::Job(const QJsonObject& job) {
     this->m_is_null = not this->parseJson(job);
 }
 
-Job::Job(const Job& job) : m_id(job.m_id), m_name(job.m_name), m_start_time(job.m_start_time), m_end_time(job.m_end_time), m_done(job.m_done), m_status(job.m_status), m_is_null(job.m_is_null) {}
+Job::Job(const Job& job) : m_id(job.m_id), m_type(job.m_type), m_name(job.m_name), m_start_time(job.m_start_time), m_end_time(job.m_end_time), m_done(job.m_done), m_status(job.m_status), m_is_null(job.m_is_null) {}
 
 
 QDateTime Job::endTime() const {
@@ -41,6 +41,12 @@ bool Job::parseJson(const QJsonObject& job) {
     QJsonValue elt = job["id"];
     if (elt.isDouble())
         this->m_id = elt.toInt();
+    else
+        this->m_is_null = true;
+
+    elt = job["type"];
+    if (elt.isString())
+        this->m_type = elt.toString();
     else
         this->m_is_null = true;
 
@@ -148,6 +154,7 @@ Job& Job::operator=(const Job& job) {
         return *this;
 
     this->m_id = job.m_id;
+    this->m_type = job.m_type;
     this->m_name = job.m_name;
     this->m_start_time = job.m_start_time;
     this->m_end_time = job.m_end_time;

@@ -13,7 +13,7 @@ int JobModel::columnCount(const QModelIndex &parent) const {
     if (parent.isValid())
         return 0;
     else
-        return 6;
+        return 7;
 }
 
 QVariant JobModel::data(const QModelIndex &index, int role) const {
@@ -37,11 +37,21 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
             case 1:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return job.name();
+                        return job.type();
+
+                    case Qt::TextAlignmentRole:
+                        return Qt::AlignCenter;
                 }
                 break;
 
             case 2:
+                switch (role) {
+                    case Qt::DisplayRole:
+                        return job.name();
+                }
+                break;
+
+            case 3:
                 switch (role) {
                     case Qt::DisplayRole:
                         return QLocale::system().toString(job.startTime(), QLocale::ShortFormat);
@@ -51,7 +61,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
                 }
                 break;
 
-            case 3:
+            case 4:
                 switch (role) {
                     case Qt::DisplayRole:
                         if (job.done() > 0)
@@ -61,7 +71,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
                 }
                 break;
 
-            case 4:
+            case 5:
                 switch (role) {
                     case Qt::DisplayRole:
                         return job.etaToString();
@@ -71,7 +81,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
                 }
                 break;
 
-            case 5:
+            case 6:
                 switch (role) {
                     case Qt::DisplayRole:
                         return job.statusString();
@@ -95,18 +105,21 @@ QVariant JobModel::headerData(int section, Qt::Orientation orientation, int role
             return "#";
 
         case 1:
-            return tr("Name");
+            return tr("Type");
 
         case 2:
-            return tr("Start time");
+            return tr("Name");
 
         case 3:
-            return tr("Progress");
+            return tr("Start time");
 
         case 4:
-            return tr("ETA");
+            return tr("Progress");
 
         case 5:
+            return tr("ETA");
+
+        case 6:
             return tr("Status");
 
         default:
@@ -152,13 +165,16 @@ void JobModel::setJobList(const QList<int>& jobs) {
         if (not jobs.contains(key)) {
             this->beginRemoveRows(QModelIndex(), pos, pos);
             this->m_jobs.remove(key);
+            this->m_display_order.removeAt(pos);
             this->endRemoveRows();
+
+            pos--;
         }
     }
 }
 
 void JobModel::sort(int column, Qt::SortOrder order) {
-    emit this->layoutAboutToBeChanged();
+    emit this->layoutAboutToBeChanged(QList<QPersistentModelIndex>(), QAbstractItemModel::VerticalSortHint);
 
     switch (column) {
         // sort by id
@@ -171,6 +187,37 @@ void JobModel::sort(int column, Qt::SortOrder order) {
 
         // sort by name
         case 1: {
+            QCollator col;
+            col.setCaseSensitivity(Qt::CaseInsensitive);
+            col.setNumericMode(true);
+
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this, &col](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    int diff = col.compare(job_a.type(), job_b.type());
+                    if (diff == 0)
+                        return a < b;
+                    else
+                        return diff < 0;
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this, &col](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    int diff = col.compare(job_a.type(), job_b.type());
+                    if (diff == 0)
+                        return a > b;
+                    else
+                        return diff > 0;
+                });
+            break;
+        }
+
+        // sort by name
+        case 2: {
             QCollator col;
             col.setCaseSensitivity(Qt::CaseInsensitive);
             col.setNumericMode(true);
@@ -201,7 +248,7 @@ void JobModel::sort(int column, Qt::SortOrder order) {
         }
 
         // sort by start time
-        case 2:
+        case 3:
             if (order == Qt::AscendingOrder)
                 std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
                     const Job& job_a = this->m_jobs[a];
@@ -225,7 +272,7 @@ void JobModel::sort(int column, Qt::SortOrder order) {
             break;
 
         // sort by progression
-        case 3:
+        case 4:
             if (order == Qt::AscendingOrder)
                 std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
                     const Job& job_a = this->m_jobs[a];
@@ -249,7 +296,7 @@ void JobModel::sort(int column, Qt::SortOrder order) {
             break;
 
         // sort by eta
-        case 4:
+        case 5:
             if (order == Qt::AscendingOrder)
                 std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
                     const Job& job_a = this->m_jobs[a];
@@ -273,7 +320,7 @@ void JobModel::sort(int column, Qt::SortOrder order) {
             break;
 
         // sort by status
-        case 5:
+        case 6:
             if (order == Qt::AscendingOrder)
                 std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
                     const Job& job_a = this->m_jobs[a];

@@ -48,6 +48,9 @@ class Job {
             return this->m_status;
         }
         QString statusString() const;
+        inline const QString& type() const {
+            return this->m_type;
+        }
 
         Job& operator =(const QJsonObject& job);
         Job& operator =(const Job& job);
@@ -56,6 +59,7 @@ class Job {
         bool parseJson(const QJsonObject& job);
 
         int m_id = -1;
+        QString m_type;
         QString m_name;
         QDateTime m_start_time;
         QDateTime m_end_time;
