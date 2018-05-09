@@ -73,6 +73,7 @@ bool ArchiveFileModel::canCreateArchive() {
             case OCC::SyncFileStatus::StatusNone:
             case OCC::SyncFileStatus::StatusWarning:
             case OCC::SyncFileStatus::StatusError:
+            case OCC::SyncFileStatus::StatusSync:
                 return false;
 
             default:
