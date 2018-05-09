@@ -2705,7 +2705,7 @@ No se recomienda usarla.</translation>
     <message>
         <location filename="../src/gui/settingsdialog.cpp" line="109"/>
         <source>Archive</source>
-        <translation>Archivo</translation>
+        <translation type="unfinished">Archivo</translation>
     </message>
     <message>
         <location filename="../src/gui/settingsdialog.cpp" line="115"/>
