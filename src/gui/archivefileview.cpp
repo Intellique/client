@@ -67,8 +67,10 @@ void ArchiveFileView::dropEvent(QDropEvent * event) {
             }
         }
 
-        if (ok)
+        if (ok) {
             event->acceptProposedAction();
+            emit this->filesChanged();
+        }
     }
 }
 

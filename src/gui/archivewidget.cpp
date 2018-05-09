@@ -25,6 +25,7 @@ ArchiveWidget::ArchiveWidget(QWidget *parent) : QWidget(parent), ui(new ::Ui::Ar
     this->model = new ArchiveFileModel(this);
     this->ui->tblVwArchiveFile->setModel(this->model);
 
+    connect(this->ui->tblVwArchiveFile, SIGNAL(filesChanged()), SLOT(checkCanArchive()));
     connect(this->model, SIGNAL(sizeComputed(quint64, quint64, quint64)), SLOT(sizeUpdated(quint64, quint64, quint64)));
     connect(this->model, SIGNAL(startComputeSize()), SLOT(startUpdatingSize()));
     connect(this->ui->pshBttnRemoveFiles, SIGNAL(clicked()), SLOT(removeFiles()));
@@ -165,6 +166,7 @@ void ArchiveWidget::noPoolFound() {
 
 void ArchiveWidget::removeFiles() {
     this->model->removeSelection(this->ui->tblVwArchiveFile->selectionModel()->selection());
+    this->checkCanArchive();
 }
 
 void ArchiveWidget::searchPool(QJsonObject user_info) {

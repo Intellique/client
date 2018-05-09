@@ -7,10 +7,15 @@
 class ArchiveFileModel;
 
 class ArchiveFileView : public QTableView {
+    Q_OBJECT
+
     public:
         ArchiveFileView(QWidget * parent = nullptr);
 
         void setModel(ArchiveFileModel * model);
+
+    signals:
+        void filesChanged();
 
     protected:
         void dragEnterEvent(QDragEnterEvent * event) override;

@@ -67,11 +67,17 @@ ArchiveFile& ArchiveFileModel::archiveFile(int index) {
 }
 
 bool ArchiveFileModel::canCreateArchive() {
-    FolderMan * monitor = FolderMan::instance();
     foreach (const ArchiveFile& file, this->m_files) {
-        Folder * folder = monitor->folderForPath(file.info().absoluteFilePath());
-        if (folder->syncResult().status() != OCC::SyncResult::Success)
-            return false;
+        OCC::SyncFileStatus::SyncFileStatusTag status = this->fileStatus(file.info().absoluteFilePath());
+        switch(status) {
+            case OCC::SyncFileStatus::StatusNone:
+            case OCC::SyncFileStatus::StatusWarning:
+            case OCC::SyncFileStatus::StatusError:
+                return false;
+
+            default:
+                continue;
+        }
     }
 
     return true;
