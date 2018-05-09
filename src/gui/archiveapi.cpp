@@ -208,7 +208,7 @@ void ArchivalJobInfoJob::start() {
 
 
 
-ArchivalJobsJob::ArchivalJobsJob(const AccountPtr& account, int user_id, int limit, QObject * parent) : AbstractNetworkJob(account, "api/v1/job/search/index.php", parent), m_user_id(user_id), m_limit(limit) {}
+ArchivalJobsJob::ArchivalJobsJob(const AccountPtr& account, int user_id, bool running, int limit, QObject * parent) : AbstractNetworkJob(account, "api/v1/job/search/index.php", parent), m_user_id(user_id), m_running(running), m_limit(limit) {}
 
 
 bool ArchivalJobsJob::finished() {
@@ -247,6 +247,10 @@ void ArchivalJobsJob::start() {
     QList<QPair<QString, QString>> params;
     params << qMakePair(QString::fromLatin1("order_by"), QString::fromLatin1("id"));
     params << qMakePair(QString::fromLatin1("order_asc"), QString::fromLatin1("false"));
+    if (this->m_running)
+        params << qMakePair(QString::fromLatin1("status"), QString::fromLatin1("pause,running,scheduled,waiting"));
+    else
+        params << qMakePair(QString::fromLatin1("status"), QString::fromLatin1("disable,error,finished,stopped"));
     params << qMakePair(QString::fromLatin1("limit"), QString::number(this->m_limit));
     params << qMakePair(QString::fromLatin1("login"), QString::number(this->m_user_id));
     url.setQueryItems(params);

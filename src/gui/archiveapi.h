@@ -113,7 +113,7 @@ namespace OCC {
         Q_OBJECT
 
     public:
-        explicit ArchivalJobsJob(const AccountPtr& account, int user_id, int limit = 5, QObject * parent = nullptr);
+        explicit ArchivalJobsJob(const AccountPtr& account, int user_id, bool running, int limit = 12, QObject * parent = nullptr);
 
     public slots:
         void start() Q_DECL_OVERRIDE;
@@ -128,6 +128,7 @@ namespace OCC {
 
     private:
         int m_user_id;
+        bool m_running;
         int m_limit;
     };
 
