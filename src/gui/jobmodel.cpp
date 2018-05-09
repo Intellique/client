@@ -1,5 +1,6 @@
 #include <algorithm>
 
+#include <QCollator>
 #include <QLocale>
 #include <QJsonArray>
 
@@ -20,9 +21,7 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
         return QVariant();
 
     if (index.row() < this->m_jobs.size()) {
-        QList<int> current_keys = this->m_jobs.keys();
-        std::sort(current_keys.begin(), current_keys.end(), std::greater<int>());
-        int current_key = current_keys.at(index.row());
+        int current_key = this->m_display_order.at(index.row());
         const Job& job = this->m_jobs[current_key];
         switch (index.column()) {
             case 0:
@@ -55,14 +54,17 @@ QVariant JobModel::data(const QModelIndex &index, int role) const {
             case 3:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return job.done();
+                        if (job.done() > 0)
+                            return job.done();
+                        else
+                            return -1;
                 }
                 break;
 
             case 4:
                 switch (role) {
                     case Qt::DisplayRole:
-                        return job.eta();
+                        return job.etaToString();
 
                     case Qt::TextAlignmentRole:
                         return Qt::AlignCenter;
@@ -114,7 +116,7 @@ QVariant JobModel::headerData(int section, Qt::Orientation orientation, int role
 
 QModelIndex JobModel::index(int row, int column, const QModelIndex& parent) const {
     if (not parent.isValid() and row < this->m_jobs.size()) {
-        int current_key = this->m_jobs.keys().at(row);
+        int current_key = this->m_display_order.at(row);
         return createIndex(row, column, &this->m_jobs[current_key]);
     } else
         return QModelIndex();
@@ -132,26 +134,168 @@ void JobModel::setJob(const Job& job) {
         return;
 
     if (this->m_jobs.contains(job.id())) {
-        int pos = this->m_jobs.keys().indexOf(job.id());
+        int pos = this->m_display_order.indexOf(job.id());
         this->m_jobs[job.id()] = job;
         this->dataChanged(this->index(pos, 0), this->index(pos, 5));
     } else {
         int row = this->m_jobs.size();
         this->beginInsertRows(QModelIndex(), row, row);
+        this->m_display_order.append(job.id());
         this->m_jobs[job.id()] = job;
         this->endInsertRows();
     }
 }
 
 void JobModel::setJobList(const QList<int>& jobs) {
-    QList<int> current_keys = this->m_jobs.keys();
-    std::sort(current_keys.begin(), current_keys.end(), std::greater<int>());
-    for (int pos = 0; pos < current_keys.length(); pos++) {
-        int key = current_keys[pos];
+    for (int pos = 0; pos < this->m_display_order.length(); pos++) {
+        int key = this->m_display_order[pos];
         if (not jobs.contains(key)) {
             this->beginRemoveRows(QModelIndex(), pos, pos);
             this->m_jobs.remove(key);
             this->endRemoveRows();
         }
     }
+}
+
+void JobModel::sort(int column, Qt::SortOrder order) {
+    emit this->layoutAboutToBeChanged();
+
+    switch (column) {
+        // sort by id
+        case 0:
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end());
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), std::greater<int>());
+            break;
+
+        // sort by name
+        case 1: {
+            QCollator col;
+            col.setCaseSensitivity(Qt::CaseInsensitive);
+            col.setNumericMode(true);
+
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this, &col](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    int diff = col.compare(job_a.name(), job_b.name());
+                    if (diff == 0)
+                        return a < b;
+                    else
+                        return diff < 0;
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this, &col](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    int diff = col.compare(job_a.name(), job_b.name());
+                    if (diff == 0)
+                        return a > b;
+                    else
+                        return diff > 0;
+                });
+            break;
+        }
+
+        // sort by start time
+        case 2:
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.startTime() == job_b.startTime())
+                        return a < b;
+                    else
+                        return job_a.startTime() < job_b.startTime();
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.startTime() == job_b.startTime())
+                        return a > b;
+                    else
+                        return job_a.startTime() > job_b.startTime();
+                });
+            break;
+
+        // sort by progression
+        case 3:
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.done() == job_b.done())
+                        return a < b;
+                    else
+                        return job_a.done() < job_b.done();
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.done() == job_b.done())
+                        return a > b;
+                    else
+                        return job_a.done() > job_b.done();
+                });
+            break;
+
+        // sort by eta
+        case 4:
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.eta() == job_b.eta())
+                        return a < b;
+                    else
+                        return job_a.eta() < job_b.eta();
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.eta() == job_b.eta())
+                        return a > b;
+                    else
+                        return job_a.eta() > job_b.eta();
+                });
+            break;
+
+        // sort by status
+        case 5:
+            if (order == Qt::AscendingOrder)
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.status() == job_b.status())
+                        return a < b;
+                    else
+                        return job_a.status() < job_b.status();
+                });
+            else
+                std::sort(this->m_display_order.begin(), this->m_display_order.end(), [this](int a, int b) {
+                    const Job& job_a = this->m_jobs[a];
+                    const Job& job_b = this->m_jobs[b];
+
+                    if (job_a.status() == job_b.status())
+                        return a > b;
+                    else
+                        return job_a.status() > job_b.status();
+                });
+            break;
+    }
+
+    emit this->layoutChanged();
 }

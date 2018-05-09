@@ -19,8 +19,10 @@ class JobModel : public QAbstractTableModel {
         int rowCount(const QModelIndex& parent = QModelIndex()) const override;
         void setJob(const Job& job);
         void setJobList(const QList<int>& jobs);
+        void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
     private:
+        QList<int> m_display_order;
         mutable QMap<int, Job> m_jobs;
 };
 

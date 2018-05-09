@@ -14,20 +14,21 @@ class Job {
         ~Job() = default;
 
         enum Status {
-            Disable,
-            Error,
-            Finished,
-            Pause,
-            Running,
             Scheduled,
-            Stopped,
             Waiting,
+            Error,
+            Pause,
+            Stopped,
+            Running,
+            Disable,
+            Finished,
 
             Unknown
         };
 
         QDateTime endTime() const;
-        QString eta() const;
+        QDateTime eta() const;
+        QString etaToString() const;
         inline double done() const {
             return this->m_done;
         }

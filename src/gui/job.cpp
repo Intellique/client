@@ -17,7 +17,16 @@ QDateTime Job::endTime() const {
     return this->m_end_time;
 }
 
-QString Job::eta() const {
+QDateTime Job::eta() const {
+    if (this->m_end_time.isValid())
+        return QDateTime();
+
+    QDateTime now = QDateTime::currentDateTime();
+    qint64 msec = this->m_start_time.msecsTo(now);
+    return this->m_start_time.addMSecs(msec / this->m_done);
+}
+
+QString Job::etaToString() const {
     if (this->m_end_time.isValid())
         return "";
 
