@@ -125,10 +125,6 @@ void JobWidget::gotToken(const QString& token) {
 void JobWidget::job(const Job& job) {
     this->model->setJob(job);
     this->fetchNextJob();
-    this->ui->tblVwJobs->resizeColumnToContents(0);
-    this->ui->tblVwJobs->resizeColumnToContents(2);
-    this->ui->tblVwJobs->resizeColumnToContents(4);
-    this->ui->tblVwJobs->resizeColumnToContents(5);
 }
 
 void JobWidget::jobKilled() {
