@@ -37,6 +37,7 @@
 #include "servernotificationhandler.h"
 #include "theme.h"
 #include "ocsjob.h"
+#include "joblogwidget.h"
 
 #include "ui_activitywidget.h"
 
@@ -529,6 +530,9 @@ ActivitySettings::ActivitySettings(QWidget *parent)
         this, &ActivitySettings::slotShowIssueItemCount);
     connect(_issuesWidget, &IssuesWidget::copyToClipboard,
         this, &ActivitySettings::slotCopyToClipboard);
+
+    QWidget * jobs = new JobLogWidget(this);
+    _tab->addTab(jobs, QIcon(QLatin1String(":/client/resources/log_22.png")), tr("Last jobs"));
 
     // Add a progress indicator to spin if the acitivity list is updated.
     _progressIndicator = new QProgressIndicator(this);

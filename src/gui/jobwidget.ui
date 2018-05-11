@@ -64,7 +64,7 @@
         <item>
          <widget class="QLabel" name="lblJobInfo">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Intellique's archive solution: &lt;/span&gt;check your current tasks in progress&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Intellique's archive solution: &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;check your current tasks in progress&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>

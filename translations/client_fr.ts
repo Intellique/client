@@ -4,47 +4,51 @@
 <context>
     <name>ArchiveFileModel</name>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="146"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="189"/>
         <source>Not synchonized</source>
         <translation>Non synchronisé</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="150"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="192"/>
         <source>Synchonizing</source>
         <translation>Synchronisation en cours</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="153"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="195"/>
+        <source>Warning</source>
+        <translation>Attention</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivefilemodel.cpp" line="198"/>
         <source>Synchonized</source>
         <translation>Synchronisé</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="156"/>
         <source>Paused</source>
-        <translation>En Pause</translation>
+        <translation type="vanished">En Pause</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="159"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="201"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="192"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="244"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="195"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="247"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="198"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="250"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivefilemodel.cpp" line="201"/>
+        <location filename="../src/gui/archivefilemodel.cpp" line="253"/>
         <source>Status</source>
         <translation>Statut</translation>
     </message>
@@ -57,32 +61,37 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="65"/>
+        <location filename="../src/gui/archivewidget.ui" line="217"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Intellique&apos;s archive solution: &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;put your files here and create your archive&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;La solution d&apos;archivage d&apos;Intellique : &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;mettez vos fichiers ici et créez vos archives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/archivewidget.ui" line="294"/>
         <source>Archive&apos;s name</source>
         <translation>Nom de l&apos;archive</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="72"/>
+        <location filename="../src/gui/archivewidget.ui" line="301"/>
         <source>Name used for current archiving queue</source>
         <translation>Nom utilisé pour l&apos;actuel file d&apos;attente d&apos;archivage</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="87"/>
+        <location filename="../src/gui/archivewidget.ui" line="310"/>
         <source>Files in current queue</source>
         <translation>Fichers dans la file d&apos;attente</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="129"/>
+        <location filename="../src/gui/archivewidget.ui" line="352"/>
         <source>Add Files...</source>
         <translation>Ajouter des fichiers...</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="143"/>
+        <location filename="../src/gui/archivewidget.ui" line="366"/>
         <source>Remove files</source>
         <translation>Retirer des fichiers</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.ui" line="176"/>
+        <location filename="../src/gui/archivewidget.ui" line="399"/>
         <source>Create archive</source>
         <translation>Créer une archive</translation>
     </message>
@@ -139,29 +148,80 @@
     </message>
 </context>
 <context>
-    <name>JobModel</name>
+    <name>JobLogModel</name>
     <message>
-        <location filename="../src/gui/jobmodel.cpp" line="96"/>
+        <location filename="../src/gui/joblogmodel.cpp" line="95"/>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/joblogmodel.cpp" line="98"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobmodel.cpp" line="99"/>
+        <location filename="../src/gui/joblogmodel.cpp" line="101"/>
         <source>Start time</source>
         <translation>Heure de début</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobmodel.cpp" line="102"/>
+        <location filename="../src/gui/joblogmodel.cpp" line="104"/>
+        <source>End time</source>
+        <translation>Heure de fin</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/joblogmodel.cpp" line="107"/>
+        <source>Status</source>
+        <translation>Statut</translation>
+    </message>
+</context>
+<context>
+    <name>JobLogWidget</name>
+    <message>
+        <location filename="../src/gui/joblogwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulaire</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/joblogwidget.ui" line="35"/>
+        <source>maximum jobs displayed</source>
+        <translation>nombre maximum de tâches affichées</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/joblogwidget.ui" line="57"/>
+        <source>Tasks completed</source>
+        <translation>Tâches accomplies</translation>
+    </message>
+</context>
+<context>
+    <name>JobModel</name>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="108"/>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="111"/>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="114"/>
+        <source>Start time</source>
+        <translation>Heure de début</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobmodel.cpp" line="117"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobmodel.cpp" line="105"/>
+        <location filename="../src/gui/jobmodel.cpp" line="120"/>
         <source>ETA</source>
         <translation>ETA</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobmodel.cpp" line="108"/>
+        <location filename="../src/gui/jobmodel.cpp" line="123"/>
         <source>Status</source>
         <translation>Statut</translation>
     </message>
@@ -174,12 +234,31 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobwidget.ui" line="52"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Intellique&apos;s archive solution: &lt;/span&gt;check your current tasks in progress&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;La solution d&apos;archivage d&apos;Intellique : &lt;/span&gt;vérifier vos tâches en cours d&apos;exécution&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="67"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Intellique&apos;s archive solution: &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;check your current tasks in progress&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;La solution d&apos;archivage d&apos;Intellique : &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;vérifier vos tâches en cours d&apos;exécution&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="147"/>
+        <source>maximum jobs displayed</source>
+        <translation>nombre maximum de tâches affichées</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="169"/>
+        <source>Tasks currently running</source>
+        <translation>Tâches en cours d&apos;exécution</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/jobwidget.ui" line="211"/>
         <source>Stop Task</source>
         <translation>Stopper la tâche</translation>
     </message>
     <message>
-        <location filename="../src/gui/jobwidget.ui" line="76"/>
+        <location filename="../src/gui/jobwidget.ui" line="235"/>
         <source>Consult archive files</source>
         <translation>Consulter les archives</translation>
     </message>
@@ -543,44 +622,49 @@
 <context>
     <name>OCC::ActivitySettings</name>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="515"/>
-        <location filename="../src/gui/activitywidget.cpp" line="563"/>
+        <location filename="../src/gui/activitywidget.cpp" line="516"/>
+        <location filename="../src/gui/activitywidget.cpp" line="567"/>
         <source>Server Activity</source>
         <translation>Activité serveur</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="522"/>
+        <location filename="../src/gui/activitywidget.cpp" line="523"/>
         <source>Sync Protocol</source>
         <translation>Activité de synchronisation</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="571"/>
+        <location filename="../src/gui/activitywidget.cpp" line="535"/>
+        <source>Last jobs</source>
+        <translation>Dernière tâches</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/activitywidget.cpp" line="575"/>
         <source>Not Synced</source>
         <translation>Fichiers non synchronisés</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="574"/>
+        <location filename="../src/gui/activitywidget.cpp" line="578"/>
         <source>Not Synced (%1)</source>
         <extracomment>%1 is the number of not synced files.</extracomment>
         <translation>Non Synchronisé (%1)</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="606"/>
+        <location filename="../src/gui/activitywidget.cpp" line="610"/>
         <source>The server activity list has been copied to the clipboard.</source>
         <translation>L&apos;historique des opérations sur le serveur a été copié dans le presse-papier.</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="610"/>
+        <location filename="../src/gui/activitywidget.cpp" line="614"/>
         <source>The sync activity list has been copied to the clipboard.</source>
         <translation>L&apos;historique des opérations locales a été copié dans le presse-papier.</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="613"/>
+        <location filename="../src/gui/activitywidget.cpp" line="617"/>
         <source>The list of unsynced items has been copied to the clipboard.</source>
         <translation>La liste des éléments non synchronisés a été copiée dans le presse-papier.</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="618"/>
+        <location filename="../src/gui/activitywidget.cpp" line="622"/>
         <source>Copied to clipboard</source>
         <translation>Copié dans le presse-papier</translation>
     </message>
@@ -600,32 +684,32 @@
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="131"/>
+        <location filename="../src/gui/activitywidget.cpp" line="132"/>
         <source>Server Activities</source>
         <translation>Historique des opérations sur le serveur</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="87"/>
+        <location filename="../src/gui/activitywidget.cpp" line="88"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="88"/>
+        <location filename="../src/gui/activitywidget.cpp" line="89"/>
         <source>Copy the activity list to the clipboard.</source>
         <translation>Copier la liste d&apos;activités dans le presse-papier</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="135"/>
+        <location filename="../src/gui/activitywidget.cpp" line="136"/>
         <source>Action Required: Notifications</source>
         <translation>Action exigée : Notifications</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="140"/>
+        <location filename="../src/gui/activitywidget.cpp" line="141"/>
         <source>&lt;br/&gt;Account %1 does not have activities enabled.</source>
         <translation>&lt;br/&gt;Le compte %1 n&apos;a aucune activité activée.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/activitywidget.cpp" line="349"/>
+        <location filename="../src/gui/activitywidget.cpp" line="350"/>
         <source>You received %n new notification(s) from %2.</source>
         <translation>
             <numerusform>Vous avez reçu %n nouvelle notification de %2.</numerusform>
@@ -633,7 +717,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/activitywidget.cpp" line="356"/>
+        <location filename="../src/gui/activitywidget.cpp" line="357"/>
         <source>You received %n new notification(s) from %1 and %2.</source>
         <translation>
             <numerusform>Vous avez reçu 1 nouvelle notification de %1 et %2.</numerusform>
@@ -641,12 +725,12 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="358"/>
+        <location filename="../src/gui/activitywidget.cpp" line="359"/>
         <source>You received new notifications from %1, %2 and other accounts.</source>
         <translation>Vous avez reçu de nouvelles notifications de %1, %2 et d&apos;autres comptes.</translation>
     </message>
     <message>
-        <location filename="../src/gui/activitywidget.cpp" line="362"/>
+        <location filename="../src/gui/activitywidget.cpp" line="363"/>
         <source>%1 Notifications - Action Required</source>
         <translation>%1 Notifications - Action Requise</translation>
     </message>
@@ -710,52 +794,52 @@
 <context>
     <name>OCC::ArchiveWidget</name>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="71"/>
+        <location filename="../src/gui/archivewidget.cpp" line="77"/>
         <source>Your archival task &quot;%1&quot; has been created.</source>
         <translation>Votre tâche d&apos;archivage « %1 » a bien été créée</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="72"/>
+        <location filename="../src/gui/archivewidget.cpp" line="78"/>
         <source>The task will start soon.</source>
         <translation>La tâche va bientôt commencer.</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="85"/>
+        <location filename="../src/gui/archivewidget.cpp" line="91"/>
         <source>Failed to create your archival task</source>
         <translation>Échec de la création de votre tâche d&apos;archivage</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="86"/>
-        <location filename="../src/gui/archivewidget.cpp" line="95"/>
-        <location filename="../src/gui/archivewidget.cpp" line="156"/>
-        <location filename="../src/gui/archivewidget.cpp" line="180"/>
-        <location filename="../src/gui/archivewidget.cpp" line="204"/>
+        <location filename="../src/gui/archivewidget.cpp" line="92"/>
+        <location filename="../src/gui/archivewidget.cpp" line="101"/>
+        <location filename="../src/gui/archivewidget.cpp" line="162"/>
+        <location filename="../src/gui/archivewidget.cpp" line="187"/>
+        <location filename="../src/gui/archivewidget.cpp" line="211"/>
         <source>Please contact Intellique for further information</source>
         <translation>Veuillez contacter Intellique pour plus d&apos;informations.</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="94"/>
+        <location filename="../src/gui/archivewidget.cpp" line="100"/>
         <source>Failed to login into archival backend.</source>
         <translation>Échec de la connexion au backend d&apos;archivage.</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="155"/>
+        <location filename="../src/gui/archivewidget.cpp" line="161"/>
         <source>There is no pool available.</source>
         <translation>Il n&apos;y a pas de pool disponible.</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="179"/>
-        <location filename="../src/gui/archivewidget.cpp" line="203"/>
+        <location filename="../src/gui/archivewidget.cpp" line="186"/>
+        <location filename="../src/gui/archivewidget.cpp" line="210"/>
         <source>An error occured while creating your archival task.</source>
         <translation>Une erreur s&apos;est produite lors de la création de votre tâche d&apos;archivage.</translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="190"/>
+        <location filename="../src/gui/archivewidget.cpp" line="197"/>
         <source>There is %1 and %2 for %3</source>
         <translation>Il y a %1 et %2 pour %3</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/archivewidget.cpp" line="191"/>
+        <location filename="../src/gui/archivewidget.cpp" line="198"/>
         <source>%n file(s)</source>
         <translation>
             <numerusform>%n fichier</numerusform>
@@ -763,7 +847,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/gui/archivewidget.cpp" line="191"/>
+        <location filename="../src/gui/archivewidget.cpp" line="198"/>
         <source>%n directory(ies)</source>
         <translation>
             <numerusform>%n répertoire</numerusform>
@@ -771,7 +855,7 @@
         </translation>
     </message>
     <message>
-        <location filename="../src/gui/archivewidget.cpp" line="197"/>
+        <location filename="../src/gui/archivewidget.cpp" line="204"/>
         <source>Computing size...</source>
         <translation>Calcul de la taille...</translation>
     </message>
@@ -2705,8 +2789,12 @@ Il est déconseillé de l&apos;utiliser.</translation>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../src/gui/settingsdialog.cpp" line="109"/>
         <source>Archive</source>
+        <translation type="vanished">Archiveur</translation>
+    </message>
+    <message>
+        <location filename="../src/gui/settingsdialog.cpp" line="109"/>
+        <source>Archiver</source>
         <translation>Archiveur</translation>
     </message>
     <message>
@@ -4073,47 +4161,47 @@ Il est déconseillé de l&apos;utiliser.</translation>
 <context>
     <name>QCoreApplication</name>
     <message>
-        <location filename="../src/gui/job.cpp" line="103"/>
+        <location filename="../src/gui/job.cpp" line="118"/>
         <source>Disable</source>
         <translation>Désactivée</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="106"/>
+        <location filename="../src/gui/job.cpp" line="121"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="109"/>
+        <location filename="../src/gui/job.cpp" line="124"/>
         <source>Finished</source>
         <translation>Terminée</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="112"/>
+        <location filename="../src/gui/job.cpp" line="127"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="115"/>
+        <location filename="../src/gui/job.cpp" line="130"/>
         <source>Running</source>
         <translation>En cours</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="118"/>
+        <location filename="../src/gui/job.cpp" line="133"/>
         <source>Scheduled</source>
         <translation>Programmé</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="121"/>
+        <location filename="../src/gui/job.cpp" line="136"/>
         <source>Stopped</source>
         <translation>Arrêtée</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="124"/>
+        <location filename="../src/gui/job.cpp" line="139"/>
         <source>Waiting</source>
         <translation>En attendante</translation>
     </message>
     <message>
-        <location filename="../src/gui/job.cpp" line="127"/>
+        <location filename="../src/gui/job.cpp" line="142"/>
         <source>Unkown</source>
         <comment>job status</comment>
         <translation>Inconnue</translation>

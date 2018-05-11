@@ -24,6 +24,7 @@ set(client_UI
     ignorelisteditor.ui
     issueswidget.ui
     jobwidget.ui
+    joblogwidget.ui
     networksettings.ui
     notificationwidget.ui
     protocolwidget.ui
@@ -78,8 +79,10 @@ set(client_SRCS
     issueswidget.cpp
     job.cpp
     jobdelegate.cpp
+    joblogmodel.cpp
     jobmodel.cpp
     jobwidget.cpp
+    joblogwidget.cpp
     lockwatcher.cpp
     logbrowser.cpp
     networksettings.cpp

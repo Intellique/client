@@ -84,7 +84,7 @@ void JobWidget::doStopTask(int) {
 }
 
 void JobWidget::fetchJobs(int user_id) {
-    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, true, this->ui->spnBxTasks->value(), this);
+    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, false, this->ui->spnBxTasks->value(), this);
     // connect(job, SIGNAL(fetchFailure()), SLOT(???));
     connect(job, SIGNAL(jobsFetch(const QList<int>&)), SLOT(jobs(const QList<int>&)));
     connect(job, SIGNAL(notConnected()), SLOT(doAuthForUpdate()));

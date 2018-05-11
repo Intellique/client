@@ -29,5 +29,8 @@
         <file>resources/monitor@2x.png</file>
         <file>resources/intellique.png</file>
         <file>resources/intellique_logo_background.png</file>
+		<file>resources/log_16.png</file>
+		<file>resources/log_22.png</file>
+		<file>resources/log_32.png</file>
     </qresource>
 </RCC>
