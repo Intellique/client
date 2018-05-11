@@ -278,6 +278,13 @@
         <source>Consult archive files</source>
         <translation type="unfinished"></translation>
     </message>
+    <message numerus="yes">
+        <location filename="../src/gui/jobwidget.cpp" line="146"/>
+        <source>%n current jobs</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>Mirall::AccountSettings</name>

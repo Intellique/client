@@ -55,7 +55,7 @@ void JobLogWidget::doAuthForUpdate() {
 }
 
 void JobLogWidget::fetchJobs(int user_id) {
-    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, true, this->ui->spnBxMaxJobs->value(), this);
+    ArchivalJobsJob * job = new ArchivalJobsJob(this->account, user_id, false, this->ui->spnBxMaxJobs->value(), this);
     // connect(job, SIGNAL(fetchFailure()), SLOT(???));
     connect(job, SIGNAL(jobsFetch(const QList<int>&)), SLOT(jobs(const QList<int>&)));
     connect(job, SIGNAL(notConnected()), SLOT(doAuthForUpdate()));

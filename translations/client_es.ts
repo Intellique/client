@@ -262,6 +262,14 @@
         <source>Consult archive files</source>
         <translation>Consultar los ficheros de archivo</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../src/gui/jobwidget.cpp" line="146"/>
+        <source>%n current jobs</source>
+        <translation type="unfinished">
+            <numerusform>%n tarea en curso</numerusform>
+            <numerusform>%n tareas en curso</numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>NotificationWidget</name>

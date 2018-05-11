@@ -242,6 +242,9 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QLabel" name="lblRunningTask"/>
+   </item>
   </layout>
  </widget>
  <resources/>
