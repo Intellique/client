@@ -116,9 +116,9 @@ void JobWidget::gotToken(const QString& token) {
     QRegExp parent_dir("^(.*\\/)[^\\/]+\\/?$");
     QUrl url = this->account->archivalUrl();
     if (parent_dir.exactMatch(url.path()))
-        url.setPath(parent_dir.cap(1) + "intellique-test/");
+        url.setPath(parent_dir.cap(1) + "intellique/");
     else
-        url.setPath("/intellique-test/");
+        url.setPath("/intellique/");
     url.setQuery(QString("token=%1").arg(QString(token).replace(" ", "%20")));
     QDesktopServices::openUrl(url);
 }
