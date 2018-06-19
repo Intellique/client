@@ -68,6 +68,9 @@
 	background-position: center center;
 }</string>
      </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
   </layout>

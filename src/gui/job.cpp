@@ -27,7 +27,7 @@ QDateTime Job::eta() const {
 }
 
 QString Job::etaToString() const {
-    if (this->m_end_time.isValid())
+    if (this->m_end_time.isValid() or this->m_done <= 0)
         return "";
 
     QDateTime now = QDateTime::currentDateTime();
