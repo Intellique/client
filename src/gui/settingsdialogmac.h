@@ -33,6 +33,7 @@ class ownCloudGui;
 class Folder;
 class AccountState;
 class ActivitySettings;
+class JobWidget;
 
 /**
  * @brief The SettingsDialogMac class
@@ -44,6 +45,8 @@ class SettingsDialogMac : public MacPreferencesWindow
 
 public:
     explicit SettingsDialogMac(ownCloudGui *gui, QWidget *parent = 0);
+
+    void restoreArchive();
 
 public slots:
     void showActivityPage();
@@ -65,6 +68,7 @@ private:
     ProtocolWidget *_protocolWidget;
     ActivitySettings *_activitySettings;
     ownCloudGui *_gui;
+    JobWidget * _jobWidget;
 
     int _protocolIdx;
 };

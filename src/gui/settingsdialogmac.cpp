@@ -101,8 +101,8 @@ SettingsDialogMac::SettingsDialogMac(ownCloudGui *gui, QWidget *parent)
     connect(archiveWidget, SIGNAL(newArchive()), SLOT(showMonitor()));
 
     QIcon jobIcon(":/client/resources/monitor.png");
-    JobWidget * jobWidget = new JobWidget;
-    addPreferencesPanel(jobIcon, tr("Monitor"), jobWidget);
+    _jobWidget = new JobWidget;
+    addPreferencesPanel(jobIcon, tr("Monitor"), _jobWidget);
 
     QIcon activityIcon(QLatin1String(":/client/resources/activity.png"));
     _activitySettings = new ActivitySettings;
@@ -241,6 +241,10 @@ void SettingsDialogMac::slotAccountDisplayNameChanged()
 
 void SettingsDialogMac::showArchivePage() {
     setCurrentPanelIndex(preferencePanelCount() - 5);
+}
+
+void SettingsDialogMac::restoreArchive() {
+    _jobWidget->restoreArchive();
 }
 
 }
