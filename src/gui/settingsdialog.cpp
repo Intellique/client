@@ -106,9 +106,9 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
 
-    QAction * archiveAction = createColorAwareAction(QLatin1String(":/client/resources/upload-folder-button.png"), tr("Archiver"));
-    _actionGroup->addAction(archiveAction);
-    _toolBar->addAction(archiveAction);
+    _archiveAction = createColorAwareAction(QLatin1String(":/client/resources/upload-folder-button.png"), tr("Archiver"));
+    _actionGroup->addAction(_archiveAction);
+    _toolBar->addAction(_archiveAction);
     _archiveWidget = new ArchiveWidget(this);
     _ui->stack->addWidget(_archiveWidget);
 
@@ -142,7 +142,7 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     NetworkSettings *networkSettings = new NetworkSettings;
     _ui->stack->addWidget(networkSettings);
 
-    _actionGroupWidgets.insert(archiveAction, _archiveWidget);
+    _actionGroupWidgets.insert(_archiveAction, _archiveWidget);
     _actionGroupWidgets.insert(jobAction, jobWidget);
     _actionGroupWidgets.insert(_activityAction, _activitySettings);
     _actionGroupWidgets.insert(generalAction, generalSettings);
@@ -426,6 +426,10 @@ void SettingsDialog::slotRefreshActivity(AccountState *accountState)
     if (accountState) {
         _activitySettings->slotRefresh(accountState);
     }
+}
+
+void SettingsDialog::showArchivePage() {
+    _archiveAction->trigger();
 }
 
 } // namespace OCC

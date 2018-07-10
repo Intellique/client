@@ -85,6 +85,7 @@ public slots:
     void slotOpenPath(const QString &path);
     void slotAccountStateChanged();
     void slotTrayMessageIfServerUnsupported(Account *account);
+    void slotArchive();
 
     /**
      * Open a share dialog for a file or folder.

@@ -57,6 +57,7 @@ public:
 public slots:
     void showFirstPage();
     void showActivityPage();
+    void showArchivePage();
     void showIssuesList(const QString &folderAlias);
     void slotSwitchPage(QAction *action);
     void slotRefreshActivity(AccountState *accountState);
@@ -96,6 +97,7 @@ private:
     ActivitySettings *_activitySettings;
 
     QAction *_activityAction;
+    QAction *_archiveAction;
     ownCloudGui *_gui;
 };
 }
