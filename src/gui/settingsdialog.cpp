@@ -115,8 +115,8 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     QAction * jobAction = createColorAwareAction(QLatin1String(":/client/resources/monitor.png"), tr("Monitor"));
     _actionGroup->addAction(jobAction);
     _toolBar->addAction(jobAction);
-    QWidget * jobWidget = new JobWidget(this);
-    _ui->stack->addWidget(jobWidget);
+    _jobWidget = new JobWidget(this);
+    _ui->stack->addWidget(_jobWidget);
     connect(_archiveWidget, SIGNAL(newArchive()), jobAction, SLOT(trigger()));
 
     // Note: all the actions have a '\n' because the account name is in two lines and
@@ -143,7 +143,7 @@ SettingsDialog::SettingsDialog(ownCloudGui *gui, QWidget *parent)
     _ui->stack->addWidget(networkSettings);
 
     _actionGroupWidgets.insert(_archiveAction, _archiveWidget);
-    _actionGroupWidgets.insert(jobAction, jobWidget);
+    _actionGroupWidgets.insert(jobAction, _jobWidget);
     _actionGroupWidgets.insert(_activityAction, _activitySettings);
     _actionGroupWidgets.insert(generalAction, generalSettings);
     _actionGroupWidgets.insert(networkAction, networkSettings);
@@ -430,6 +430,10 @@ void SettingsDialog::slotRefreshActivity(AccountState *accountState)
 
 void SettingsDialog::showArchivePage() {
     _archiveAction->trigger();
+}
+
+void SettingsDialog::restoreArchive() {
+    _jobWidget->restoreArchive();
 }
 
 } // namespace OCC

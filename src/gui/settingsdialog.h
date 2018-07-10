@@ -25,6 +25,7 @@ class QAction;
 class QActionGroup;
 class QToolBar;
 class QStandardItemModel;
+class JobWidget;
 
 namespace OCC {
 
@@ -53,6 +54,7 @@ public:
     ~SettingsDialog();
 
     void addAccount(const QString &title, QWidget *widget);
+    void restoreArchive();
 
 public slots:
     void showFirstPage();
@@ -93,7 +95,8 @@ private:
 
     QToolBar *_toolBar;
 
-	ArchiveWidget * _archiveWidget;
+    ArchiveWidget * _archiveWidget;
+    JobWidget * _jobWidget;
     ActivitySettings *_activitySettings;
 
     QAction *_activityAction;

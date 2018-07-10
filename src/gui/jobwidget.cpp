@@ -150,6 +150,10 @@ void JobWidget::noToken() {
 
 }
 
+void JobWidget::restoreArchive() {
+    this->getToken();
+}
+
 void JobWidget::selectionChanged(const QItemSelection& selected, const QItemSelection&) {
     if (selected.length() > 0) {
         QModelIndex sel = selected.first().indexes().first();

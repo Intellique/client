@@ -21,6 +21,8 @@ public:
     explicit JobWidget(QWidget * parent = nullptr);
     ~JobWidget();
 
+    void restoreArchive();
+
 private slots:
     void doAuthForUpdate();
     void doStopTask(int user_id);

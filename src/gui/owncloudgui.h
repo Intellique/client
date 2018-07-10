@@ -104,6 +104,7 @@ private slots:
     void slotUnpauseAllFolders();
     void slotPauseAllFolders();
     void slotNewAccountWizard();
+    void slotRestoreArchive();
 
 private:
     void setPauseOnAllFoldersHelper(bool pause);

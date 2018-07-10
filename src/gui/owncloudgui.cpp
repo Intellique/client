@@ -320,6 +320,9 @@ void ownCloudGui::addAccountContextMenu(AccountStatePtr accountState, QMenu *men
     auto actionArchive = menu->addAction(tr("Create an archive…"));
     QObject::connect(actionArchive, &QAction::triggered, this, &ownCloudGui::slotArchive);
 
+    auto actionRestore = menu->addAction(tr("Restore an archive…"));
+    QObject::connect(actionRestore, &QAction::triggered, this, &ownCloudGui::slotRestoreArchive);
+
     // Only show the name in the action if it's not part of an
     // account sub menu.
     QString browserOpen = tr("Open in browser");
@@ -1078,6 +1081,10 @@ void ownCloudGui::slotRemoveDestroyedShareDialogs()
 void ownCloudGui::slotArchive() {
     this->slotShowSettings();
     _settingsDialog->showArchivePage();
+}
+
+void ownCloudGui::slotRestoreArchive() {
+    _settingsDialog->restoreArchive();
 }
 
 } // end namespace
