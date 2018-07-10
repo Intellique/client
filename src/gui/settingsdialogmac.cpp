@@ -239,4 +239,8 @@ void SettingsDialogMac::slotAccountDisplayNameChanged()
     }
 }
 
+void SettingsDialogMac::showArchivePage() {
+    setCurrentPanelIndex(preferencePanelCount() - 5);
+}
+
 }
