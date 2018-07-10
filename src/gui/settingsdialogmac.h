@@ -20,6 +20,7 @@
 #include "macpreferenceswindow.h"
 #include "owncloudgui.h"
 
+class JobWidget;
 class QStandardItemModel;
 class QListWidgetItem;
 
@@ -33,7 +34,6 @@ class ownCloudGui;
 class Folder;
 class AccountState;
 class ActivitySettings;
-class JobWidget;
 
 /**
  * @brief The SettingsDialogMac class
