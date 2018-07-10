@@ -317,7 +317,7 @@ void ownCloudGui::slotComputeOverallSyncStatus()
 
 void ownCloudGui::addAccountContextMenu(AccountStatePtr accountState, QMenu *menu, bool separateMenu)
 {
-    auto actionArchive = menu->addAction(tr("Archive"));
+    auto actionArchive = menu->addAction(tr("Create an archive…"));
     QObject::connect(actionArchive, &QAction::triggered, this, &ownCloudGui::slotArchive);
 
     // Only show the name in the action if it's not part of an
