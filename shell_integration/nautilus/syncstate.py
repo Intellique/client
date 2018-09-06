@@ -34,12 +34,15 @@ from gi.repository import GObject, Nautilus
 appname = 'ownCloud'
 
 print("Initializing "+appname+"-client-nautilus extension")
+print("Using python version {}".format(sys.version_info))
 
 def get_local_path(url):
     if url[0:7] == 'file://':
         url = url[7:]
-    unquote = urllib.parse.unquote if python3 else urllib.unquote
-    return unquote(url)
+    if python3:
+        return urllib.parse.unquote(url)
+    else:
+        return urllib.unquote(url).decode('utf-8')
 
 def get_runtime_dir():
     """Returns the value of $XDG_RUNTIME_DIR, a directory path.
@@ -61,7 +64,7 @@ class SocketConnect(GObject.GObject):
         self._watch_id = 0
         self._sock = None
         self._listeners = [self._update_registered_paths]
-        self._remainder = ''.encode()
+        self._remainder = ''.encode('utf-8')
         self.nautilusVFSFile_table = {}  # not needed in this object actually but shared 
                                          # all over the other objects.
 
@@ -79,7 +82,7 @@ class SocketConnect(GObject.GObject):
         # print("Server command: " + cmd)
         if self.connected:
             try:
-                self._sock.send(cmd.encode())
+                self._sock.send(cmd.encode('utf-8'))
             except:
                 print("Sending failed.")
                 self.reconnect()
@@ -94,18 +97,15 @@ class SocketConnect(GObject.GObject):
             self._sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
             sock_file = os.path.join(get_runtime_dir(), appname, "socket")
             try:
-                print("Socket File: " + sock_file)
                 self._sock.connect(sock_file) # fails if sock_file doesn't exist
                 self.connected = True
-                print("Setting connected to %r." % self.connected )
                 self._watch_id = GObject.io_add_watch(self._sock, GObject.IO_IN, self._handle_notify)
-                print("Socket watch id: " + str(self._watch_id))
 
                 self.sendCommand('GET_STRINGS:\n')
 
                 return False  # Don't run again
             except Exception as e:
-                print("Could not connect to unix socket. " + str(e))
+                print("Could not connect to unix socket " + sock_file + ". " + str(e))
         except Exception as e:  # Bad habbit
             print("Connect could not be established, try again later.")
             self._sock.close()
@@ -118,24 +118,24 @@ class SocketConnect(GObject.GObject):
         # Prepend the remaining data from last call
         if len(self._remainder) > 0:
             data = self._remainder + data
-            self._remainder = ''.encode()
+            self._remainder = ''.encode('utf-8')
 
         if len(data) > 0:
             # Remember the remainder for next round
-            lastNL = data.rfind('\n'.encode());
+            lastNL = data.rfind('\n'.encode('utf-8'));
             if lastNL > -1 and lastNL < len(data):
                 self._remainder = data[lastNL+1:]
                 data = data[:lastNL]
 
-            for l in data.split('\n'.encode()):
-                self._handle_server_response(l.decode())
+            for l in data.split('\n'.encode('utf-8')):
+                self._handle_server_response(l.decode('utf-8'))
         else:
             return False
 
         return True  # Run again
 
     def _handle_server_response(self, line):
-        print("Server response: " + line)
+        # print("Server response: " + line)
         parts = line.split(':')
         action = parts[0]
         args = parts[1:]
@@ -262,11 +262,11 @@ class MenuExtension(GObject.GObject, Nautilus.MenuProvider):
 
     def context_menu_action(self, menu, action, file):
         filename = get_local_path(file.get_uri())
-        print("Context menu: " + action + ' ' + filename)
+        # print("Context menu: " + action + ' ' + filename)
         socketConnect.sendCommand(action + ":" + filename + "\n")
 
 
-class SyncStateExtension(GObject.GObject, Nautilus.ColumnProvider, Nautilus.InfoProvider):
+class SyncStateExtension(GObject.GObject, Nautilus.InfoProvider):
     def __init__(self):
         GObject.GObject.__init__(self)
 

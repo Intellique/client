@@ -130,6 +130,8 @@ void PropagateUploadFileV1::startNextChunk()
     connect(job, &PUTFileJob::uploadProgress, this, &PropagateUploadFileV1::slotUploadProgress);
     connect(job, &PUTFileJob::uploadProgress, device, &UploadDevice::slotJobUploadProgress);
     connect(job, &QObject::destroyed, this, &PropagateUploadFileCommon::slotJobDestroyed);
+    if (isFinalChunk)
+        adjustLastJobTimeout(job, fileSize);
     job->start();
     propagator()->_activeJobList.append(this);
     _currentChunk++;
@@ -301,6 +303,7 @@ void PropagateUploadFileV1::slotPutFinished()
         qCWarning(lcPropagateUpload) << "Server does not support X-OC-MTime" << job->reply()->rawHeader("X-OC-MTime");
         // Well, the mtime was not set
         done(SyncFileItem::SoftError, "Server does not support X-OC-MTime");
+        return;
     }
 
 #ifdef WITH_TESTING
